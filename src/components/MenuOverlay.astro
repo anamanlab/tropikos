@@ -1,4 +1,5 @@
 ---
+import Logo from '@/components/Logo.astro';
 import { NAV_LINKS, SITE } from '@/site.config';
 
 const path = Astro.url.pathname;
@@ -13,12 +14,32 @@ const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`)
   aria-label="Menu principal"
   hidden
 >
-  <div class="shell flex items-start justify-between gap-6 pt-[var(--header-y)]">
-    <p class="caption flex items-baseline gap-1.5 tabular-nums">
-      <span data-clock="rec">--:--:--</span>
+  <div
+    class="shell grid grid-cols-[1fr_auto_1fr] items-center gap-3 pt-[var(--header-y)] sm:gap-6"
+  >
+    <p class="caption col-start-1 hidden items-baseline gap-1.5 tabular-nums sm:flex">
+      <span data-clock="rec" data-timezone={SITE.timezone}>--:--:--</span>
       <span class="text-concrete">{SITE.cityCode}</span>
     </p>
-    <button type="button" data-menu-close class="body-copy tap cursor-pointer px-1 -mx-1">Fechar</button>
+    <a
+      href="/"
+      aria-label="Trópikos Arquitetos — página inicial"
+      class="col-start-2 justify-self-center transition-opacity hover:opacity-70"
+    >
+      <Logo
+        variant="horizontal"
+        color="color"
+        class="h-auto w-[180px] sm:w-[220px]"
+        decorative
+      />
+    </a>
+    <button
+      type="button"
+      data-menu-close
+      class="body-copy tap col-start-3 cursor-pointer justify-self-end px-1 -mx-1"
+    >
+      Fechar
+    </button>
   </div>
 
   <nav class="shell mt-[clamp(3rem,9vh,7rem)]" aria-label="Principal">
@@ -55,17 +76,17 @@ const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`)
       <div>
         <p class="caption text-concrete mb-2">Contato</p>
         <p class="body-copy">
-          <a class="link-rule" href={`mailto:${SITE.email}`}>{SITE.email}</a><br />
-          <a class="link-rule" href={`https://wa.me/${SITE.whatsapp}`}>+55 81 99302-0201</a>
+          <a class="link-rule tap" href={`mailto:${SITE.email}`}>{SITE.email}</a><br />
+          <a class="link-rule tap" href={`https://wa.me/${SITE.whatsapp}`}>+55 81 99302-0201</a>
         </p>
       </div>
       <div>
         <p class="caption text-concrete mb-2">Social</p>
         <p class="body-copy">
-          <a class="link-rule" href={SITE.instagram} target="_blank" rel="noopener">
+          <a class="link-rule tap" href={SITE.instagram} target="_blank" rel="noopener">
             {SITE.instagramHandle} ↗
           </a><br />
-          <a class="link-rule" href={SITE.linktree} target="_blank" rel="noopener">
+          <a class="link-rule tap" href={SITE.linktree} target="_blank" rel="noopener">
             Linktree ↗
           </a>
         </p>
@@ -135,12 +156,15 @@ const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`)
   function openMenu() {
     if (!overlay || !trigger) return;
     overlay.hidden = false;
-    // next frame so the transition runs
-    requestAnimationFrame(() => overlay.setAttribute('data-open', ''));
     trigger.setAttribute('aria-expanded', 'true');
     document.body.dataset.menuOpen = '';
     setPageInert(true);
-    firstLink?.focus({ preventScroll: true });
+    // Make the dialog visible before moving focus into it. Focusing while the
+    // overlay is still `visibility: hidden` leaves focus on the document body.
+    requestAnimationFrame(() => {
+      overlay.setAttribute('data-open', '');
+      requestAnimationFrame(() => firstLink?.focus({ preventScroll: true }));
+    });
   }
 
   function closeMenu() {

@@ -1,6 +1,6 @@
 # Trópikos Arquitetos
 
-Website for **Trópikos Arquitetos**, an architecture and interiors studio in Recife, Pernambuco. Built as a type-driven architectural monograph: paper white, a single onyx ink, one weight, no radius, no shadows, no chromatic color on the page.
+Website for **Trópikos Arquitetos**, an architecture and interiors studio in Recife, Pernambuco. Built as a type-driven architectural monograph: paper white, a single onyx ink, and the official brand mark's palm and terracotta accents. One weight, no radius, no shadows.
 
 - **Studio:** Rua Ferreira Lopes, 334 — Salas 201/202/203, Parnamirim, Recife — PE, 52060-235
 - **Contact:** tropikosarquitetura@gmail.com · +55 81 99302-0201
@@ -77,7 +77,7 @@ order: 1
 - Astro converts covers and gallery images to WebP at responsive widths. Prefer source images of at least 2000px on the long edge.
 - Add `galleryAlt` alongside `gallery` so each image has a descriptive alternative.
 
-> **Placeholder notice:** the project photography currently in `src/assets/projects/` is mock material from Unsplash, plus real frames from the studio reel for Cozinha Espinheiro. It is meant to show the finished layout and must be replaced with confirmed project photography before public launch. Sources are documented in [`src/assets/projects/CREDITS.md`](src/assets/projects/CREDITS.md). The hero reel in `public/media/hero-tropikos-*` is a real Trópikos asset.
+> **Placeholder notice:** the project photography currently in `src/assets/projects/` is mock material from Unsplash, plus real frames from the studio reel for Cozinha Espinheiro. The studio-section still at `public/media/estudio-processo.webp` is also a placeholder. This material is meant to show the finished layout and must be replaced with confirmed project and studio photography before public launch. Sources are documented in [`src/assets/projects/CREDITS.md`](src/assets/projects/CREDITS.md). The hero reel in `public/media/hero-tropikos-*` is a real Trópikos asset.
 
 ## Instagram media
 
@@ -102,6 +102,7 @@ A logged-in session is the only reliable route: Instagram serves a login wall to
 `DESIGN.md` holds the source measurements for the visual language. `src/styles/global.css` implements it:
 
 - `--color-paper #ffffff`, `--color-onyx #191919`, `--color-concrete #6b6b6b` (text-safe), `--color-hairline #191919`
+- Official logo palette is used inside the mark only: Palm `#3D6E60`, Terracotta `#BA5424`
 - 11 / 15 / 21 / 32 / 62 px type scale; display tracking −0.05em; single 400 weight
 - 0px radius, no shadows, hairline rules only
 - `.wordmark` is sized to overflow the viewport and crop on both edges

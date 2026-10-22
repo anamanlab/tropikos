@@ -4,13 +4,15 @@ interface Props {
   color?: 'color' | 'black' | 'white' | 'palm';
   class?: string;
   id?: string;
+  decorative?: boolean;
 }
 
 const {
   variant = 'horizontal',
   color = 'color',
   class: className = '',
-  id = 'tropikos-logo',
+  id,
+  decorative = false,
 } = Astro.props;
 
 // Determine colors
@@ -30,14 +32,15 @@ const ruleColor = isWhite ? '#FFFFFF' : isBlack ? '#000000' : '#191919';
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 680 256"
       class={className}
-      role="img"
-      aria-label="Trópikos Arquitetos"
+      role={decorative ? undefined : 'img'}
+      aria-label={decorative ? undefined : 'Trópikos Arquitetos'}
+      aria-hidden={decorative ? 'true' : undefined}
       id={id}
     >
-      <title>Trópikos Arquitetos</title>
+      {!decorative && <title>Trópikos Arquitetos</title>}
       <!-- Símbolo Reduzido -->
       <g transform="translate(41, 59) scale(0.54)">
-        <g id="contours">
+        <g>
           <path d="M 47.0 143.0 C 59.0 135.0 69.0 147.0 87.0 141.0" fill="none" stroke={palmColor} stroke-width="3.8" stroke-linecap="round"/>
           <path d="M 47.0 132.0 C 59.0 124.0 70.0 136.0 87.0 130.0" fill="none" stroke={palmColor} stroke-width="3.8" stroke-linecap="round"/>
           <path d="M 47.0 121.0 C 60.0 113.0 72.0 125.0 87.0 119.0" fill="none" stroke={palmColor} stroke-width="3.8" stroke-linecap="round"/>
@@ -87,12 +90,13 @@ const ruleColor = isWhite ? '#FFFFFF' : isBlack ? '#000000' : '#191919';
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 256 256"
       class={className}
-      role="img"
-      aria-label="Trópikos Arquitetos"
+      role={decorative ? undefined : 'img'}
+      aria-label={decorative ? undefined : 'Trópikos Arquitetos'}
+      aria-hidden={decorative ? 'true' : undefined}
       id={id}
     >
-      <title>Trópikos Arquitetos</title>
-      <g id="symbol">
+      {!decorative && <title>Trópikos Arquitetos</title>}
+      <g>
         <path d="M 47.0 143.0 C 59.0 135.0 69.0 147.0 87.0 141.0" fill="none" stroke={palmColor} stroke-width="3.8" stroke-linecap="round"/>
         <path d="M 47.0 132.0 C 59.0 124.0 70.0 136.0 87.0 130.0" fill="none" stroke={palmColor} stroke-width="3.8" stroke-linecap="round"/>
         <path d="M 47.0 121.0 C 60.0 113.0 72.0 125.0 87.0 119.0" fill="none" stroke={palmColor} stroke-width="3.8" stroke-linecap="round"/>
@@ -107,7 +111,7 @@ const ruleColor = isWhite ? '#FFFFFF' : isBlack ? '#000000' : '#191919';
         <path d="M 58 24 L 46 29 C 43 20 37 16 33 16 C 25 16 20 21 20 27 C 20 34 26 37 38 42 C 54 48 64 54 64 68 C 64 86 49 100 33 100 C 15 100 4 87 2 72 L 17 68 C 19 79 26 84 33 84 C 42 84 48 78 48 70 C 48 61 41 58 29 52 C 16 46 4 40 4 27 C 4 12 17 0 33 0 C 48 0 56 10 58 24 Z" transform="translate(173.82, 166.0) scale(0.46)" fill={inkColor}/>
       </g>
       {variant === 'stacked' && (
-        <g id="descriptor" transform="translate(50, 224)">
+        <g transform="translate(50, 224)">
           <path d="M 37 0 L 74 100 H 55 L 47 76 H 27 L 19 100 H 0 Z M 37 20 L 45 66 H 29 Z" transform="translate(0, 0) scale(0.18)" fill-rule="evenodd" fill={terraColor}/>
           <path d="M 0 0 H 42 C 57.5 0 70 12.5 70 28 C 70 41.5 60.5 52.5 48 55.2 L 70 100 H 50 L 30 56 H 16 V 100 H 0 Z M 16 16 H 42 C 48.6 16 54 21.4 54 28 C 54 34.6 48.6 40 42 40 H 16 Z" transform="translate(17.64, 0) scale(0.18)" fill-rule="evenodd" fill={terraColor}/>
           <path d="M 38 0 C 59 0 76 17 76 50 C 76 66 69 80 58 89 L 72 104 H 54 L 46 95 C 43 97 41 98 38 98 C 17 98 0 81 0 50 C 0 17 17 0 38 0 Z M 38 16 C 26 16 16 29 16 50 C 16 71 26 82 38 82 C 50 82 60 71 60 50 C 60 29 50 16 38 16 Z" transform="translate(34.56, 0) scale(0.18)" fill-rule="evenodd" fill={terraColor}/>

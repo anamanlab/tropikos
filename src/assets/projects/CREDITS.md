@@ -1,8 +1,8 @@
 # Placeholder photography credits
 
-The project covers and galleries currently use placeholder images so the site
-can be reviewed as a complete visual system. Replace them with confirmed
-Trópikos project photography before a public launch.
+The project covers, galleries, and studio-section image currently use placeholder
+images so the site can be reviewed as a complete visual system. Replace them
+with confirmed Trópikos project and studio photography before a public launch.
 
 Stock images are from [Unsplash](https://unsplash.com/license) and are free to
 use. Attribution is not required by the license, but the source URLs are kept
@@ -50,3 +50,10 @@ frames from the studio reel supplied by Trópikos.
 - `cover.jpg` — https://images.unsplash.com/photo-1512917774080-9991f1c4c750
 - `01.jpg` — https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde
 - `02.jpg` — https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3
+
+## Studio section
+
+- `public/media/estudio-processo.webp` — Photo by Caroline Badran on Unsplash
+  (shot for architect Érica Rodrigues):
+  https://unsplash.com/photos/modern-office-space-with-plants-and-artwork-xTmez98cqAM
+  Placeholder for the Trópikos studio; replace with real studio photography.

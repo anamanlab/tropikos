@@ -23,6 +23,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
+    "icons": "node scripts/generate-icons.mjs",
     "deploy": "pnpm build && cf deploy",
     "deploy:dry": "pnpm build && cf deploy --dry-run"
   },

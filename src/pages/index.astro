@@ -13,7 +13,9 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 3);
 
 <BaseLayout title={`${SITE.name} — Arquitetura no Recife`}>
   <section class="flex min-h-[100svh] flex-col">
-    <div class="shell grid grid-cols-12 gap-5 pt-[calc(var(--header-y)+4rem)]">
+    <div
+      class="shell grid grid-cols-12 gap-5 pt-[calc(var(--header-y)+4rem)] sm:pt-[calc(var(--header-y)+5.5rem)]"
+    >
       <div class="col-span-12 md:col-span-5 md:col-start-7">
         <p class="body-copy max-w-[25rem]">
           <span class="text-ink">Trópikos Arquitetos</span>{' '}
@@ -123,22 +125,22 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 3);
   <section class="inverse">
     <div class="shell grid grid-cols-1 items-center gap-12 py-[clamp(4rem,8vw,7rem)] md:grid-cols-12 md:gap-10">
       <figure class="md:col-span-5 md:col-start-2">
-        <a href="/projetos/cozinha-espinheiro" class="group block" aria-label="Ver o projeto Cozinha Espinheiro">
+        <a href="/estudio" class="group block" aria-label="Conhecer o estúdio">
           <div class="relative mx-auto aspect-[4/5] w-full max-w-[21rem] overflow-hidden bg-black">
             <img
-              src="/media/registro-cozinha.webp"
-              alt="Prateleira de madeira com cerâmicas, plantas secas e azulejos verdes sob luz quente"
+              src="/media/estudio-processo.webp"
+              alt="Mesa de trabalho em um estúdio de arquitetura, com desenhos emoldurados na parede, planta alta e cortina iluminada"
               class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-              width="720"
-              height="900"
+              width="1000"
+              height="1250"
               loading="lazy"
               decoding="async"
             />
           </div>
         </a>
         <figcaption class="caption mt-3 flex items-center justify-between gap-4 text-concrete">
-          <span>Registro de obra</span>
-          <span>Cozinha Espinheiro</span>
+          <span>Espaço de trabalho</span>
+          <span>Luz e matéria</span>
         </figcaption>
       </figure>
 

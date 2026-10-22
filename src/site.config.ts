@@ -28,9 +28,9 @@ export const SITE = {
   founded: 2021,
   locale: 'pt-BR',
   timezone: 'America/Recife',
-  timezoneAlt: 'America/Noronha',
+  timezoneAlt: 'Europe/Paris',
   cityCode: 'REC',
-  cityCodeAlt: 'FEN',
+  cityCodeAlt: 'PAR',
 } as const;
 
 export const NAV_LINKS = [
