@@ -1,0 +1,59 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+
+interface Props {
+  entry: CollectionEntry<'projects'>;
+  index?: number;
+}
+
+const { entry } = Astro.props;
+const { title, typology, location, year, category, cover, coverAlt } = entry.data;
+
+const categoryLabels: Record<string, string> = {
+  construido: 'Construído',
+  projeto: 'Projeto 3D',
+  comercial: 'Comercial',
+  reforma: 'Reforma',
+};
+---
+
+<a
+  href={`/projetos/${entry.id}`}
+  data-category={category}
+  class="project-item project-card group block overflow-hidden"
+>
+  <div class="relative aspect-[16/11] sm:aspect-[4/3] w-full overflow-hidden bg-hairline">
+    {
+      cover ? (
+        <Image
+          src={cover}
+          alt={coverAlt ?? title}
+          class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+          widths={[500, 800, 1200]}
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          format="webp"
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <div class="flex h-full w-full items-center justify-center bg-hairline">
+          <span class="caption text-concrete">Fotografia em breve</span>
+        </div>
+      )
+    }
+    <span class="caption absolute left-3 top-3 bg-paper/90 px-2 py-0.5 text-ink backdrop-blur-sm sm:left-4 sm:top-4">
+      {categoryLabels[category] ?? category}
+    </span>
+  </div>
+
+  <div class="mt-4 flex items-baseline justify-between gap-4">
+    <div>
+      <h3 class="text-[clamp(1.2rem,1.8vw,1.5rem)] leading-[1.1] tracking-[-0.03em] transition-opacity group-hover:opacity-60">
+        {title}
+      </h3>
+      <p class="caption text-concrete mt-1">{typology} — {location}</p>
+    </div>
+    <span class="index text-concrete tabular-nums">{year}</span>
+  </div>
+</a>

@@ -2,10 +2,18 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProjectRow from '@/components/ProjectRow.astro';
+import ProjectCard from '@/components/ProjectCard.astro';
 
 const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
   (a, b) => a.data.order - b.data.order,
 );
+
+const counts = {
+  all: projects.length,
+  construido: projects.filter((p) => p.data.category === 'construido').length,
+  projeto: projects.filter((p) => p.data.category === 'projeto').length,
+  comercial: projects.filter((p) => p.data.category === 'comercial').length,
+};
 ---
 
 <BaseLayout title="Projetos" description="Projetos selecionados do Trópikos Arquitetos — Recife, PE.">
@@ -29,12 +37,135 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
   </section>
 
   <section class="shell mt-[clamp(3rem,7vw,6rem)] pb-[clamp(4rem,8vw,8rem)]">
-    <div class="rule-top flex items-baseline justify-between gap-4 py-4">
-      <h2 class="caption">Índice completo</h2>
-      <p class="caption text-concrete">Recife — PE</p>
+    <div class="rule-top flex flex-wrap items-center justify-between gap-4 py-4">
+      {/* Category Filters */}
+      <div class="flex flex-wrap items-center gap-2 sm:gap-4" data-filter-group>
+        <button
+          type="button"
+          data-filter="all"
+          class="filter-btn caption link-rule tap active text-ink"
+        >
+          Todos <span class="text-concrete">({String(counts.all).padStart(2, '0')})</span>
+        </button>
+        <button
+          type="button"
+          data-filter="construido"
+          class="filter-btn caption link-rule tap text-concrete"
+        >
+          Construídos <span class="text-concrete">({String(counts.construido).padStart(2, '0')})</span>
+        </button>
+        <button
+          type="button"
+          data-filter="projeto"
+          class="filter-btn caption link-rule tap text-concrete"
+        >
+          Projetos & Renders <span class="text-concrete">({String(counts.projeto).padStart(2, '0')})</span>
+        </button>
+        <button
+          type="button"
+          data-filter="comercial"
+          class="filter-btn caption link-rule tap text-concrete"
+        >
+          Comercial <span class="text-concrete">({String(counts.comercial).padStart(2, '0')})</span>
+        </button>
+      </div>
+
+      {/* View Switcher: Lista vs Grade */}
+      <div class="flex items-center gap-3" data-view-group>
+        <button
+          type="button"
+          data-view="list"
+          class="view-btn caption link-rule tap active text-ink"
+          aria-label="Visualização em Lista"
+        >
+          Lista
+        </button>
+        <span class="text-concrete text-xs">/</span>
+        <button
+          type="button"
+          data-view="grid"
+          class="view-btn caption link-rule tap text-concrete"
+          aria-label="Visualização em Grade"
+        >
+          Grade
+        </button>
+      </div>
     </div>
-    <div>
+
+    {/* List View */}
+    <div id="projects-list-view" class="block">
       {projects.map((entry, i) => <ProjectRow entry={entry} index={i + 1} />)}
     </div>
+
+    {/* Grid View */}
+    <div id="projects-grid-view" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 pt-4">
+      {projects.map((entry, i) => <ProjectCard entry={entry} index={i + 1} />)}
+    </div>
   </section>
+
+  <script>
+    function setupCatalogControls() {
+      const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+      const viewBtns = document.querySelectorAll<HTMLButtonElement>('.view-btn');
+      const listView = document.getElementById('projects-list-view');
+      const gridView = document.getElementById('projects-grid-view');
+      const items = document.querySelectorAll<HTMLElement>('.project-item');
+
+      function applyFilter(category: string) {
+        filterBtns.forEach((btn) => {
+          const match = btn.dataset.filter === category;
+          btn.classList.toggle('active', match);
+          btn.classList.toggle('text-ink', match);
+          btn.classList.toggle('text-concrete', !match);
+        });
+
+        items.forEach((item) => {
+          const itemCat = item.dataset.category;
+          const show = category === 'all' || itemCat === category;
+          if (show) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      }
+
+      function applyView(view: string) {
+        viewBtns.forEach((btn) => {
+          const match = btn.dataset.view === view;
+          btn.classList.toggle('active', match);
+          btn.classList.toggle('text-ink', match);
+          btn.classList.toggle('text-concrete', !match);
+        });
+
+        if (view === 'grid') {
+          listView?.classList.add('hidden');
+          gridView?.classList.remove('hidden');
+        } else {
+          gridView?.classList.add('hidden');
+          listView?.classList.remove('hidden');
+        }
+      }
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const cat = btn.dataset.filter || 'all';
+          applyFilter(cat);
+        });
+      });
+
+      viewBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const v = btn.dataset.view || 'list';
+          applyView(v);
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupCatalogControls);
+    } else {
+      setupCatalogControls();
+    }
+  </script>
 </BaseLayout>

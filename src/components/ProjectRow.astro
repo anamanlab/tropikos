@@ -12,7 +12,8 @@ const { title, typology, location, year } = entry.data;
 
 <a
   href={`/projetos/${entry.id}`}
-  class="group grid grid-cols-[2.2rem_1fr_auto] items-baseline gap-x-4 gap-y-1 border-b border-hairline py-4 transition-colors sm:grid-cols-[3.5rem_1fr_14rem_5rem] sm:gap-6 sm:py-5"
+  data-category={entry.data.category}
+  class="project-item project-row group grid grid-cols-[2.2rem_1fr_auto] items-baseline gap-x-4 gap-y-1 border-b border-hairline py-4 transition-colors sm:grid-cols-[3.5rem_1fr_14rem_5rem] sm:gap-6 sm:py-5"
 >
   <span class="index text-concrete">{String(index).padStart(2, '0')}</span>
   <span
