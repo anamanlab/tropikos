@@ -45,6 +45,8 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 3);
       </picture>
       <video
         data-hero-video
+        src="/media/hero-tropikos-wide.mp4"
+        poster="/media/hero-tropikos-wide-poster.webp"
         autoplay
         muted
         loop
@@ -213,37 +215,61 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 3);
       hero.muted = true;
       hero.defaultMuted = true;
 
-      if (reduceMotion) {
-        hero.pause();
-        setHeroState(false);
-      } else {
-        const startAutoplay = () => {
-          hero.muted = true;
-          const playPromise = hero.play();
-          if (playPromise !== undefined) {
-            playPromise
-              .then(() => setHeroState(true))
-              .catch(() => setHeroState(false));
-          }
-        };
+      // Select tall mobile video if viewport is narrow
+      if (window.innerWidth < 768 && hero.getAttribute('src') !== '/media/hero-tropikos-tall.mp4') {
+        hero.src = '/media/hero-tropikos-tall.mp4';
+        hero.poster = '/media/hero-tropikos-tall-poster.webp';
+      }
 
-        startAutoplay();
-        hero.addEventListener('loadeddata', () => {
-          if (hero.paused && !reduceMotion) {
-            startAutoplay();
-          }
-        }, { once: true });
+      const attemptPlay = () => {
+        if (reduceMotion) {
+          hero.pause();
+          setHeroState(false);
+          return;
+        }
+
+        hero.muted = true;
+        hero.defaultMuted = true;
+        const p = hero.play();
+        if (p !== undefined) {
+          p.then(() => {
+            setHeroState(true);
+          }).catch(() => {
+            if (hero.paused) {
+              setHeroState(false);
+            }
+          });
+        }
+      };
+
+      if (!hero.paused) {
+        setHeroState(true);
+      } else {
+        attemptPlay();
       }
 
       hero.addEventListener('playing', () => setHeroState(true));
       hero.addEventListener('play', () => setHeroState(true));
       hero.addEventListener('pause', () => setHeroState(false));
 
-      heroToggle?.addEventListener('click', () => {
+      // In case browser autoplay policy strictly requires user engagement,
+      // any initial touch, click, or scroll immediately unpauses the muted video
+      const unlockAutoplay = () => {
+        if (hero.paused && !reduceMotion) {
+          attemptPlay();
+        }
+      };
+      window.addEventListener('click', unlockAutoplay, { passive: true, once: true });
+      window.addEventListener('touchstart', unlockAutoplay, { passive: true, once: true });
+      window.addEventListener('scroll', unlockAutoplay, { passive: true, once: true });
+
+      heroToggle?.addEventListener('click', (e) => {
+        e.stopPropagation();
         if (hero.paused) {
-          hero.play();
+          hero.play().then(() => setHeroState(true));
         } else {
           hero.pause();
+          setHeroState(false);
         }
       });
     }
