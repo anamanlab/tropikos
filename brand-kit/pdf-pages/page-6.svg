@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 842 595" width="842" height="595">
+  <rect width="842" height="595" fill="#FFFFFF"/>
+  
+    <!-- Top Hairline Rule -->
+    <line x1="50" y1="44" x2="792" y2="44" stroke="#191919" stroke-width="0.8" opacity="0.3"/>
+    <text x="50" y="36" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="600" fill="#191919" letter-spacing="1.5">TRÓPIKOS ARQUITETOS · MANUAL DE IDENTIDADE VISUAL</text>
+    <text x="792" y="36" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="600" text-anchor="end" fill="#6B6B6B" letter-spacing="1">05 · AMBIENTE DIGITAL &amp; IMPLEMENTAÇÃO WEB</text>
+    
+    <!-- Bottom Hairline Rule -->
+    <line x1="50" y1="550" x2="792" y2="550" stroke="#191919" stroke-width="0.8" opacity="0.3"/>
+    <text x="50" y="568" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8" fill="#6B6B6B">RECIFE — PE · 08°03′S 34°52′W</text>
+    <text x="792" y="568" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8" text-anchor="end" fill="#191919">06 / 07</text>
+    
+
+  <text x="50" y="80" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="bold" fill="#191919">Ecossistema Web &amp; Favicons Nativos</text>
+  <text x="50" y="100" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#6B6B6B">
+    Todos os assets foram gerados e já integrados ao diretório public/ do novo site Astro.
+  </text>
+
+  <!-- 3 Boxes of Digital Assets -->
+  <!-- Box 1: Favicons -->
+  <rect x="50" y="120" width="230" height="260" fill="#FBFBFB" stroke="#191919" stroke-width="0.8"/>
+  <text x="65" y="145" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="bold" fill="#191919">PACOTE DE FAVICONS</text>
+  <!-- Mini 16, 32, 48 previews -->
+  <rect x="65" y="165" width="48" height="48" fill="#191919" rx="10"/>
+  <rect x="130" y="173" width="32" height="32" fill="#191919" rx="6"/>
+  <rect x="180" y="181" width="16" height="16" fill="#191919" rx="3"/>
+  <text x="65" y="240" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8" fill="#191919">public/favicon.ico (Multi-res)</text>
+  <text x="65" y="255" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8" fill="#191919">public/favicon.svg (Vetorial)</text>
+  <text x="65" y="270" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8" fill="#191919">public/apple-touch-icon.png (180)</text>
+  <text x="65" y="285" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8" fill="#191919">public/favicon-96x96.png</text>
+  <text x="65" y="300" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8" fill="#191919">public/site.webmanifest</text>
+  <text x="65" y="325" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" fill="#3D6E60">✓ 100% instalados no site Astro</text>
+
+  <!-- Box 2: Native Astro Component -->
+  <rect x="306" y="120" width="486" height="260" fill="#191919"/>
+  <text x="325" y="145" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#FFFFFF">COMPONENTE NATIVO: src/components/Logo.astro</text>
+  <text x="325" y="175" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="9" fill="#3D6E60">---</text>
+  <text x="325" y="190" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="9" fill="#D97746">import Logo from '@/components/Logo.astro';</text>
+  <text x="325" y="205" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="9" fill="#3D6E60">---</text>
+  <text x="325" y="235" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="9" fill="#A8D0C0">&lt;!-- Navbar: Lockup Horizontal Colorido --&gt;</text>
+  <text x="325" y="250" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="9" fill="#FFFFFF">&lt;Logo variant="horizontal" color="color" class="h-9 w-auto" /&gt;</text>
+  
+  <text x="325" y="280" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="9" fill="#A8D0C0">&lt;!-- Rodapé: Versão Stacked Invertida --&gt;</text>
+  <text x="325" y="295" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="9" fill="#FFFFFF">&lt;Logo variant="stacked" color="white" class="h-16 w-auto" /&gt;</text>
+  
+  <text x="325" y="325" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="9" fill="#A8D0C0">&lt;!-- Símbolo Puro para Avatares &amp; App --&gt;</text>
+  <text x="325" y="340" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="9" fill="#FFFFFF">&lt;Logo variant="symbol" color="palm" class="w-12 h-12" /&gt;</text>
+
+  <!-- Bottom Rules for Web -->
+  <text x="50" y="420" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="bold" fill="#191919">Performance &amp; Zero Layout Shift (CLS 0.00)</text>
+  <text x="50" y="442" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#6B6B6B">
+    <tspan x="50" dy="0">O componente &lt;Logo /&gt; renderiza SVGs puros em linha com viewBox estático, garantindo carregamento instantâneo,</tspan>
+    <tspan x="50" dy="16">zero requisições de rede adicionais e perfeita nitidez em telas Retina, 4K e dispositivos móveis.</tspan>
+  </text>
+</svg>

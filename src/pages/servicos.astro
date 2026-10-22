@@ -1,0 +1,125 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { SERVICES, SITE } from '@/site.config';
+
+const process = [
+  {
+    index: '01',
+    title: 'Escuta e lugar',
+    body: 'Entendemos o programa, o orçamento e o terreno. Visitamos o imóvel e medimos o que existe antes de desenhar.',
+  },
+  {
+    index: '02',
+    title: 'Conceito',
+    body: 'Estudos de implantação, volumetria e materialidade. Poucas alternativas, bem resolvidas, para decidir com clareza.',
+  },
+  {
+    index: '03',
+    title: 'Projeto executivo',
+    body: 'Detalhamento completo, compatibilização e quantitativos. O documento que permite orçar e construir sem improviso.',
+  },
+  {
+    index: '04',
+    title: 'Obra e entrega',
+    body: 'Acompanhamento técnico, compras e fiscalização. Entregamos a obra pronta, com o desenho que foi aprovado.',
+  },
+];
+---
+
+<BaseLayout
+  title="Serviços"
+  description="Projeto arquitetônico, interiores, execução de obra e consultoria no Recife — Trópikos Arquitetos."
+>
+  <section class="shell pt-[calc(var(--header-y)+5rem)]">
+    <p class="caption text-concrete">(03) Serviços</p>
+    <div class="mt-6 grid grid-cols-12 gap-5">
+      <div class="col-span-12 lg:col-span-8">
+        <h1
+          class="max-w-[14ch] text-[clamp(2.8rem,8vw,8rem)] leading-[0.88] tracking-[-0.05em]"
+        >
+          Do primeiro estudo à entrega.
+        </h1>
+      </div>
+      <div class="col-span-12 lg:col-span-4 lg:pt-16">
+        <p class="body-copy max-w-[32ch] text-concrete">
+          Quatro frentes de trabalho que podem acontecer juntas ou separadas. Você escolhe até onde
+          quer ir — nós dizemos o que cada etapa exige.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell mt-[clamp(4rem,8vw,7rem)]">
+    <div class="rule-top py-4">
+      <h2 class="caption">Frentes</h2>
+    </div>
+    <ul>
+      {
+        SERVICES.map((service) => (
+          <li class="border-b border-hairline py-8 sm:py-10">
+            <div class="grid grid-cols-[2.2rem_1fr] gap-x-4 sm:grid-cols-[3.5rem_1.1fr_1fr] sm:gap-6">
+              <span class="index text-concrete">{service.index}</span>
+              <div>
+                <h3 class="text-[clamp(1.5rem,2.6vw,2.25rem)] leading-[1.06] tracking-[-0.035em]">
+                  {service.title}
+                </h3>
+                <ul class="mt-5 flex flex-wrap gap-x-4 gap-y-1.5">
+                  {service.items.map((item) => (
+                    <li class="caption text-concrete">{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <p class="body-copy col-span-2 mt-4 max-w-[40ch] text-concrete sm:col-span-1 sm:mt-0">
+                {service.body}
+              </p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="inverse">
+    <div class="shell py-[clamp(4rem,8vw,8rem)]">
+      <div class="grid grid-cols-1 gap-10 md:grid-cols-12">
+        <div class="md:col-span-2">
+          <p class="caption text-concrete">Processo</p>
+        </div>
+        <div class="md:col-span-8 md:col-start-4">
+          <ol>
+            {
+              process.map((step) => (
+                <li class="border-b border-paper/25 py-7 first:pt-0">
+                  <div class="grid grid-cols-[2.2rem_1fr] gap-x-4 sm:grid-cols-[3.5rem_1fr_1.2fr] sm:gap-6">
+                    <span class="index text-concrete">{step.index}</span>
+                    <h3 class="text-[clamp(1.25rem,2vw,1.65rem)] leading-[1.12] tracking-[-0.025em]">
+                      {step.title}
+                    </h3>
+                    <p class="body-copy col-span-2 mt-2 text-concrete sm:col-span-1 sm:mt-0">
+                      {step.body}
+                    </p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell py-[clamp(4rem,8vw,8rem)]">
+    <p class="caption text-concrete">Próximo passo</p>
+    <p class="mt-5 max-w-[22ch] text-[clamp(2rem,4.6vw,4.2rem)] leading-[0.95] tracking-[-0.045em]">
+      Conte o que você quer construir.
+    </p>
+    <a
+      href={`https://wa.me/${SITE.whatsapp}`}
+      target="_blank"
+      rel="noopener"
+      class="caption mt-8 inline-flex items-center gap-2 border-b border-hairline pb-1 transition-opacity hover:opacity-50"
+    >
+      Falar no WhatsApp <span aria-hidden="true">↗</span>
+    </a>
+  </section>
+</BaseLayout>

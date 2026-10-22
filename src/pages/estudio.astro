@@ -1,0 +1,134 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { SITE } from '@/site.config';
+
+const principles = [
+  {
+    index: '01',
+    title: 'O lugar primeiro',
+    body: 'Orientação, clima, topografia e vizinhança entram na primeira reunião. A casa nasce do terreno, não de um repertório pronto.',
+  },
+  {
+    index: '02',
+    title: 'Menos, melhor resolvido',
+    body: 'Evitamos o gesto desnecessário. Cada elemento precisa resolver mais de uma questão — sombra, circulação, estrutura, privacidade.',
+  },
+  {
+    index: '03',
+    title: 'Material honesto',
+    body: 'Concreto, madeira, pedra e metal aparecem pelo que são. Sem revestimentos que escondam a construção ou envelheçam mal.',
+  },
+  {
+    index: '04',
+    title: 'Obra acompanhada',
+    body: 'Projeto e execução sob o mesmo teto. Isso reduz ruído, controla prazo e mantém a intenção original até a entrega.',
+  },
+];
+
+const facts = [
+  { label: 'Fundação', value: '2021' },
+  { label: 'Sede', value: 'Recife — PE' },
+  { label: 'Atuação', value: 'Nordeste' },
+  { label: 'Frentes', value: 'Projeto · Interiores · Obra' },
+];
+---
+
+<BaseLayout
+  title="Estúdio"
+  description="Trópikos Arquitetos é um escritório de arquitetura e interiores no Recife, com projeto e execução sob o mesmo teto."
+>
+  <section class="shell pt-[calc(var(--header-y)+5rem)]">
+    <p class="caption text-concrete">(02) Estúdio</p>
+    <h1
+      class="mt-6 max-w-[16ch] text-[clamp(2.6rem,7.4vw,7.4rem)] leading-[0.9] tracking-[-0.05em]"
+    >
+      Arquitetura autoral, do conceito à materialização.
+    </h1>
+
+    <div class="mt-[clamp(3rem,7vw,6rem)] grid grid-cols-1 gap-10 md:grid-cols-12">
+      <div class="md:col-span-5 md:col-start-7">
+        <p class="body-copy">
+          O Trópikos nasceu em {SITE.founded}, no Recife, com uma ideia simples: o projeto não
+          termina no papel. Reunimos arquitetura, interiores e execução no mesmo time para que a
+          obra aconteça como foi desenhada — sem perda de intenção entre a prancha e o canteiro.
+        </p>
+        <p class="body-copy mt-5 text-concrete">
+          Trabalhamos com poucos projetos por ano. É uma escolha: queremos estar presentes na obra,
+          conhecer cada detalhe e acompanhar as decisões que só aparecem quando a construção
+          começa.
+        </p>
+        <p class="body-copy mt-5 text-concrete">
+          Nosso repertório vem do clima e da cultura do Nordeste — varandas, sombra, ventilação,
+          materiais que envelhecem bem — sem transformar isso em estilo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell py-[clamp(4rem,8vw,8rem)]">
+    <dl class="rule-top grid grid-cols-2 gap-x-6 gap-y-8 py-6 sm:grid-cols-4">
+      {
+        facts.map((fact) => (
+          <div>
+            <dt class="caption text-concrete mb-2">{fact.label}</dt>
+            <dd class="text-[clamp(1.1rem,1.6vw,1.5rem)] leading-[1.15] tracking-[-0.02em]">
+              {fact.value}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section class="inverse">
+    <div class="shell py-[clamp(4rem,8vw,8rem)]">
+      <div class="grid grid-cols-1 gap-10 md:grid-cols-12">
+        <div class="md:col-span-2">
+          <p class="caption text-concrete">Princípios</p>
+        </div>
+        <div class="md:col-span-8 md:col-start-4">
+          <ul>
+            {
+              principles.map((principle) => (
+                <li class="border-b border-paper/25 py-7 first:pt-0">
+                  <div class="grid grid-cols-[2.2rem_1fr] gap-x-4 sm:grid-cols-[3.5rem_1fr_1.2fr] sm:gap-6">
+                    <span class="index text-concrete">{principle.index}</span>
+                    <h2 class="text-[clamp(1.3rem,2.2vw,1.8rem)] leading-[1.1] tracking-[-0.03em]">
+                      {principle.title}
+                    </h2>
+                    <p class="body-copy col-span-2 mt-2 text-concrete sm:col-span-1 sm:mt-0">
+                      {principle.body}
+                    </p>
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell py-[clamp(4rem,8vw,8rem)]">
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-12">
+      <div class="md:col-span-2">
+        <p class="caption text-concrete">O escritório</p>
+      </div>
+      <div class="md:col-span-6 md:col-start-4">
+        <address class="body-copy not-italic">
+          {SITE.address.street}<br />
+          {SITE.address.building}<br />
+          {SITE.address.district} — {SITE.address.city}, {SITE.address.state}<br />
+          {SITE.address.postalCode}
+        </address>
+        <p class="body-copy mt-6">
+          <a class="link-rule tap" href={`mailto:${SITE.email}`}>{SITE.email}</a><br />
+          <a class="link-rule tap" href={`https://wa.me/${SITE.whatsapp}`}>{SITE.phone}</a>
+        </p>
+        <p class="body-copy mt-6 text-concrete">
+          Atendimento com hora marcada, de segunda a sexta, das 9h às 18h.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

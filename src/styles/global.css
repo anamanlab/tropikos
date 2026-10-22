@@ -1,112 +1,345 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
-/* Make the `dark:` variant respond to a `.dark` class instead of OS
-   preference, so the toggle in <ThemeToggle /> can override the system. */
-@custom-variant dark (&:where(.dark, .dark *));
-
 /* ---------------------------------------------------------------------
-   Design tokens (light values). Edit these five colors to re-skin the
-   entire site — every component reads from the tokens below, nothing
-   hardcodes a hex value.
+   TRÓPIKOS ARQUITETOS
+   Architectural-monograph system after NCDA: paper white, a single
+   onyx ink, one weight, zero radius, zero shadow, zero chromatic color.
+   Type does the structural work. See DESIGN.md for the full reference.
    --------------------------------------------------------------------- */
-:root {
-  color-scheme: light;
 
-  --paper: #f7f6f3; /* page background */
-  --ink: #15161b; /* primary text */
-  --ink-soft: #5b5d66; /* secondary text */
-  --signal: #3d3dff; /* the one accent color */
-  --line: #e4e2dc; /* borders, rules */
-  --surface: #efeeea; /* cards, raised panels */
-}
+@theme {
+  /* Color — 0% chromatic by design */
+  --color-paper: #ffffff;
+  --color-onyx: #191919;
+  --color-ink: #000000;
+  --color-concrete: #6b6b6b;
+  --color-hairline: #191919;
 
-.dark {
-  color-scheme: dark;
-
-  --paper: #101114;
-  --ink: #f2f1ed;
-  --ink-soft: #9a9ca6;
-  --signal: #7b7bff;
-  --line: #26272c;
-  --surface: #1a1b20;
-}
-
-/* `inline` keeps these resolving against the live --paper/--ink/etc custom
-   properties above at runtime, instead of Tailwind inlining a static value
-   at build time — required for the .dark class swap to work. */
-@theme inline {
-  --color-paper: var(--paper);
-  --color-ink: var(--ink);
-  --color-ink-soft: var(--ink-soft);
-  --color-signal: var(--signal);
-  --color-line: var(--line);
-  --color-surface: var(--surface);
-
-  /* Astro's Fonts API exposes the loaded families on --ff-* (see
-     astro.config.mjs). These map them to font-display / font-body /
-     font-mono utility classes. */
-  --font-display: var(--ff-display);
-  --font-body: var(--ff-body);
+  /* Type — the Fonts API exposes these on --ff-* (astro.config.mjs) */
+  --font-sans: var(--ff-body);
   --font-mono: var(--ff-mono);
+
+  /* Type scale — 11 / 15 / 21 / 32 / 62 */
+  --text-caption: 0.6875rem;
+  --text-body: 0.9375rem;
+  --text-subheading: 1.3125rem;
+  --text-heading: 2rem;
+  --text-display: 3.875rem;
+
+  /* All corners sharp */
+  --radius-none: 0px;
+}
+
+:root {
+  --gutter: clamp(1.25rem, 4.1vw, 3.6875rem);
+  --header-y: clamp(1.25rem, 2.4vw, 1.875rem);
+  --rule: #191919;
+  --rule-soft: #808080;
 }
 
 @layer base {
-  * {
-    border-color: var(--color-line);
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   body {
-    background-color: var(--color-paper);
+    background: var(--color-paper);
     color: var(--color-ink);
-    font-family: var(--font-body);
-    -webkit-font-smoothing: antialiased;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: var(--text-body);
+    line-height: 1.44;
+    letter-spacing: -0.01em;
+    overflow-x: hidden;
+  }
+
+  body[data-menu-open] {
+    overflow: hidden;
   }
 
   ::selection {
-    background-color: var(--color-signal);
+    background: var(--color-onyx);
     color: var(--color-paper);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-signal);
-    outline-offset: 3px;
+    outline: 1px solid var(--color-ink);
+    outline-offset: 4px;
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    body {
-      transition:
-        background-color 200ms ease,
-        color 200ms ease;
+  img,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+
+  button {
+    font: inherit;
+    letter-spacing: inherit;
+  }
+
+  a {
+    color: inherit;
+  }
+}
+
+@layer components {
+  /* Page gutter. Full-bleed layout, no max-width container. */
+  .shell {
+    padding-inline: var(--gutter);
+  }
+
+  .caption {
+    font-family: var(--font-mono);
+    font-size: var(--text-caption);
+    line-height: 1.44;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .body-copy {
+    font-size: var(--text-body);
+    line-height: 1.44;
+    letter-spacing: -0.01em;
+  }
+
+  .display {
+    font-size: var(--text-display);
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+  }
+
+  /* The signature: type as architecture, sized to bleed off both edges. */
+  .wordmark {
+    font-size: clamp(4rem, 22.2vw, 40rem);
+    line-height: 0.78;
+    letter-spacing: -0.055em;
+    font-weight: 400;
+    white-space: nowrap;
+    display: block;
+    width: max-content;
+    margin-left: -0.7vw;
+    padding-top: 0.14em;
+    user-select: none;
+  }
+
+  .crop {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* Hairline link: the border is the link, not the text color. */
+  .link-rule {
+    border-bottom: 1px solid var(--rule-soft);
+    padding-bottom: 0.15em;
+    transition: border-color 180ms ease, opacity 180ms ease;
+  }
+
+  /* Inline links that sit alone need a 24px hit area (WCAG 2.2, 2.5.8). */
+  .tap {
+    display: inline-flex;
+    min-height: 1.5rem;
+    align-items: center;
+  }
+  .link-rule:hover {
+    border-color: var(--color-ink);
+  }
+
+  .rule-top {
+    border-top: 1px solid var(--rule);
+  }
+  .rule-top-soft {
+    border-top: 1px solid var(--rule-soft);
+  }
+
+  .inverse {
+    background: var(--color-onyx);
+    color: var(--color-paper);
+    /* Secondary ink must lift on the dark band to stay >= 4.5:1. */
+    --color-concrete: #a6a6a6;
+  }
+  .inverse ::selection {
+    background: var(--color-paper);
+    color: var(--color-onyx);
+  }
+
+  /* Full-bleed dark band used for project media. */
+  .band {
+    background: var(--color-onyx);
+    color: var(--color-paper);
+    min-height: 100svh;
+    position: relative;
+    overflow: hidden;
+    --color-concrete: #a6a6a6;
+  }
+
+  .band-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .band:hover .band-media {
+    transform: scale(1.02);
+  }
+
+  .scrim {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.32) 18%, rgba(0, 0, 0, 0) 55%),
+      linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.4) 36%,
+        rgba(0, 0, 0, 0) 72%
+      );
+    pointer-events: none;
+  }
+
+  /* The hero reel is the one chromatic surface: keep the type legible
+     without flattening the warm footage. */
+  .hero-film-scrim {
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.24) 20%,
+        rgba(0, 0, 0, 0.2) 48%,
+        rgba(0, 0, 0, 0.64) 72%,
+        rgba(0, 0, 0, 0.9) 100%
+      ),
+      rgba(0, 0, 0, 0.18);
+    pointer-events: none;
+  }
+
+  /* Small index numbers, set as technical annotations. */
+  .index {
+    font-family: var(--font-mono);
+    font-size: var(--text-caption);
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .prose-mono {
+    font-size: var(--text-body);
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+  }
+  .prose-mono p + p {
+    margin-top: 1.15em;
+  }
+  .prose-mono h2 {
+    font-size: var(--text-subheading);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+    margin-top: 2.5em;
+    margin-bottom: 0.65em;
+  }
+  .prose-mono h3 {
+    font-family: var(--font-mono);
+    font-size: var(--text-caption);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-top: 2.2em;
+    margin-bottom: 0.8em;
+  }
+  .prose-mono ul {
+    margin-top: 1em;
+    display: grid;
+    gap: 0.6em;
+  }
+  .prose-mono li {
+    padding-left: 1.4em;
+    position: relative;
+  }
+  .prose-mono li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 0.7em;
+    height: 1px;
+    background: var(--rule-soft);
+  }
+
+  .marquee-track {
+    animation: marquee 38s linear infinite;
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    ::view-transition-group(*),
-    ::view-transition-old(*),
-    ::view-transition-new(*) {
-      animation: none !important;
+  .fade-up {
+    animation: fade-up 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
     }
   }
-}
 
-/* Tune @tailwindcss/typography to use the site's tokens instead of its
-   default gray scale, so rendered Markdown matches the rest of the page. */
-.prose {
-  --tw-prose-body: var(--color-ink-soft);
-  --tw-prose-headings: var(--color-ink);
-  --tw-prose-bold: var(--color-ink);
-  --tw-prose-links: var(--color-signal);
-  --tw-prose-bullets: var(--color-signal);
-  --tw-prose-hr: var(--color-line);
-  --tw-prose-quotes: var(--color-ink);
-  --tw-prose-quote-borders: var(--color-signal);
-  --tw-prose-code: var(--color-ink);
-}
-.prose :where(h2, h3, h4) {
-  font-family: var(--font-display);
-}
-.prose :where(a) {
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+  .menu-link {
+    font-size: clamp(2.6rem, 8.5vw, 7.5rem);
+    line-height: 0.88;
+    letter-spacing: -0.045em;
+    display: flex;
+    align-items: baseline;
+    gap: clamp(0.9rem, 2.2vw, 2rem);
+    border-bottom: 1px solid var(--rule-soft);
+    padding-block: clamp(0.55rem, 1.1vw, 0.9rem);
+  }
+  .plan-grid {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.09) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+    background-size: clamp(3rem, 7vw, 6rem) clamp(3rem, 7vw, 6rem);
+  }
+  /* Giant outlined index: an intentional placeholder until photography lands. */
+  .plan-index {
+    font-size: clamp(11rem, 32vw, 26rem);
+    line-height: 0.78;
+    letter-spacing: -0.06em;
+    color: rgba(255, 255, 255, 0.035);
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.16);
+    user-select: none;
+  }
+
+  .menu-link:hover .menu-link-label {
+    opacity: 0.45;
+  }
+  .menu-link-label {
+    transition: opacity 200ms ease;
+  }
 }

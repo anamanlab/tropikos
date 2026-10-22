@@ -1,0 +1,97 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  index: string;
+  title: string;
+  href: string;
+  location: string;
+  year: number;
+  typology: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+  video?: string;
+  poster?: ImageMetadata;
+  eager?: boolean;
+  priority?: boolean;
+}
+
+const {
+  index,
+  title,
+  href,
+  location,
+  year,
+  typology,
+  image,
+  imageAlt,
+  video,
+  poster,
+  eager = false,
+} = Astro.props;
+---
+
+<a href={href} class="band group block">
+  {video ? (
+    <video
+      class="band-media"
+      src={video}
+      poster={poster?.src}
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      aria-hidden="true"
+    ></video>
+  ) : image ? (
+    <Image
+      src={image}
+      alt={imageAlt ?? ''}
+      class="band-media"
+      widths={[800, 1200, 1600, 2000, 2560]}
+      sizes="100vw"
+      format="webp"
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+    />
+  ) : (
+    <div class="absolute inset-0 plan-grid" aria-hidden="true">
+      <div class="absolute inset-0 flex items-center justify-center">
+        <span class="plan-index">{index}</span>
+      </div>
+      <span
+        class="caption absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-[7.5rem] text-paper/70"
+      >
+        Fotografia em breve
+      </span>
+    </div>
+  )}
+
+  <div class="scrim"></div>
+
+  <div class="relative flex h-full min-h-[100svh] flex-col justify-between py-[var(--header-y)]">
+    <div class="shell flex items-start justify-between">
+      <span class="caption text-paper">{index}</span>
+      <span class="caption text-paper">{year}</span>
+    </div>
+
+    <div class="shell pb-[clamp(0.5rem,2vw,1.5rem)]">
+      <div class="mb-4 flex items-center gap-4">
+        <span class="caption text-paper/85">{typology}</span>
+        <span class="h-px w-10 bg-paper/60"></span>
+        <span class="caption text-paper/85">{location}</span>
+      </div>
+      <h3
+        class="max-w-[18ch] text-[clamp(2.4rem,6.6vw,7rem)] leading-[0.86] tracking-[-0.05em] text-paper"
+      >
+        {title}
+      </h3>
+      <span
+        class="caption mt-7 inline-flex items-center gap-2 border-b border-paper/60 pb-1 text-paper/85 transition-colors group-hover:border-paper"
+      >
+        Ver projeto <span aria-hidden="true">↗</span>
+      </span>
+    </div>
+  </div>
+</a>

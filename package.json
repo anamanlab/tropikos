@@ -1,25 +1,18 @@
 {
-  "name": "portfolio-starter",
+  "name": "tropikos-arquitetos",
   "type": "module",
   "version": "1.0.0",
-  "private": false,
-  "description": "A minimal, professional portfolio starter for Astro — TypeScript, Tailwind CSS v4, Content Collections, dark mode, and full SEO, with no unnecessary dependencies.",
+  "private": true,
+  "description": "Website for Trópikos Arquitetos — architecture and interiors in Recife, Brazil.",
   "keywords": [
+    "architecture",
     "astro",
-    "astro-theme",
-    "astro-template",
-    "portfolio",
-    "tailwindcss",
-    "typescript",
-    "starter"
+    "recife",
+    "tropikos",
+    "portfolio"
   ],
-  "license": "MIT",
-  "author": "Bracozs",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/your-username/portfolio-starter"
-  },
-  "homepage": "https://github.com/your-username/portfolio-starter",
+  "license": "UNLICENSED",
+  "author": "Trópikos Arquitetos",
   "engines": {
     "node": ">=22.0.0"
   },
@@ -29,17 +22,22 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check": "astro check"
+    "check": "astro check",
+    "deploy": "pnpm build && cf deploy",
+    "deploy:dry": "pnpm build && cf deploy --dry-run"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
-    "astro": "^7.3.3"
+    "astro": "^7.3.3",
+    "sharp": "^0.35.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "^4.3.3",
+    "cf": "1.0.0-beta.20",
     "tailwindcss": "^4.3.3",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "wrangler": "^4.152.0"
   }
 }

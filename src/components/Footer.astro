@@ -1,24 +1,102 @@
 ---
-import { SITE } from '@/site.config';
+import { NAV_LINKS, SITE } from '@/site.config';
 
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-line border-t">
-  <div
-    class="text-ink-soft mx-auto flex max-w-3xl flex-col gap-4 px-6 py-8 font-mono text-xs sm:flex-row sm:items-center sm:justify-between"
-  >
-    <p>© {year} {SITE.name}. Built with Astro. By BracoZS</p>
+<footer class="inverse">
+  <div class="shell pt-[clamp(4rem,8vw,9rem)] pb-[var(--gutter)]">
+    <div class="grid grid-cols-1 gap-10 md:grid-cols-12">
+      <div class="md:col-span-5">
+        <p class="caption text-concrete mb-5">Vamos construir</p>
+        <a
+          href={`mailto:${SITE.email}`}
+          class="display block max-w-[16ch] text-[clamp(2.1rem,4.6vw,4.6rem)] leading-[0.92] tracking-[-0.045em] transition-opacity hover:opacity-55"
+        >
+          Fale com o estúdio
+        </a>
+      </div>
 
-    <nav class="flex items-center gap-4" aria-label="Social">
-      {
-        SITE.social.map((link) => (
-          <a href={link.href} class="hover:text-signal transition-colors" rel="me">
-            {link.label}
-          </a>
-        ))
-      }
-      <a href="#top" class="hover:text-signal transition-colors"> Top ↑ </a>
-    </nav>
+      <div class="md:col-span-3 md:col-start-7">
+        <p class="caption text-concrete mb-5">Escritório</p>
+        <address class="body-copy not-italic">
+          {SITE.address.street}<br />
+          {SITE.address.building}<br />
+          {SITE.address.district}<br />
+          {SITE.address.city} — {SITE.address.state}<br />
+          {SITE.address.postalCode}
+        </address>
+      </div>
+
+      <div class="md:col-span-2">
+        <p class="caption text-concrete mb-5">Navegar</p>
+        <ul class="body-copy grid gap-1.5">
+          {
+            NAV_LINKS.map((link) => (
+              <li>
+                <a href={link.href} class="transition-opacity hover:opacity-55">
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="md:col-span-2">
+        <p class="caption text-concrete mb-5">Contato</p>
+        <ul class="body-copy grid gap-1.5">
+          <li>
+            <a href={`mailto:${SITE.email}`} class="transition-opacity hover:opacity-55">
+              E-mail
+            </a>
+          </li>
+          <li>
+            <a
+              href={`https://wa.me/${SITE.whatsapp}`}
+              target="_blank"
+              rel="noopener"
+              class="transition-opacity hover:opacity-55"
+            >
+              WhatsApp
+            </a>
+          </li>
+          <li>
+            <a
+              href={SITE.instagram}
+              target="_blank"
+              rel="noopener"
+              class="transition-opacity hover:opacity-55"
+            >
+              Instagram
+            </a>
+          </li>
+          <li>
+            <a
+              href={SITE.linktree}
+              target="_blank"
+              rel="noopener"
+              class="transition-opacity hover:opacity-55"
+            >
+              Linktree
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="rule-top-soft mt-[clamp(3rem,7vw,7rem)] flex flex-col gap-3 pt-5 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p class="caption text-concrete">
+        © {year} {SITE.name} · CAU/PE
+      </p>
+      <p class="caption text-concrete">
+        {SITE.address.city}, {SITE.address.state} — {SITE.country}
+      </p>
+      <a href="#main" class="caption text-concrete transition-colors hover:text-paper">
+        Voltar ao topo ↑
+      </a>
+    </div>
   </div>
 </footer>

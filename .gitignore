@@ -17,6 +17,13 @@ pnpm-debug.log*
 .env
 .env.production
 
+# downloaded Instagram source media (select and copy into src/assets first)
+/media/
+
+# Cloudflare build output and local state
+.cloudflare/
+.wrangler/
+
 # macOS-specific files
 .DS_Store
 

@@ -1,78 +1,263 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import Button from '@/components/Button.astro';
-import WorkRow from '@/components/WorkRow.astro';
-import SectionHeading from '@/components/SectionHeading.astro';
-import { SITE } from '@/site.config';
+import ProjectBand from '@/components/ProjectBand.astro';
+import ProjectRow from '@/components/ProjectRow.astro';
+import { SERVICES, SITE } from '@/site.config';
 
-const allWork = await getCollection('work', ({ data }) => !data.draft);
-const sorted = [...allWork].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const featured = sorted.filter((entry) => entry.data.featured);
-const rest = sorted.filter((entry) => !entry.data.featured);
-const selected = [...featured, ...rest].slice(0, 5);
+const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const featured = projects.filter((entry) => entry.data.featured).slice(0, 3);
 ---
 
-<BaseLayout title={SITE.name}>
-  <section class="mx-auto max-w-3xl px-6 pt-16 pb-20 sm:pt-24">
-    <p class="text-ink-soft mb-6 inline-flex items-center gap-2 font-mono text-xs">
-      <span class="bg-signal h-1.5 w-1.5 rounded-full" aria-hidden="true"></span>
-      {SITE.status}
-    </p>
-
-    <h1 class="font-display text-ink max-w-2xl text-4xl leading-[1.1] font-medium sm:text-5xl">
-      {SITE.tagline}
-    </h1>
-
-    <p class="text-ink-soft mt-6 max-w-md">
-      {SITE.role} — based on the work below, not a list of buzzwords.
-    </p>
-
-    <div class="mt-8 flex flex-wrap items-center gap-3">
-      <Button href="/work" variant="solid">View the work →</Button>
-      <Button href="#contact" variant="ghost">Say hello</Button>
+<BaseLayout title={`${SITE.name} — Arquitetura no Recife`}>
+  <section class="flex min-h-[100svh] flex-col">
+    <div class="shell grid grid-cols-12 gap-5 pt-[calc(var(--header-y)+4rem)]">
+      <div class="col-span-12 md:col-span-5 md:col-start-7">
+        <p class="body-copy max-w-[25rem]">
+          <span class="text-ink">Trópikos Arquitetos</span>{' '}
+          <span class="text-concrete">
+            é um escritório de arquitetura e interiores no Recife. Projetamos e executamos obras
+            com atenção ao lugar, ao clima e ao modo de morar de cada cliente.
+          </span>
+        </p>
+        <p class="caption mt-6 text-concrete">Desde {SITE.founded} — Parnamirim, Recife</p>
+      </div>
     </div>
-  </section>
 
-  <section id="work" class="mx-auto max-w-3xl px-6 pb-20">
-    <SectionHeading eyebrow="Selected work" count={allWork.length} />
-    <div>
-      {selected.map((entry) => <WorkRow entry={entry} />)}
-    </div>
-    {
-      allWork.length > selected.length && (
-        <div class="mt-6">
-          <a
-            href="/work"
-            class="text-ink-soft hover:text-signal font-mono text-xs transition-colors"
-          >
-            View all {allWork.length} projects →
-          </a>
-        </div>
-      )
-    }
-  </section>
-
-  <section id="about" class="mx-auto max-w-3xl px-6 pb-20">
-    <SectionHeading eyebrow="About" />
-    <p class="text-ink-soft max-w-xl">
-      {SITE.description}
-    </p>
-    <a href="/about" class="text-signal mt-4 inline-block font-mono text-xs hover:underline">
-      More about how I work →
-    </a>
-  </section>
-
-  <section id="contact" class="mx-auto max-w-3xl px-6 pb-24">
-    <SectionHeading eyebrow="Let's talk" />
-    <p class="font-display text-ink max-w-lg text-2xl sm:text-3xl">
-      Have something worth building?
-    </p>
-    <a
-      href={`mailto:${SITE.email}`}
-      class="text-signal mt-4 inline-flex items-center gap-2 font-mono hover:underline"
+    <div
+      class="hero-film relative isolate mt-auto flex min-h-[clamp(26rem,66svh,52rem)] flex-col justify-between overflow-hidden bg-onyx py-[var(--header-y)] text-paper"
     >
-      {SITE.email}
-    </a>
+      <picture class="absolute inset-0 -z-10 block h-full w-full">
+        <source media="(max-width: 767px)" srcset="/media/hero-tropikos-tall-poster.webp" type="image/webp" />
+        <img
+          src="/media/hero-tropikos-wide-poster.webp"
+          alt=""
+          width="1280"
+          height="720"
+          fetchpriority="high"
+          decoding="async"
+          class="h-full w-full object-cover"
+        />
+      </picture>
+      <video
+        data-hero-video
+        data-wide-src="/media/hero-tropikos-wide.mp4"
+        data-tall-src="/media/hero-tropikos-tall.mp4"
+        class="absolute inset-0 -z-10 h-full w-full object-cover opacity-0 transition-opacity duration-700 ease-out"
+        width="960"
+        height="540"
+        muted
+        loop
+        playsinline
+        preload="none"
+        aria-label="Registro de obra: detalhes de uma cozinha com iluminação quente, plantas e azulejos verdes"
+      ></video>
+      <div class="hero-film-scrim absolute inset-0 -z-10" aria-hidden="true"></div>
+
+      <div class="shell flex items-start justify-between gap-4">
+        <p class="caption text-paper/90">Registro de obra · Cozinha Espinheiro</p>
+        <button
+          type="button"
+          data-hero-toggle
+          hidden
+          class="caption tap cursor-pointer border-b border-paper/60 pb-1 text-paper/90 transition-colors hover:border-paper"
+          aria-label="Pausar vídeo de registro de obra"
+        >
+          Pausar
+        </button>
+      </div>
+
+      <div>
+        <div class="crop">
+          <h1 class="wordmark text-paper" aria-label="Trópikos">TRÓPIKOS</h1>
+        </div>
+        <div class="shell rule-top-soft mt-5 flex flex-wrap items-baseline justify-between gap-3 pt-4">
+          <p class="caption text-paper/80">Arquitetura autoral · Obra sob controle</p>
+          <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <a href="/projetos/cozinha-espinheiro" class="caption link-rule text-paper/80">
+              Ver o projeto ↗
+            </a>
+            <p class="caption hidden text-paper/80 sm:block">Recife — PE · 08°03′S 34°52′W</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
+
+  <section class="shell pt-[clamp(5rem,10vw,10rem)]">
+    <div class="rule-top flex items-baseline justify-between gap-4 py-4">
+      <h2 class="caption">Projetos selecionados</h2>
+      <p class="caption text-concrete">({String(featured.length).padStart(2, '0')})</p>
+    </div>
+  </section>
+
+  {
+    featured.map((entry, i) => (
+      <ProjectBand
+        index={`(${String(i + 1).padStart(2, '0')})`}
+        title={entry.data.title}
+        href={`/projetos/${entry.id}`}
+        location={entry.data.location}
+        year={entry.data.year}
+        typology={entry.data.typology}
+        image={entry.data.cover}
+        imageAlt={entry.data.coverAlt}
+        video={entry.data.video}
+        poster={entry.data.poster}
+      />
+    ))
+  }
+
+  <section class="shell pt-[clamp(4rem,8vw,8rem)] pb-[clamp(4rem,8vw,8rem)]">
+    <div class="rule-top flex items-baseline justify-between gap-4 py-4">
+      <h2 class="caption">Índice de projetos</h2>
+      <a href="/projetos" class="caption link-rule text-concrete">Ver todos ↗</a>
+    </div>
+    <div>
+      {projects.map((entry, i) => <ProjectRow entry={entry} index={i + 1} />)}
+    </div>
+  </section>
+
+  <section class="inverse">
+    <div class="shell grid grid-cols-1 items-center gap-12 py-[clamp(4rem,8vw,7rem)] md:grid-cols-12 md:gap-10">
+      <figure class="md:col-span-5 md:col-start-2">
+        <a href="/projetos/cozinha-espinheiro" class="group block" aria-label="Ver o projeto Cozinha Espinheiro">
+          <div class="relative mx-auto aspect-[4/5] w-full max-w-[21rem] overflow-hidden bg-black">
+            <img
+              src="/media/registro-cozinha.webp"
+              alt="Prateleira de madeira com cerâmicas, plantas secas e azulejos verdes sob luz quente"
+              class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+              width="720"
+              height="900"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </a>
+        <figcaption class="caption mt-3 flex items-center justify-between gap-4 text-concrete">
+          <span>Registro de obra</span>
+          <span>Cozinha Espinheiro</span>
+        </figcaption>
+      </figure>
+
+      <div class="md:col-span-4 md:col-start-8">
+        <p class="caption text-concrete">O estúdio</p>
+        <p class="mt-6 text-[clamp(1.8rem,3.2vw,3rem)] leading-[1.04] tracking-[-0.04em] text-balance">
+          O projeto não termina no papel.
+        </p>
+        <p class="body-copy mt-5 max-w-[36ch] text-concrete">
+          Acompanhamos cada obra de perto — do primeiro estudo à entrega das chaves — para que a
+          arquitetura chegue de pé ao fim.
+        </p>
+        <a
+          href="/estudio"
+          class="caption mt-9 inline-flex items-center gap-2 border-b border-paper/60 pb-1 transition-colors hover:border-paper"
+        >
+          Conhecer o estúdio <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell py-[clamp(4rem,8vw,8rem)]">
+    <div class="rule-top flex items-baseline justify-between gap-4 py-4">
+      <h2 class="caption">Serviços</h2>
+      <a href="/servicos" class="caption link-rule text-concrete">Ver detalhes ↗</a>
+    </div>
+    <ul>
+      {
+        SERVICES.map((service) => (
+          <li class="border-b border-hairline py-6 sm:py-8">
+            <a
+              href="/servicos"
+              class="grid grid-cols-[2.2rem_1fr] items-baseline gap-x-4 sm:grid-cols-[3.5rem_1fr_1fr] sm:gap-6"
+            >
+              <span class="index text-concrete">{service.index}</span>
+              <span class="text-[clamp(1.3rem,2.3vw,1.9rem)] leading-[1.1] tracking-[-0.03em]">
+                {service.title}
+              </span>
+              <span class="body-copy col-span-2 mt-2 max-w-[36ch] text-concrete sm:col-span-1 sm:mt-0">
+                {service.body}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <script>
+    const hero = document.querySelector<HTMLVideoElement>('[data-hero-video]');
+    const heroToggle = document.querySelector<HTMLButtonElement>('[data-hero-toggle]');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function setHeroState(playing: boolean) {
+      if (!heroToggle) return;
+      heroToggle.textContent = playing ? 'Pausar' : 'Reproduzir';
+      heroToggle.setAttribute(
+        'aria-label',
+        playing
+          ? 'Pausar vídeo de registro de obra'
+          : 'Reproduzir vídeo de registro de obra',
+      );
+    }
+
+    function selectHeroSource(video: HTMLVideoElement) {
+      const isMobile = window.matchMedia('(max-width: 767px)').matches;
+      const source = isMobile ? video.dataset.tallSrc : video.dataset.wideSrc;
+      if (source && video.getAttribute('src') !== source) {
+        video.src = source;
+        video.load();
+      }
+    }
+
+    if (hero) {
+      if (heroToggle) heroToggle.hidden = false;
+      setHeroState(false);
+      let sourceSelected = false;
+
+      hero.addEventListener('playing', () => {
+        setHeroState(true);
+        hero.style.opacity = '1';
+      });
+      hero.addEventListener('play', () => setHeroState(true));
+      hero.addEventListener('pause', () => setHeroState(false));
+
+      const playHero = () => {
+        if (!sourceSelected) {
+          selectHeroSource(hero);
+          sourceSelected = true;
+        }
+        hero.play().catch(() => setHeroState(false));
+      };
+
+      if (reduceMotion) {
+        setHeroState(false);
+      } else {
+        const schedulePlay = () => {
+          if (typeof window.requestIdleCallback === 'function') {
+            window.requestIdleCallback(playHero, { timeout: 1200 });
+          } else {
+            window.setTimeout(playHero, 300);
+          }
+        };
+
+        if (document.readyState === 'complete') {
+          schedulePlay();
+        } else {
+          window.addEventListener('load', schedulePlay, { once: true });
+        }
+      }
+
+      heroToggle?.addEventListener('click', () => {
+        if (hero.paused) {
+          playHero();
+        } else {
+          hero.pause();
+        }
+      });
+    }
+  </script>
 </BaseLayout>

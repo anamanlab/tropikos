@@ -1,22 +1,68 @@
-// Edit this file to re-label the entire site. Header, Footer, the homepage
-// and SEO defaults all read from here instead of hardcoding copy.
+// Single source of truth for copy, contact details and navigation.
 export const SITE = {
-  name: 'John Doe',
-  role: 'Product design & frontend engineering',
-  email: 'johndoe@example.com',
-  tagline: 'I design and build interfaces that hold up under real use.',
+  name: 'Trópikos Arquitetos',
+  shortName: 'TRÓPIKOS',
+  role: 'Arquitetura autoral. Obra sob controle.',
+  tagline: 'Arquitetura autoral, do conceito à materialização.',
   description:
-    'Portfolio of John Doe — product design and frontend engineering, with an emphasis on speed, clarity, and the details most people skip.',
-  status: 'Currently building at Studio Co · open to new work, Q3 2026',
-  social: [
-    { label: 'GitHub', href: 'https://github.com/your-username' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/your-username' },
-    { label: 'X', href: 'https://x.com/your-username' },
-  ],
-  locale: 'en',
+    'Trópikos Arquitetos — escritório de arquitetura e interiores no Recife. Projetos autorais, execução e acompanhamento de obra do conceito à entrega.',
+  city: 'Recife',
+  state: 'PE',
+  country: 'Brasil',
+  address: {
+    street: 'Rua Ferreira Lopes, 334',
+    building: 'Salas 201/202/203',
+    district: 'Parnamirim',
+    city: 'Recife',
+    state: 'PE',
+    postalCode: '52060-235',
+    country: 'BR',
+  },
+  email: 'tropikosarquitetura@gmail.com',
+  phone: '+55 81 99302-0201',
+  phoneAlt: '+55 81 99767-4444',
+  whatsapp: '5581993020201',
+  instagram: 'https://www.instagram.com/tropikosarq/',
+  instagramHandle: '@tropikosarq',
+  linktree: 'https://linktr.ee/tropikosarq',
+  founded: 2021,
+  locale: 'pt-BR',
+  timezone: 'America/Recife',
+  timezoneAlt: 'America/Noronha',
+  cityCode: 'REC',
+  cityCodeAlt: 'FEN',
 } as const;
 
 export const NAV_LINKS = [
-  { label: 'Work', href: '/work' },
-  { label: 'About', href: '/about' },
+  { label: 'Projetos', href: '/projetos', index: '01' },
+  { label: 'Estúdio', href: '/estudio', index: '02' },
+  { label: 'Serviços', href: '/servicos', index: '03' },
+  { label: 'Contato', href: '/contato', index: '04' },
+] as const;
+
+export const SERVICES = [
+  {
+    index: '01',
+    title: 'Projeto arquitetônico',
+    body: 'Estudo do terreno, implantação, volumetria e detalhamento executivo. Cada decisão responde ao lugar, à luz e ao modo de morar.',
+    items: ['Residencial', 'Interiores', 'Reformas', 'Uso misto'],
+  },
+  {
+    index: '02',
+    title: 'Interiores',
+    body: 'Materiais, marcenaria, iluminação e mobiliário desenhados em conjunto com a arquitetura — sem ruído entre projeto e obra.',
+    items: ['Layout', 'Marcenaria', 'Iluminação', 'Curadoria'],
+  },
+  {
+    index: '03',
+    title: 'Execução e obra',
+    body: 'Orçamento, cronograma, compras e acompanhamento técnico. O desenho chega de pé à entrega, com responsabilidade sobre cada etapa.',
+    items: ['Planejamento', 'Gestão', 'Fiscalização', 'Entrega'],
+  },
+  {
+    index: '04',
+    title: 'Consultoria',
+    body: 'Leituras pontuais de projeto, obra em andamento ou potencial de um imóvel, com parecer técnico objetivo e próximo.',
+    items: ['Diagnóstico', 'Viabilidade', 'Parecer', 'Diretrizes'],
+  },
 ] as const;

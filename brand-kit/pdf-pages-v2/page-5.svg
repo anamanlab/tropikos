@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 842 595" width="842" height="595">
+  <rect width="842" height="595" fill="#FFFFFF"/>
+  
+    <!-- Top Hairline Rule -->
+    <line x1="48" y1="44" x2="794" y2="44" stroke="#191919" stroke-width="0.5"/>
+    <text x="48" y="34" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#191919" letter-spacing="2">TRÓPIKOS ARQUITETOS</text>
+    <text x="794" y="34" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="600" text-anchor="end" fill="#6B6B6B" letter-spacing="1.5">04 · APLICAÇÃO TÉCNICA (SELO DE PRANCHA ABNT)</text>
+    
+    <!-- Bottom Hairline Rule -->
+    <line x1="48" y1="550" x2="794" y2="550" stroke="#191919" stroke-width="0.5"/>
+    <text x="48" y="568" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8" fill="#6B6B6B" letter-spacing="0.5">RECIFE · PE · 08°03′S 34°52′W · ARQUITETURA AUTORAL</text>
+    <text x="794" y="568" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" font-weight="600" text-anchor="end" fill="#191919">05 / 07</text>
+    
+
+  <text x="48" y="78" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#191919">Carimbo de Prancha Arquitetônica (Norma ABNT NBR 6492)</text>
+  <text x="48" y="98" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#6B6B6B">
+    Módulo padronizado de 180mm de largura pronto para pranchas A1 e A0 em AutoCAD, Revit e Archicad.
+  </text>
+
+  <!-- Centered Technical Title Block -->
+  <g transform="translate(86, 126) scale(0.93)">
+    <!-- Architectural Outer Border -->
+  <rect x="0" y="0" width="720" height="240" fill="#FFFFFF" stroke="#191919" stroke-width="2"/>
+  
+  <!-- Vertical Division -->
+  <line x1="240" y1="0" x2="240" y2="240" stroke="#191919" stroke-width="1.5"/>
+  <line x1="520" y1="0" x2="520" y2="240" stroke="#191919" stroke-width="1.5"/>
+  
+  <!-- Left Column: Brand Identity -->
+  <g id="carimbo-brand" transform="translate(42, 16) scale(0.68)">
+    <g id="symbol">
+    <path d="M 48.0 123.0 C 60.0 115.0 70.0 127.0 88.0 121.0" fill="none" stroke="#3D6E60" stroke-width="3.8" stroke-linecap="round"/><path d="M 48.0 112.0 C 60.0 104.0 71.0 116.0 88.0 110.0" fill="none" stroke="#3D6E60" stroke-width="3.8" stroke-linecap="round"/><path d="M 48.0 101.0 C 61.0 93.0 73.0 105.0 88.0 99.0" fill="none" stroke="#3D6E60" stroke-width="3.8" stroke-linecap="round"/><path d="M 52.0 91.0 C 63.0 86.0 75.0 94.0 88.0 88.0" fill="none" stroke="#3D6E60" stroke-width="3.8" stroke-linecap="round"/>
+    <path d="M 0 0 H 66 V 16 H 41 V 100 H 25 V 16 H 0 Z" transform="translate(53.48, 25.0) scale(0.44)" fill="#191919"/><path d="M 0 0 H 42 C 57.5 0 70 12.5 70 28 C 70 41.5 60.5 52.5 48 55.2 L 70 100 H 50 L 30 56 H 16 V 100 H 0 Z M 16 16 H 42 C 48.6 16 54 21.4 54 28 C 54 34.6 48.6 40 42 40 H 16 Z" transform="translate(112.6, 25.0) scale(0.44)" fill-rule="evenodd" fill="#191919"/><path d="M 38 0 C 59 0 76 17 76 50 C 76 83 59 100 38 100 C 17 100 0 83 0 50 C 0 17 17 0 38 0 Z M 38 16 C 26 16 16 29 16 50 C 16 71 26 84 38 84 C 50 84 60 71 60 50 C 60 29 50 16 38 16 Z M 40 -8 L 56 -24 L 66 -16 L 50 0 Z" transform="translate(171.28, 25.0) scale(0.44)" fill-rule="evenodd" fill="#191919"/><path d="M 0 0 H 40 C 55.5 0 68 12.5 68 28 C 68 43.5 55.5 56 40 56 H 16 V 100 H 0 Z M 16 16 H 40 C 46.6 16 52 21.4 52 28 C 52 34.6 46.6 40 40 40 H 16 Z" transform="translate(113.04, 85.0) scale(0.44)" fill-rule="evenodd" fill="#191919"/><path d="M 0 0 H 16 V 100 H 0 Z" transform="translate(184.48, 85.0) scale(0.44)" fill="#191919"/><path d="M 0 0 H 16 V 45 L 48 0 H 68 L 30 52 L 68 100 H 46 L 16 60 V 100 H 0 Z" transform="translate(53.04, 145.0) scale(0.44)" fill="#191919"/><path d="M 38 0 C 59 0 76 17 76 50 C 76 83 59 100 38 100 C 17 100 0 83 0 50 C 0 17 17 0 38 0 Z M 38 16 C 26 16 16 29 16 50 C 16 71 26 84 38 84 C 50 84 60 71 60 50 C 60 29 50 16 38 16 Z" transform="translate(111.28, 145.0) scale(0.44)" fill-rule="evenodd" fill="#191919"/><path d="M 58 24 L 46 29 C 43 20 37 16 33 16 C 25 16 20 21 20 27 C 20 34 26 37 38 42 C 54 48 64 54 64 68 C 64 86 49 100 33 100 C 15 100 4 87 2 72 L 17 68 C 19 79 26 84 33 84 C 42 84 48 78 48 70 C 48 61 41 58 29 52 C 16 46 4 40 4 27 C 4 12 17 0 33 0 C 48 0 56 10 58 24 Z" transform="translate(173.48, 145.0) scale(0.44)" fill="#191919"/>
+  </g>
+  <g id="descriptor" transform="translate(54.76, 216)">
+    <path d="M 37 0 L 74 100 H 55 L 47 76 H 27 L 19 100 H 0 Z M 37 26 L 43 62 H 31 Z" transform="translate(0, 0) scale(0.19)" fill-rule="evenodd" fill="#BA5424"/><path d="M 0 0 H 42 C 57.5 0 70 12.5 70 28 C 70 41.5 60.5 52.5 48 55.2 L 70 100 H 50 L 30 56 H 16 V 100 H 0 Z M 16 16 H 42 C 48.6 16 54 21.4 54 28 C 54 34.6 48.6 40 42 40 H 16 Z" transform="translate(16.53, 0) scale(0.19)" fill-rule="evenodd" fill="#BA5424"/><path d="M 38 0 C 59 0 76 17 76 50 C 76 66 69 80 58 89 L 72 104 H 54 L 46 95 C 43 97 41 98 38 98 C 17 98 0 81 0 50 C 0 17 17 0 38 0 Z M 38 16 C 26 16 16 29 16 50 C 16 71 26 82 38 82 C 50 82 60 71 60 50 C 60 29 50 16 38 16 Z" transform="translate(32.3, 0) scale(0.19)" fill-rule="evenodd" fill="#BA5424"/><path d="M 0 0 H 16 V 62 C 16 76 25 84 36 84 C 47 84 56 76 56 62 V 0 H 72 V 62 C 72 86 56 100 36 100 C 16 100 0 86 0 62 Z" transform="translate(49.21, 0) scale(0.19)" fill="#BA5424"/><path d="M 0 0 H 16 V 100 H 0 Z" transform="translate(65.74, 0) scale(0.19)" fill="#BA5424"/><path d="M 0 0 H 66 V 16 H 41 V 100 H 25 V 16 H 0 Z" transform="translate(71.63, 0) scale(0.19)" fill="#BA5424"/><path d="M 0 0 H 60 V 16 H 16 V 42 H 54 V 58 H 16 V 84 H 60 V 100 H 0 Z" transform="translate(87.02, 0) scale(0.19)" fill="#BA5424"/><path d="M 0 0 H 66 V 16 H 41 V 100 H 25 V 16 H 0 Z" transform="translate(101.27, 0) scale(0.19)" fill="#BA5424"/><path d="M 38 0 C 59 0 76 17 76 50 C 76 83 59 100 38 100 C 17 100 0 83 0 50 C 0 17 17 0 38 0 Z M 38 16 C 26 16 16 29 16 50 C 16 71 26 84 38 84 C 50 84 60 71 60 50 C 60 29 50 16 38 16 Z" transform="translate(116.66, 0) scale(0.19)" fill-rule="evenodd" fill="#BA5424"/><path d="M 58 24 L 46 29 C 43 20 37 16 33 16 C 25 16 20 21 20 27 C 20 34 26 37 38 42 C 54 48 64 54 64 68 C 64 86 49 100 33 100 C 15 100 4 87 2 72 L 17 68 C 19 79 26 84 33 84 C 42 84 48 78 48 70 C 48 61 41 58 29 52 C 16 46 4 40 4 27 C 4 12 17 0 33 0 C 48 0 56 10 58 24 Z" transform="translate(133.95, 0) scale(0.19)" fill="#BA5424"/>
+  </g>
+  </g>
+  <line x1="0" y1="200" x2="240" y2="200" stroke="#191919" stroke-width="1"/>
+  <text x="120" y="222" font-family="'TWK Everett', 'Inter', sans-serif" font-size="10" font-weight="600" text-anchor="middle" fill="#191919" letter-spacing="1.5">CAU/PE: 104829-0 · RECIFE/PE</text>
+
+  <!-- Middle Column: Project & Client Data -->
+  <line x1="240" y1="48" x2="520" y2="48" stroke="#191919" stroke-width="1"/>
+  <text x="252" y="24" font-family="'TWK Everett', 'Inter', sans-serif" font-size="8" fill="#6B6B6B" letter-spacing="1">PROJETO</text>
+  <text x="252" y="40" font-family="'TWK Everett', 'Inter', sans-serif" font-size="13" font-weight="bold" fill="#191919">RESIDÊNCIA ALDEIA (CASA ALDEIA)</text>
+  
+  <line x1="240" y1="96" x2="520" y2="96" stroke="#191919" stroke-width="1"/>
+  <text x="252" y="68" font-family="'TWK Everett', 'Inter', sans-serif" font-size="8" fill="#6B6B6B" letter-spacing="1">CONTEÚDO DA PRANCHA</text>
+  <text x="252" y="86" font-family="'TWK Everett', 'Inter', sans-serif" font-size="12" font-weight="600" fill="#191919">IMPLANTAÇÃO, PLANTA BAIXA &amp; NÍVEIS</text>
+  
+  <line x1="240" y1="144" x2="520" y2="144" stroke="#191919" stroke-width="1"/>
+  <text x="252" y="116" font-family="'TWK Everett', 'Inter', sans-serif" font-size="8" fill="#6B6B6B" letter-spacing="1">ENDEREÇO / LOCALIZAÇÃO</text>
+  <text x="252" y="134" font-family="'TWK Everett', 'Inter', sans-serif" font-size="11" fill="#191919">ALDEIA DOS CAMARÁS — CAMARAGIBE / PE</text>
+  
+  <line x1="240" y1="192" x2="520" y2="192" stroke="#191919" stroke-width="1"/>
+  <text x="252" y="164" font-family="'TWK Everett', 'Inter', sans-serif" font-size="8" fill="#6B6B6B" letter-spacing="1">AUTORIA &amp; COORDENAÇÃO</text>
+  <text x="252" y="182" font-family="'TWK Everett', 'Inter', sans-serif" font-size="11" font-weight="600" fill="#191919">TRÓPIKOS ARQUITETOS · EQUIPE TÉCNICA</text>
+  
+  <text x="252" y="212" font-family="'TWK Everett', 'Inter', sans-serif" font-size="8" fill="#6B6B6B" letter-spacing="1">FASE</text>
+  <text x="252" y="228" font-family="'TWK Everett', 'Inter', sans-serif" font-size="11" font-weight="bold" fill="#3D6E60">PROJETO EXECUTIVO</text>
+  
+  <line x1="410" y1="192" x2="410" y2="240" stroke="#191919" stroke-width="1"/>
+  <text x="422" y="212" font-family="'TWK Everett', 'Inter', sans-serif" font-size="8" fill="#6B6B6B" letter-spacing="1">DATA</text>
+  <text x="422" y="228" font-family="'JetBrains Mono', monospace" font-size="11" fill="#191919">OUT / 2026</text>
+
+  <!-- Right Column: Numbering & Scale -->
+  <line x1="520" y1="120" x2="720" y2="120" stroke="#191919" stroke-width="1"/>
+  <text x="532" y="28" font-family="'TWK Everett', 'Inter', sans-serif" font-size="9" fill="#6B6B6B" letter-spacing="1">ESCALA</text>
+  <text x="532" y="60" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="bold" fill="#191919">1:50 · 1:100</text>
+  <text x="532" y="90" font-family="'TWK Everett', 'Inter', sans-serif" font-size="9" fill="#6B6B6B" letter-spacing="1">REVISÃO: R02</text>
+  
+  <text x="532" y="148" font-family="'TWK Everett', 'Inter', sans-serif" font-size="9" fill="#6B6B6B" letter-spacing="1">PRANCHA Nº</text>
+  <text x="620" y="210" font-family="'TWK Everett', 'Inter', sans-serif" font-size="64" font-weight="bold" text-anchor="middle" fill="#191919">01</text>
+  <text x="690" y="210" font-family="'TWK Everett', 'Inter', sans-serif" font-size="14" fill="#6B6B6B">/ 12</text>
+  </g>
+
+  <!-- 3 Explanatory Columns below -->
+  <g transform="translate(48, 380)">
+    <line x1="0" y1="0" x2="746" y2="0" stroke="#191919" stroke-width="0.5"/>
+    
+    <text x="0" y="24" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#191919">Normatização ABNT NBR 6492</text>
+    <text x="0" y="44" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" fill="#6B6B6B" width="220">
+      <tspan x="0" dy="0">Dimensão oficial de 180 mm de largura,</tspan>
+      <tspan x="0" dy="14">permitindo dobragem padronizada em</tspan>
+      <tspan x="0" dy="14">tamanho A4 com o selo visível.</tspan>
+    </text>
+
+    <text x="260" y="24" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#191919">Responsabilidade Técnica CAU/PE</text>
+    <text x="260" y="44" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" fill="#6B6B6B">
+      <tspan x="260" dy="0">Inclusão do registro profissional da</tspan>
+      <tspan x="260" dy="14">autoria e coordenação técnica</tspan>
+      <tspan x="260" dy="14">exigido pelos órgãos legais e prefeituras.</tspan>
+    </text>
+
+    <text x="520" y="24" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#3D6E60">Compatibilidade CAD / BIM</text>
+    <text x="520" y="44" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" fill="#6B6B6B">
+      <tspan x="520" dy="0">Arquivo vetorial mestre disponível em:</tspan>
+      <tspan x="520" dy="14" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8" fill="#191919">brand-kit/architectural-cad/</tspan>
+      <tspan x="520" dy="14" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8" fill="#3D6E60">tropikos-carimbo-prancha.svg</tspan>
+    </text>
+  </g>
+</svg>

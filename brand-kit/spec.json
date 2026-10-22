@@ -1,0 +1,55 @@
+{
+  "brand": "Trópikos Arquitetos",
+  "tagline": "Arquitetura autoral. Obra sob controle.",
+  "brief": "Escritório de arquitetura e interiores em Recife (PE). Redesign do logotipo original preservando 100% da essência conceitual — a métrica rítmica TRÓ-PI-KOS e as curvas topográficas tropicais —, corrigindo alinhamentos, vetorização e contrastes para prontidão de produção no novo website e materiais físicos.",
+  "adjectives": [
+    "autoral",
+    "modernista",
+    "arquitetônico",
+    "tropical",
+    "editorial"
+  ],
+  "criteria": "Prontidão de produção para a web (16px a 4K), monocromia real (1 cor sem interferências), elegância modernista e preservação da equidade de marca do estúdio.",
+  "mockups": [
+    "website",
+    "signage",
+    "business-card",
+    "social",
+    "tote",
+    "badge"
+  ],
+  "nav": [
+    "Projetos",
+    "Estúdio",
+    "Serviços",
+    "Contato"
+  ],
+  "brand_color": "#3D6E60",
+  "tile_color": "#191919",
+  "greyscale": false,
+  "final": true,
+  "designer": "Antigravity Identity Team",
+  "round": 2,
+  "concepts": [
+    {
+      "name": "Trópikos Arquitetos — Redesign de Produção",
+      "symbol": "svg/tropikos-symbol-color.svg",
+      "lockup": "svg/tropikos-horizontal-color.svg",
+      "stacked": "svg/tropikos-stacked-color.svg",
+      "avatar": "web/tropikos-symbol-app-icon.svg",
+      "idea": "O grid 3×3 original lapidado com rigor modernista: a métrica silábica TRÓ-PI-KOS integrada ao pátio topográfico do litoral recifense.",
+      "rationale": [
+        "Fidelidade absoluta ao conceito original com geometria neo-grotesca pura",
+        "A 9ª célula funciona como um pátio interno/recanto vegetal, resolvendo o vazio assimétrico",
+        "Paleta profissional: Onyx #191919, Verde Palma #3D6E60 e Terracota #BA5424",
+        "Kit multiplataforma completo com versões para cabeçalho web, favicons e pranchas"
+      ]
+    }
+  ],
+  "recommendation": "Identidade aprovada para produção. Aplicação imediata no cabeçalho do site Astro, pacote de favicons no diretório public/ e pranchas técnicas do estúdio.",
+  "next_steps": [
+    "Integrar favicon.ico e web-icons ao public/ do projeto Astro",
+    "Atualizar cabeçalho e rodapé do site com o novo SVG de produção",
+    "Utilizar as versões monocromáticas em carimbos de prancha e memoriais executivos"
+  ]
+}

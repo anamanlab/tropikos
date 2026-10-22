@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 842 595" width="842" height="595">
+  <rect width="842" height="595" fill="#FFFFFF"/>
+  
+    <!-- Top Hairline Rule -->
+    <line x1="48" y1="44" x2="794" y2="44" stroke="#191919" stroke-width="0.5"/>
+    <text x="48" y="34" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#191919" letter-spacing="2">TRÓPIKOS ARQUITETOS</text>
+    <text x="794" y="34" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="600" text-anchor="end" fill="#6B6B6B" letter-spacing="1.5">01 · CONCEITO &amp; ANATOMIA DO GRID</text>
+    
+    <!-- Bottom Hairline Rule -->
+    <line x1="48" y1="550" x2="794" y2="550" stroke="#191919" stroke-width="0.5"/>
+    <text x="48" y="568" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8" fill="#6B6B6B" letter-spacing="0.5">RECIFE · PE · 08°03′S 34°52′W · ARQUITETURA AUTORAL</text>
+    <text x="794" y="568" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" font-weight="600" text-anchor="end" fill="#191919">02 / 07</text>
+    
+
+  <!-- Left Column: Narrative -->
+  <text x="48" y="86" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700" fill="#191919">A Síntese entre Rigor e Clima</text>
+  <text x="48" y="112" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#191919" width="330">
+    <tspan x="48" dy="0">A identidade da Trópikos Arquitetos parte da tensão produtiva</tspan>
+    <tspan x="48" dy="16">entre o rigor da arquitetura moderna e a organicidade do relevo,</tspan>
+    <tspan x="48" dy="16">da luz e dos ventos do litoral pernambucano.</tspan>
+  </text>
+
+  <text x="48" y="185" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#191919">A Métrica Silábica 3×3 (TRÓ · PI · KOS)</text>
+  <text x="48" y="207" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" fill="#6B6B6B">
+    <tspan x="48" dy="0">A distribuição das 8 letras respeita rigorosamente a métrica</tspan>
+    <tspan x="48" dy="15">fonética da marca. Cada linha de letras atua como uma laje de</tspan>
+    <tspan x="48" dy="15">concreto aparente, com proporções neo-grotescas robustas.</tspan>
+  </text>
+
+  <text x="48" y="275" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#3D6E60">O Pátio Topográfico Interno (9ª Célula)</text>
+  <text x="48" y="297" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" fill="#6B6B6B">
+    <tspan x="48" dy="0">No modernismo brasileiro, o vazio nunca é ausência: é o pátio</tspan>
+    <tspan x="48" dy="15">interno, o recanto vegetal ventilado que permite à luz e à brisa</tspan>
+    <tspan x="48" dy="15">atravessarem o volume edificado. As 4 curvas desenham o relevo</tspan>
+    <tspan x="48" dy="15">e a drenagem natural da paisagem litorânea do Recife.</tspan>
+  </text>
+
+  <text x="48" y="380" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#BA5424">O Descritor 'ARQUITETOS'</text>
+  <text x="48" y="402" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" fill="#6B6B6B">
+    <tspan x="48" dy="0">Ancorado na base da composição em tom terracota terroso,</tspan>
+    <tspan x="48" dy="15">com tracking aberto (15 unidades), assegurando estabilidade</tspan>
+    <tspan x="48" dy="15">e clareza de categoria profissional ao estúdio.</tspan>
+  </text>
+
+  <!-- Right Column: Diagram Board -->
+  <rect x="420" y="74" width="374" height="446" fill="#FBFBFB" stroke="#191919" stroke-width="0.8"/>
+  <text x="440" y="102" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#191919" letter-spacing="1">MALHA GEOMÉTRICA &amp; NORMAS DO GRID</text>
+  
+  <g transform="translate(480, 130) scale(1.0)">
+    <rect x="45" y="24" width="46" height="46" fill="none" stroke="#6B6B6B" stroke-dasharray="2 2" stroke-width="0.6"/><rect x="105" y="24" width="46" height="46" fill="none" stroke="#6B6B6B" stroke-dasharray="2 2" stroke-width="0.6"/><rect x="165" y="24" width="46" height="46" fill="none" stroke="#6B6B6B" stroke-dasharray="2 2" stroke-width="0.6"/><rect x="45" y="84" width="46" height="46" fill="#EAF2EF" stroke="#3D6E60" stroke-width="1.2"/><rect x="105" y="84" width="46" height="46" fill="none" stroke="#6B6B6B" stroke-dasharray="2 2" stroke-width="0.6"/><rect x="165" y="84" width="46" height="46" fill="none" stroke="#6B6B6B" stroke-dasharray="2 2" stroke-width="0.6"/><rect x="45" y="144" width="46" height="46" fill="none" stroke="#6B6B6B" stroke-dasharray="2 2" stroke-width="0.6"/><rect x="105" y="144" width="46" height="46" fill="none" stroke="#6B6B6B" stroke-dasharray="2 2" stroke-width="0.6"/><rect x="165" y="144" width="46" height="46" fill="none" stroke="#6B6B6B" stroke-dasharray="2 2" stroke-width="0.6"/>
+    <g id="symbol">
+    <path d="M 48.0 123.0 C 60.0 115.0 70.0 127.0 88.0 121.0" fill="none" stroke="#3D6E60" stroke-width="3.8" stroke-linecap="round"/><path d="M 48.0 112.0 C 60.0 104.0 71.0 116.0 88.0 110.0" fill="none" stroke="#3D6E60" stroke-width="3.8" stroke-linecap="round"/><path d="M 48.0 101.0 C 61.0 93.0 73.0 105.0 88.0 99.0" fill="none" stroke="#3D6E60" stroke-width="3.8" stroke-linecap="round"/><path d="M 52.0 91.0 C 63.0 86.0 75.0 94.0 88.0 88.0" fill="none" stroke="#3D6E60" stroke-width="3.8" stroke-linecap="round"/>
+    <path d="M 0 0 H 66 V 16 H 41 V 100 H 25 V 16 H 0 Z" transform="translate(53.48, 25.0) scale(0.44)" fill="#191919"/><path d="M 0 0 H 42 C 57.5 0 70 12.5 70 28 C 70 41.5 60.5 52.5 48 55.2 L 70 100 H 50 L 30 56 H 16 V 100 H 0 Z M 16 16 H 42 C 48.6 16 54 21.4 54 28 C 54 34.6 48.6 40 42 40 H 16 Z" transform="translate(112.6, 25.0) scale(0.44)" fill-rule="evenodd" fill="#191919"/><path d="M 38 0 C 59 0 76 17 76 50 C 76 83 59 100 38 100 C 17 100 0 83 0 50 C 0 17 17 0 38 0 Z M 38 16 C 26 16 16 29 16 50 C 16 71 26 84 38 84 C 50 84 60 71 60 50 C 60 29 50 16 38 16 Z M 40 -8 L 56 -24 L 66 -16 L 50 0 Z" transform="translate(171.28, 25.0) scale(0.44)" fill-rule="evenodd" fill="#191919"/><path d="M 0 0 H 40 C 55.5 0 68 12.5 68 28 C 68 43.5 55.5 56 40 56 H 16 V 100 H 0 Z M 16 16 H 40 C 46.6 16 52 21.4 52 28 C 52 34.6 46.6 40 40 40 H 16 Z" transform="translate(113.04, 85.0) scale(0.44)" fill-rule="evenodd" fill="#191919"/><path d="M 0 0 H 16 V 100 H 0 Z" transform="translate(184.48, 85.0) scale(0.44)" fill="#191919"/><path d="M 0 0 H 16 V 45 L 48 0 H 68 L 30 52 L 68 100 H 46 L 16 60 V 100 H 0 Z" transform="translate(53.04, 145.0) scale(0.44)" fill="#191919"/><path d="M 38 0 C 59 0 76 17 76 50 C 76 83 59 100 38 100 C 17 100 0 83 0 50 C 0 17 17 0 38 0 Z M 38 16 C 26 16 16 29 16 50 C 16 71 26 84 38 84 C 50 84 60 71 60 50 C 60 29 50 16 38 16 Z" transform="translate(111.28, 145.0) scale(0.44)" fill-rule="evenodd" fill="#191919"/><path d="M 58 24 L 46 29 C 43 20 37 16 33 16 C 25 16 20 21 20 27 C 20 34 26 37 38 42 C 54 48 64 54 64 68 C 64 86 49 100 33 100 C 15 100 4 87 2 72 L 17 68 C 19 79 26 84 33 84 C 42 84 48 78 48 70 C 48 61 41 58 29 52 C 16 46 4 40 4 27 C 4 12 17 0 33 0 C 48 0 56 10 58 24 Z" transform="translate(173.48, 145.0) scale(0.44)" fill="#191919"/>
+  </g>
+  <g id="descriptor" transform="translate(54.76, 216)">
+    <path d="M 37 0 L 74 100 H 55 L 47 76 H 27 L 19 100 H 0 Z M 37 26 L 43 62 H 31 Z" transform="translate(0, 0) scale(0.19)" fill-rule="evenodd" fill="#BA5424"/><path d="M 0 0 H 42 C 57.5 0 70 12.5 70 28 C 70 41.5 60.5 52.5 48 55.2 L 70 100 H 50 L 30 56 H 16 V 100 H 0 Z M 16 16 H 42 C 48.6 16 54 21.4 54 28 C 54 34.6 48.6 40 42 40 H 16 Z" transform="translate(16.53, 0) scale(0.19)" fill-rule="evenodd" fill="#BA5424"/><path d="M 38 0 C 59 0 76 17 76 50 C 76 66 69 80 58 89 L 72 104 H 54 L 46 95 C 43 97 41 98 38 98 C 17 98 0 81 0 50 C 0 17 17 0 38 0 Z M 38 16 C 26 16 16 29 16 50 C 16 71 26 82 38 82 C 50 82 60 71 60 50 C 60 29 50 16 38 16 Z" transform="translate(32.3, 0) scale(0.19)" fill-rule="evenodd" fill="#BA5424"/><path d="M 0 0 H 16 V 62 C 16 76 25 84 36 84 C 47 84 56 76 56 62 V 0 H 72 V 62 C 72 86 56 100 36 100 C 16 100 0 86 0 62 Z" transform="translate(49.21, 0) scale(0.19)" fill="#BA5424"/><path d="M 0 0 H 16 V 100 H 0 Z" transform="translate(65.74, 0) scale(0.19)" fill="#BA5424"/><path d="M 0 0 H 66 V 16 H 41 V 100 H 25 V 16 H 0 Z" transform="translate(71.63, 0) scale(0.19)" fill="#BA5424"/><path d="M 0 0 H 60 V 16 H 16 V 42 H 54 V 58 H 16 V 84 H 60 V 100 H 0 Z" transform="translate(87.02, 0) scale(0.19)" fill="#BA5424"/><path d="M 0 0 H 66 V 16 H 41 V 100 H 25 V 16 H 0 Z" transform="translate(101.27, 0) scale(0.19)" fill="#BA5424"/><path d="M 38 0 C 59 0 76 17 76 50 C 76 83 59 100 38 100 C 17 100 0 83 0 50 C 0 17 17 0 38 0 Z M 38 16 C 26 16 16 29 16 50 C 16 71 26 84 38 84 C 50 84 60 71 60 50 C 60 29 50 16 38 16 Z" transform="translate(116.66, 0) scale(0.19)" fill-rule="evenodd" fill="#BA5424"/><path d="M 58 24 L 46 29 C 43 20 37 16 33 16 C 25 16 20 21 20 27 C 20 34 26 37 38 42 C 54 48 64 54 64 68 C 64 86 49 100 33 100 C 15 100 4 87 2 72 L 17 68 C 19 79 26 84 33 84 C 42 84 48 78 48 70 C 48 61 41 58 29 52 C 16 46 4 40 4 27 C 4 12 17 0 33 0 C 48 0 56 10 58 24 Z" transform="translate(133.95, 0) scale(0.19)" fill="#BA5424"/>
+  </g>
+  </g>
+
+  <!-- Technical specs below diagram -->
+  <line x1="440" y1="435" x2="774" y2="435" stroke="#191919" stroke-width="0.5"/>
+  <text x="440" y="455" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" fill="#191919">DIMENSÃO DA CÉLULA: 46×46 px · GAP: 14 px</text>
+  <text x="440" y="472" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" fill="#3D6E60">PÁTIO VEGETAL: 4 ISOLINHAS CÚBICAS DE 3.8 px</text>
+  <text x="440" y="489" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" fill="#BA5424">DESCRITOR: CAP-HEIGHT 19 px · COR BARRO COZIDO</text>
+</svg>

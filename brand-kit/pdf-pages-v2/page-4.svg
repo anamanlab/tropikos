@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 842 595" width="842" height="595">
+  <rect width="842" height="595" fill="#FFFFFF"/>
+  
+    <!-- Top Hairline Rule -->
+    <line x1="48" y1="44" x2="794" y2="44" stroke="#191919" stroke-width="0.5"/>
+    <text x="48" y="34" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#191919" letter-spacing="2">TRÓPIKOS ARQUITETOS</text>
+    <text x="794" y="34" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="600" text-anchor="end" fill="#6B6B6B" letter-spacing="1.5">03 · CORES &amp; TIPOGRAFIA INSTITUCIONAL</text>
+    
+    <!-- Bottom Hairline Rule -->
+    <line x1="48" y1="550" x2="794" y2="550" stroke="#191919" stroke-width="0.5"/>
+    <text x="48" y="568" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8" fill="#6B6B6B" letter-spacing="0.5">RECIFE · PE · 08°03′S 34°52′W · ARQUITETURA AUTORAL</text>
+    <text x="794" y="568" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" font-weight="600" text-anchor="end" fill="#191919">04 / 07</text>
+    
+
+  <text x="48" y="78" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#191919">Paleta Cromática de Produção</text>
+  
+  <!-- Swatch 1: Onyx -->
+  <g transform="translate(48, 96)">
+    <rect width="170" height="85" fill="#191919"/>
+    <rect y="85" width="170" height="100" fill="#FBFBFB" stroke="#191919" stroke-width="0.5"/>
+    <text x="12" y="106" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#191919">Onyx Arquitetura</text>
+    <text x="12" y="124" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" fill="#191919">HEX: #191919</text>
+    <text x="12" y="139" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" fill="#6B6B6B">RGB: 25, 25, 25</text>
+    <text x="12" y="154" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" fill="#6B6B6B">CMYK: 70, 65, 65, 80</text>
+    <text x="12" y="169" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" fill="#6B6B6B">Pantone Black 6 C</text>
+  </g>
+
+  <!-- Swatch 2: Verde Palma -->
+  <g transform="translate(240, 96)">
+    <rect width="170" height="85" fill="#3D6E60"/>
+    <rect y="85" width="170" height="100" fill="#FBFBFB" stroke="#191919" stroke-width="0.5"/>
+    <text x="12" y="106" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#3D6E60">Verde Palma Tropical</text>
+    <text x="12" y="124" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" fill="#191919">HEX: #3D6E60</text>
+    <text x="12" y="139" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" fill="#6B6B6B">RGB: 61, 110, 96</text>
+    <text x="12" y="154" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" fill="#6B6B6B">CMYK: 75, 35, 60, 25</text>
+    <text x="12" y="169" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" fill="#6B6B6B">Pantone 5555 C</text>
+  </g>
+
+  <!-- Swatch 3: Barro Cozido -->
+  <g transform="translate(432, 96)">
+    <rect width="170" height="85" fill="#BA5424"/>
+    <rect y="85" width="170" height="100" fill="#FBFBFB" stroke="#191919" stroke-width="0.5"/>
+    <text x="12" y="106" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#BA5424">Barro Cozido / Terracota</text>
+    <text x="12" y="124" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" fill="#191919">HEX: #BA5424</text>
+    <text x="12" y="139" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" fill="#6B6B6B">RGB: 186, 84, 36</text>
+    <text x="12" y="154" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" fill="#6B6B6B">CMYK: 18, 78, 98, 8</text>
+    <text x="12" y="169" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" fill="#6B6B6B">Pantone 7584 C</text>
+  </g>
+
+  <!-- Swatch 4: Branco Papel -->
+  <g transform="translate(624, 96)">
+    <rect width="170" height="85" fill="#FFFFFF" stroke="#191919" stroke-width="0.5"/>
+    <rect y="85" width="170" height="100" fill="#FBFBFB" stroke="#191919" stroke-width="0.5"/>
+    <text x="12" y="106" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#191919">Branco Papel (Base)</text>
+    <text x="12" y="124" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" fill="#191919">HEX: #FFFFFF</text>
+    <text x="12" y="139" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" fill="#6B6B6B">RGB: 255, 255, 255</text>
+    <text x="12" y="154" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" fill="#6B6B6B">CMYK: 0, 0, 0, 0</text>
+    <text x="12" y="169" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" fill="#6B6B6B">Canvas Limpo</text>
+  </g>
+
+  <!-- Divider -->
+  <line x1="48" y1="312" x2="794" y2="312" stroke="#191919" stroke-width="0.5"/>
+
+  <!-- Section 2: Typography System -->
+  <text x="48" y="340" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#191919">Tipografia Institucional</text>
+
+  <g transform="translate(48, 360)">
+    <rect width="340" height="150" fill="#FBFBFB" stroke="#191919" stroke-width="0.5"/>
+    <text x="16" y="26" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" fill="#6B6B6B" letter-spacing="1">DISPLAY &amp; INTERFACE</text>
+    <text x="16" y="46" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#191919">TWK Everett / Inter (Google Fonts)</text>
+    <text x="16" y="80" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="700" fill="#191919" letter-spacing="-0.5">TRÓPIKOS ARQUITETOS</text>
+    <text x="16" y="104" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#191919">Projetos autorais, execução e acompanhamento.</text>
+    <text x="16" y="126" font-family="'TWK Everett', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" fill="#6B6B6B">ABCDEFGHIJKLMNOPQRSTUVWXYZ · 0123456789</text>
+  </g>
+
+  <g transform="translate(452, 360)">
+    <rect width="342" height="150" fill="#FBFBFB" stroke="#191919" stroke-width="0.5"/>
+    <text x="16" y="26" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="9.5" font-weight="700" fill="#6B6B6B" letter-spacing="1">METADADOS, COTAS &amp; BIM</text>
+    <text x="16" y="46" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#191919">TWK Everett Mono / JetBrains Mono</text>
+    <text x="16" y="78" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="13" font-weight="700" fill="#191919">ESCALA 1:50 · PE-2026-R02</text>
+    <text x="16" y="102" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="10" fill="#191919">AREA: 480m² · COORD: 08°03′S 34°52′W</text>
+    <text x="16" y="126" font-family="'TWK Everett Mono', 'JetBrains Mono', monospace" font-size="8.5" fill="#6B6B6B">CAU/PE: 104829-0 · SALA 0303 · ESPINHEIRO</text>
+  </g>
+</svg>

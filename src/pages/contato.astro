@@ -1,0 +1,104 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { SITE } from '@/site.config';
+
+const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  `${SITE.address.street}, ${SITE.address.building}, ${SITE.address.district}, ${SITE.address.city} - ${SITE.address.state}, ${SITE.address.postalCode}`,
+)}`;
+---
+
+<BaseLayout
+  title="Contato"
+  description="Fale com o Trópikos Arquitetos — arquitetura e interiores no Recife, PE."
+>
+  <section class="shell pt-[calc(var(--header-y)+5rem)]">
+    <p class="caption text-concrete">(04) Contato</p>
+    <h1
+      class="mt-6 max-w-[13ch] text-[clamp(3rem,9vw,9rem)] leading-[0.86] tracking-[-0.05em]"
+    >
+      Vamos conversar.
+    </h1>
+
+    <div class="mt-[clamp(3rem,7vw,6rem)] grid grid-cols-1 gap-12 md:grid-cols-12">
+      <div class="md:col-span-6">
+        <p class="caption text-concrete mb-4">E-mail</p>
+        <a
+          href={`mailto:${SITE.email}`}
+          class="block max-w-full text-[clamp(1.2rem,2.9vw,2.6rem)] leading-[1.1] tracking-[-0.035em] break-words transition-opacity hover:opacity-50"
+        >
+          {SITE.email}
+        </a>
+
+        <p class="caption text-concrete mt-12 mb-4">WhatsApp</p>
+        <a
+          href={`https://wa.me/${SITE.whatsapp}`}
+          target="_blank"
+          rel="noopener"
+          aria-label={`Conversar no WhatsApp: ${SITE.phone}`}
+          class="block text-[clamp(1.4rem,3.2vw,2.8rem)] leading-[1.1] tracking-[-0.035em] transition-opacity hover:opacity-50"
+        >
+          {SITE.phone} <span aria-hidden="true">↗</span>
+        </a>
+        <p class="body-copy mt-1 text-concrete">Conversar no WhatsApp · {SITE.phoneAlt}</p>
+
+        <p class="caption text-concrete mt-12 mb-4">Instagram e links</p>
+        <div class="flex flex-col items-start gap-3">
+          <a
+            href={SITE.instagram}
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-2 text-[clamp(1.4rem,3.2vw,2.8rem)] leading-[1.1] tracking-[-0.035em] transition-opacity hover:opacity-50"
+          >
+            {SITE.instagramHandle} <span aria-hidden="true">↗</span>
+          </a>
+          <a
+            href={SITE.linktree}
+            target="_blank"
+            rel="noopener"
+            class="body-copy link-rule text-concrete"
+          >
+            linktr.ee/tropikosarq <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="md:col-span-5 md:col-start-8">
+        <p class="caption text-concrete mb-4">Escritório</p>
+        <address class="body-copy not-italic">
+          {SITE.address.street}<br />
+          {SITE.address.building}<br />
+          {SITE.address.district}<br />
+          {SITE.address.city} — {SITE.address.state}<br />
+          {SITE.address.postalCode}
+        </address>
+        <a
+          href={mapsUrl}
+          target="_blank"
+          rel="noopener"
+          class="caption mt-4 inline-block border-b border-hairline pb-1"
+        >
+          Abrir no mapa ↗
+        </a>
+
+        <p class="caption text-concrete mt-12 mb-4">Atendimento</p>
+        <p class="body-copy">
+          Segunda a sexta, 9h—18h<br />
+          Visitas com hora marcada
+        </p>
+
+        <p class="caption text-concrete mt-12 mb-4">Como começar</p>
+        <p class="body-copy text-concrete">
+          Envie o endereço do imóvel, algumas fotos e uma ideia de prazo. Na primeira conversa
+          alinhamos escopo, etapas e honorários.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell py-[clamp(4rem,8vw,8rem)]">
+    <div class="rule-top flex flex-wrap items-baseline justify-between gap-4 py-4">
+      <p class="caption text-concrete">Trópikos Arquitetos · Desde {SITE.founded}</p>
+      <p class="caption text-concrete">Recife — PE</p>
+    </div>
+  </section>
+</BaseLayout>
