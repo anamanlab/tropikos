@@ -126,7 +126,7 @@ Installed skills: `impeccable`, `design-taste-frontend`, `frontend-design-direct
 
 ## Deployment
 
-Live: **https://tropikos-arquitetos.optivoo-edu.workers.dev/**
+Live: **https://tropikos.com.br/** (workers.dev alias: https://tropikos-arquitetos.optivoo-edu.workers.dev/)
 
 The site is a static build deployed as a Cloudflare Worker with static assets. It is managed by the official `cf` CLI, not Wrangler commands:
 

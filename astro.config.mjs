@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 // Workers static site URL. Replace with the studio domain when it is connected.
-const SITE_URL = 'https://tropikos-arquitetos.optivoo-edu.workers.dev';
+const SITE_URL = 'https://tropikos.com.br';
 
 export default defineConfig({
   site: SITE_URL,

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tropikos-arquitetos.optivoo-edu.workers.dev/sitemap-index.xml
+Sitemap: https://tropikos.com.br/sitemap-index.xml
