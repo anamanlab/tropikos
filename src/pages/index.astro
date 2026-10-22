@@ -45,6 +45,7 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 4);
       </picture>
       <video
         data-hero-video
+        src="/media/hero-tropikos-wide.mp4"
         poster="/media/hero-tropikos-wide-poster.webp"
         autoplay
         muted
@@ -63,15 +64,6 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 4);
 
       <div class="shell flex items-start justify-between gap-4">
         <p class="caption text-paper/90">Registro de interiores · Apartamento Edf Diva</p>
-        <button
-          type="button"
-          data-hero-toggle
-          hidden
-          class="caption tap cursor-pointer border-b border-paper/60 pb-1 text-paper/90 transition-colors hover:border-paper"
-          aria-label="Pausar vídeo do Apartamento Edf Diva"
-        >
-          Pausar
-        </button>
       </div>
 
       <div>
@@ -98,22 +90,24 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 4);
     </div>
   </section>
 
-  {
-    featured.map((entry, i) => (
-      <ProjectBand
-        index={`(${String(i + 1).padStart(2, '0')})`}
-        title={entry.data.title}
-        href={`/projetos/${entry.id}`}
-        location={entry.data.location}
-        year={entry.data.year}
-        typology={entry.data.typology}
-        image={entry.data.cover}
-        imageAlt={entry.data.coverAlt}
-        video={entry.data.video}
-        poster={entry.data.poster}
-      />
-    ))
-  }
+  <div class="mt-4 sm:mt-8 space-y-3 sm:space-y-6 bg-paper">
+    {
+      featured.map((entry, i) => (
+        <ProjectBand
+          index={`(${String(i + 1).padStart(2, '0')})`}
+          title={entry.data.title}
+          href={`/projetos/${entry.id}`}
+          location={entry.data.location}
+          year={entry.data.year}
+          typology={entry.data.typology}
+          image={entry.data.cover}
+          imageAlt={entry.data.coverAlt}
+          video={entry.data.video}
+          poster={entry.data.poster}
+        />
+      ))
+    }
+  </div>
 
   <section class="shell pt-[clamp(4rem,8vw,8rem)] pb-[clamp(4rem,8vw,8rem)]">
     <div class="rule-top flex items-baseline justify-between gap-4 py-4">
@@ -195,106 +189,39 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 4);
 
   <script>
     const hero = document.querySelector<HTMLVideoElement>('[data-hero-video]');
-    const heroToggle = document.querySelector<HTMLButtonElement>('[data-hero-toggle]');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    function setHeroState(playing: boolean) {
-      if (!heroToggle) return;
-      heroToggle.textContent = playing ? 'Pausar' : 'Reproduzir';
-      heroToggle.setAttribute(
-        'aria-label',
-        playing
-          ? 'Pausar vídeo do Apartamento Edf Diva'
-          : 'Reproduzir vídeo do Apartamento Edf Diva',
-      );
-    }
 
     if (hero) {
       hero.muted = true;
       hero.defaultMuted = true;
 
-      // Toggle button is only revealed when the video is paused (e.g. autoplay blocked),
-      // so during normal playback there is no play/pause label over the film.
-      function revealToggle(paused: boolean) {
-        if (!heroToggle) return;
-        heroToggle.hidden = !paused;
-      }
-
-      const attemptPlay = () => {
-        if (reduceMotion) {
-          hero.pause();
-          setHeroState(false);
-          revealToggle(true);
-          return;
-        }
-
-        hero.muted = true;
-        hero.defaultMuted = true;
-        const p = hero.play();
-        if (p !== undefined) {
-          p.then(() => {
-            setHeroState(true);
-            revealToggle(false);
-          }).catch(() => {
-            if (hero.paused) {
-              setHeroState(false);
-              revealToggle(true);
-            }
-          });
-        }
-      };
-
-      // Wait for media to be ready before attempting playback (avoids play() rejection
-      // caused by calling it on an unloaded source, which left the poster + play label).
-      const startWhenReady = () => {
-        if (hero.readyState >= 2) {
-          attemptPlay();
-        } else {
-          hero.addEventListener('loadeddata', attemptPlay, { once: true });
-        }
-      };
-
-      if (!hero.paused) {
-        setHeroState(true);
-        revealToggle(false);
+      if (reduceMotion) {
+        hero.pause();
       } else {
-        startWhenReady();
-      }
+        const tryPlay = () => {
+          hero.muted = true;
+          hero.defaultMuted = true;
+          hero.play().catch(() => {
+            // Autoplay blocked: wait for a user gesture (handled below).
+          });
+        };
 
-      hero.addEventListener('playing', () => {
-        setHeroState(true);
-        revealToggle(false);
-      });
-      hero.addEventListener('play', () => {
-        setHeroState(true);
-        revealToggle(false);
-      });
-      hero.addEventListener('pause', () => {
-        setHeroState(false);
-        revealToggle(true);
-      });
-
-      // In case browser autoplay policy strictly requires user engagement,
-      // any initial touch, click, or scroll immediately unpauses the muted video.
-      const unlockAutoplay = () => {
-        if (hero.paused && !reduceMotion) {
-          attemptPlay();
-        }
-      };
-      window.addEventListener('click', unlockAutoplay, { passive: true, once: true });
-      window.addEventListener('touchstart', unlockAutoplay, { passive: true, once: true });
-      window.addEventListener('scroll', unlockAutoplay, { passive: true, once: true });
-
-      heroToggle?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (hero.paused) {
-          attemptPlay();
+        // Native autoplay with an explicit `src` should start on its own;
+        // this is only a safety net for late-loading media.
+        if (hero.readyState >= 2) {
+          tryPlay();
         } else {
-          hero.pause();
-          setHeroState(false);
-          revealToggle(true);
+          hero.addEventListener('loadeddata', tryPlay, { once: true });
         }
-      });
+
+        // Unlock on first user interaction if autoplay was blocked.
+        const unlock = () => {
+          if (hero.paused && !reduceMotion) tryPlay();
+        };
+        window.addEventListener('click', unlock, { passive: true, once: true });
+        window.addEventListener('touchstart', unlock, { passive: true, once: true });
+        window.addEventListener('scroll', unlock, { passive: true, once: true });
+      }
     }
   </script>
 </BaseLayout>

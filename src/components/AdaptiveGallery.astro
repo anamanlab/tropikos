@@ -61,7 +61,7 @@ function buildBlocks(list: GalleryItem[]): GalleryBlock[] {
 const blocks = buildBlocks(items);
 ---
 
-<div class="adaptive-gallery space-y-6 sm:space-y-12 pb-[clamp(4rem,8vw,8rem)]">
+<div class="adaptive-gallery space-y-8 sm:space-y-16 pb-[clamp(4rem,8vw,8rem)]">
   {
     blocks.map((block) => {
       if (block.type === 'monolith') {
@@ -78,7 +78,7 @@ const blocks = buildBlocks(items);
               decoding="async"
             />
             {block.item.alt && block.item.alt !== `${projectTitle} — registro ${block.index + 1}` && (
-              <figcaption class="caption text-concrete mt-3 px-4 sm:px-0">
+              <figcaption class="caption text-concrete mt-3 px-4 sm:px-0 max-w-[65ch] text-balance">
                 {block.item.alt}
               </figcaption>
             )}
@@ -88,7 +88,7 @@ const blocks = buildBlocks(items);
 
       if (block.type === 'diptych') {
         return (
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
             {block.items.map((item, subIdx) => (
               <figure class="overflow-hidden">
                 <Image
@@ -102,7 +102,7 @@ const blocks = buildBlocks(items);
                   decoding="async"
                 />
                 {item.alt && item.alt !== `${projectTitle} — registro ${block.indices[subIdx] + 1}` && (
-                  <figcaption class="caption text-concrete mt-2">
+                  <figcaption class="caption text-concrete mt-3 max-w-[50ch] text-balance">
                     {item.alt}
                   </figcaption>
                 )}
@@ -127,7 +127,7 @@ const blocks = buildBlocks(items);
               decoding="async"
             />
             {block.item.alt && block.item.alt !== `${projectTitle} — registro ${block.index + 1}` && (
-              <figcaption class="caption text-concrete mt-2 text-center">
+              <figcaption class="caption text-concrete mt-3 text-center max-w-[50ch] mx-auto text-balance">
                 {block.item.alt}
               </figcaption>
             )}
