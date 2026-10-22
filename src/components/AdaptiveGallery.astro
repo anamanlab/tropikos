@@ -1,0 +1,139 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  gallery: ImageMetadata[];
+  galleryAlt?: string[];
+  projectTitle: string;
+}
+
+const { gallery, galleryAlt = [], projectTitle } = Astro.props;
+
+interface GalleryItem {
+  image: ImageMetadata;
+  alt: string;
+}
+
+type GalleryBlock =
+  | { type: 'monolith'; item: GalleryItem; index: number }
+  | { type: 'diptych'; items: [GalleryItem, GalleryItem]; indices: [number, number] }
+  | { type: 'single-portrait'; item: GalleryItem; index: number };
+
+const items: GalleryItem[] = gallery.map((image, idx) => ({
+  image,
+  alt: galleryAlt[idx] || `${projectTitle} — registro ${idx + 1}`,
+}));
+
+function buildBlocks(list: GalleryItem[]): GalleryBlock[] {
+  const blocks: GalleryBlock[] = [];
+  let i = 0;
+  while (i < list.length) {
+    const cur = list[i];
+    const curRatio = cur.image.width / cur.image.height;
+
+    // Landscape wide (ratio >= 1.25) -> full width Monolith
+    if (curRatio >= 1.25) {
+      blocks.push({ type: 'monolith', item: cur, index: i });
+      i++;
+      continue;
+    }
+
+    // Portrait / near-square (< 1.25)
+    // Check if next exists and can be paired into a Diptych
+    if (i + 1 < list.length) {
+      const next = list[i + 1];
+      const nextRatio = next.image.width / next.image.height;
+      // Pair if next is portrait or square or moderately wide
+      if (nextRatio < 1.35) {
+        blocks.push({ type: 'diptych', items: [cur, next], indices: [i, i + 1] });
+        i += 2;
+        continue;
+      }
+    }
+
+    // Single portrait centered
+    blocks.push({ type: 'single-portrait', item: cur, index: i });
+    i++;
+  }
+  return blocks;
+}
+
+const blocks = buildBlocks(items);
+---
+
+<div class="adaptive-gallery space-y-6 sm:space-y-12 pb-[clamp(4rem,8vw,8rem)]">
+  {
+    blocks.map((block) => {
+      if (block.type === 'monolith') {
+        return (
+          <figure class="w-full overflow-hidden">
+            <Image
+              src={block.item.image}
+              alt={block.item.alt}
+              class="w-full h-auto max-h-[88svh] object-cover transition-opacity duration-500"
+              widths={[900, 1400, 2000, 2560]}
+              sizes="100vw"
+              format="webp"
+              loading="lazy"
+              decoding="async"
+            />
+            {block.item.alt && block.item.alt !== `${projectTitle} — registro ${block.index + 1}` && (
+              <figcaption class="caption text-concrete mt-3 px-4 sm:px-0">
+                {block.item.alt}
+              </figcaption>
+            )}
+          </figure>
+        );
+      }
+
+      if (block.type === 'diptych') {
+        return (
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6">
+            {block.items.map((item, subIdx) => (
+              <figure class="overflow-hidden">
+                <Image
+                  src={item.image}
+                  alt={item.alt}
+                  class="aspect-[4/5] sm:aspect-[3/4] w-full object-cover transition-opacity duration-500"
+                  widths={[600, 1000, 1400]}
+                  sizes="(min-width: 640px) 50vw, 100vw"
+                  format="webp"
+                  loading="lazy"
+                  decoding="async"
+                />
+                {item.alt && item.alt !== `${projectTitle} — registro ${block.indices[subIdx] + 1}` && (
+                  <figcaption class="caption text-concrete mt-2">
+                    {item.alt}
+                  </figcaption>
+                )}
+              </figure>
+            ))}
+          </div>
+        );
+      }
+
+      // Single portrait
+      return (
+        <div class="flex justify-center">
+          <figure class="w-full max-w-[52rem] overflow-hidden">
+            <Image
+              src={block.item.image}
+              alt={block.item.alt}
+              class="aspect-[4/5] sm:aspect-[3/4] w-full object-cover transition-opacity duration-500"
+              widths={[700, 1200, 1600]}
+              sizes="(min-width: 1024px) 52rem, 100vw"
+              format="webp"
+              loading="lazy"
+              decoding="async"
+            />
+            {block.item.alt && block.item.alt !== `${projectTitle} — registro ${block.index + 1}` && (
+              <figcaption class="caption text-concrete mt-2 text-center">
+                {block.item.alt}
+              </figcaption>
+            )}
+          </figure>
+        </div>
+      );
+    })
+  }
+</div>

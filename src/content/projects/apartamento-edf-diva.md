@@ -4,8 +4,10 @@ subtitle: Interiores integrados com cobogó terracota e marcenaria autoral
 location: Recife, PE
 year: 2023
 typology: Interiores
+category: projeto
 scope: ['Interiores', 'Marcenaria', 'Iluminação']
 summary: Projeto de interiores que integra sala de estar, jantar e cozinha, valorizando a ventilação natural com cobogós terracota e marcenaria em madeira natural.
+area: "145 m²"
 cover: ../../assets/projects/apartamento-edf-diva/cover.jpg
 coverAlt: Sala de estar integrada com parede de cobogó terracota, iluminação quente e marcenaria sob medida
 gallery:
@@ -16,8 +18,8 @@ galleryAlt:
   - Sala de estar e jantar integradas com paleta quente e materiais naturais
   - Suíte principal com marcenaria sob medida e iluminação indireta
   - Lavabo com bancada esculpida e painéis amadeirados
-featured: true
-order: 1
+featured: false
+order: 5
 ---
 
 O projeto para o Apartamento no Edifício Diva partiu da necessidade de ampliar os espaços sociais e conectar a área de estar à luz e à brisa do Recife. O ponto de partida foi a introdução de uma parede divisória em cobogó cerâmico terracota, elemento tradicional da arquitetura moderna pernambucana que filtra a luz solar e preserva a ventilação cruzada.

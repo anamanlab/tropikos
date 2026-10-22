@@ -8,7 +8,7 @@ import { SERVICES, SITE } from '@/site.config';
 const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
   (a, b) => a.data.order - b.data.order,
 );
-const featured = projects.filter((entry) => entry.data.featured).slice(0, 3);
+const featured = projects.filter((entry) => entry.data.featured).slice(0, 4);
 ---
 
 <BaseLayout title={`${SITE.name} — Arquitetura no Recife`}>

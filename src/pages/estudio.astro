@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
 import { SITE } from '@/site.config';
+import studioSpace from '@/assets/studio/01-estudio-espaco.webp';
+import studioCollab from '@/assets/studio/03-estudio-colaboracao.webp';
 
 const principles = [
   {
@@ -78,6 +81,37 @@ const facts = [
         ))
       }
     </dl>
+  </section>
+
+  <section class="shell pb-[clamp(4rem,8vw,8rem)]">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6">
+      <figure class="overflow-hidden">
+        <Image
+          src={studioSpace}
+          alt="Espaço de criação e pranchetas do Trópikos Arquitetos"
+          class="aspect-[4/5] sm:aspect-[3/4] w-full object-cover"
+          widths={[600, 1000, 1400]}
+          sizes="(min-width: 640px) 50vw, 100vw"
+          format="webp"
+        />
+        <figcaption class="caption text-concrete mt-3">
+          Prancheta e estúdio · Parnamirim, Recife
+        </figcaption>
+      </figure>
+      <figure class="overflow-hidden">
+        <Image
+          src={studioCollab}
+          alt="Discussão de materiais, amostras e pranchas arquitetônicas"
+          class="aspect-[4/5] sm:aspect-[3/4] w-full object-cover"
+          widths={[600, 1000, 1400]}
+          sizes="(min-width: 640px) 50vw, 100vw"
+          format="webp"
+        />
+        <figcaption class="caption text-concrete mt-3">
+          Pesquisa de matéria, texturas e detalhamento
+        </figcaption>
+      </figure>
+    </div>
   </section>
 
   <section class="inverse">

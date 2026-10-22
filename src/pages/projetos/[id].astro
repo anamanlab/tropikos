@@ -2,6 +2,7 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import AdaptiveGallery from '@/components/AdaptiveGallery.astro';
 
 export async function getStaticPaths() {
   const entries = await getCollection('projects', ({ data }) => !data.draft);
@@ -13,8 +14,23 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, subtitle, location, year, typology, scope, summary, cover, coverAlt, gallery, galleryAlt, video, poster } =
-  entry.data;
+const {
+  title,
+  subtitle,
+  location,
+  year,
+  typology,
+  scope,
+  summary,
+  cover,
+  coverAlt,
+  gallery,
+  galleryAlt,
+  video,
+  poster,
+  area,
+  photography,
+} = entry.data;
 const { Content } = await render(entry);
 
 const all = (await getCollection('projects', ({ data }) => !data.draft)).sort(
@@ -45,7 +61,7 @@ const indexLabel = String(position + 1).padStart(2, '0');
       </div>
 
       <dl
-        class="rule-top mt-[clamp(3rem,6vw,5rem)] grid grid-cols-2 gap-x-6 gap-y-6 py-6 sm:grid-cols-4"
+        class="rule-top mt-[clamp(3rem,6vw,5rem)] grid grid-cols-2 gap-x-6 gap-y-6 py-6 sm:grid-cols-3 lg:grid-cols-6"
       >
         <div>
           <dt class="caption text-concrete mb-2">Local</dt>
@@ -63,6 +79,22 @@ const indexLabel = String(position + 1).padStart(2, '0');
           <dt class="caption text-concrete mb-2">Escopo</dt>
           <dd class="body-copy">{scope.join(', ')}</dd>
         </div>
+        {
+          area && (
+            <div>
+              <dt class="caption text-concrete mb-2">Área</dt>
+              <dd class="body-copy tabular-nums">{area}</dd>
+            </div>
+          )
+        }
+        {
+          photography && (
+            <div>
+              <dt class="caption text-concrete mb-2">Fotografia</dt>
+              <dd class="body-copy">{photography}</dd>
+            </div>
+          )
+        }
       </dl>
     </header>
 
@@ -121,17 +153,8 @@ const indexLabel = String(position + 1).padStart(2, '0');
 
     {
       gallery.length > 0 && (
-        <section class="grid grid-cols-1 gap-2 pb-[clamp(4rem,8vw,8rem)] sm:grid-cols-2">
-          {gallery.map((img, i) => (
-            <Image
-              src={img}
-              alt={galleryAlt[i] ?? `${title} — imagem ${i + 1}`}
-              class="aspect-[4/5] w-full object-cover"
-              widths={[600, 900, 1200, 1600]}
-              sizes="(min-width: 640px) 50vw, 100vw"
-              format="webp"
-            />
-          ))}
+        <section class="shell mt-[clamp(2rem,4vw,4rem)]">
+          <AdaptiveGallery gallery={gallery} galleryAlt={galleryAlt} projectTitle={title} />
         </section>
       )
     }

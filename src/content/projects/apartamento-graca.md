@@ -1,29 +1,37 @@
 ---
-title: Apartamento Graça
-subtitle: Interiores para um apartamento de família
-location: Graça, Recife
+title: "Apartamento Graça"
+subtitle: "Painéis ripados, atmosfera intimista e marcenaria sob medida nas Graças"
+location: "Recife, PE"
 year: 2024
-typology: Interiores
-scope: ['Interiores', 'Marcenaria', 'Iluminação']
-summary: Reforma de interiores com marcenaria desenhada sob medida, paleta contida e iluminação em camadas.
-cover: ../../assets/projects/apartamento-graca/cover.jpg
-coverAlt: Sala de estar clara com galeria de quadros e plantas
+typology: "Interiores Residencial"
+category: "projeto"
+scope:
+  - "Projeto de Arquitetura de Interiores"
+  - "Marcenaria e Serralheria Sob Medida"
+  - "Projeto Luminotécnico Cênico"
+  - "Modelagem e Renders 4K"
+summary: "Projeto de interiores no tradicional bairro das Graças, onde a marcenaria ripada em madeira freijó envolve os volumes sociais, camuflando acessos e criando uma experiência acolhedora de aconchego."
+area: "160 m²"
+order: 7
+featured: false
+cover: "../../assets/projects/apartamento-graca/01-cover.webp"
+coverAlt: "Sala de estar e jantar do Apartamento Graça com painéis ripados e iluminação acolhedora"
 gallery:
-  - ../../assets/projects/apartamento-graca/01.jpg
-  - ../../assets/projects/apartamento-graca/02.jpg
+  - "../../assets/projects/apartamento-graca/02-cozinha-ilha.webp"
+  - "../../assets/projects/apartamento-graca/03-painel-ripado.webp"
+  - "../../assets/projects/apartamento-graca/04-luminaria-tecido.webp"
+  - "../../assets/projects/apartamento-graca/05-estante-livros.webp"
+  - "../../assets/projects/apartamento-graca/06-suite-casal.webp"
+  - "../../assets/projects/apartamento-graca/07-varanda-copa.webp"
 galleryAlt:
-  - Sala de estar neutra com sofá claro e mesas de centro
-  - Quarto com parede escura, cama estofada e iluminação pendente
-featured: true
-order: 2
+  - "Cozinha integrada com ilha central e marcenaria em tons suaves de cinza e madeira"
+  - "Detalhe do painel ripado contínuo com portas pivotantes camufladas"
+  - "Luminária de tecido orgânico criando ponto de iluminação difusa sobre o estar"
+  - "Estante de livros e objetos com nichos assimétricos iluminados por fitas LED"
+  - "Suíte máster com cabeceira estofada e composição de espelhos bronze"
+  - "Varanda integrada à área social com vista para as copas das árvores das Graças"
 ---
 
-O apartamento tinha bons metros quadrados e uma planta fragmentada. O trabalho começou por retirar paredes que não sustentavam nada e reorganizar a circulação em torno da sala e da varanda.
+O Apartamento Graça foi desenhado para uma família que valoriza o tempo de permanência em casa e a convivência íntima.
 
-## Desenho sob medida
-
-Toda a marcenaria foi desenhada para o apartamento: estante, aparador, cozinha e dormitórios. A madeira aparece em poucos pontos, sempre em contraste com superfícies claras e neutras.
-
-## Luz
-
-A iluminação foi pensada em três camadas — geral, de tarefa e de destaque — com temperatura única e dimerização nos ambientes sociais. À noite, a casa muda de caráter sem mudar de mobiliário.
+A circulação é orientada por uma pele de marcenaria ripada que abraça os ambientes sociais, escondendo a entrada do lavabo e a passagem para a cozinha quando fechada. A iluminação indireta foi milimetricamente posicionada para valorizar os veios da madeira e os tecidos naturais do mobiliário.

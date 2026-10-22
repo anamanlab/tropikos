@@ -11,8 +11,9 @@ const projects = defineCollection({
       location: z.string(),
       year: z.number(),
       typology: z.string(),
+      category: z.enum(['construido', 'projeto', 'comercial', 'reforma']).default('projeto'),
       scope: z.array(z.string()).default([]),
-      summary: z.string().max(200),
+      summary: z.string().max(400),
       cover: image().optional(),
       coverAlt: z.string().optional(),
       gallery: z.array(image()).default([]),
@@ -22,6 +23,8 @@ const projects = defineCollection({
       featured: z.boolean().default(false),
       order: z.number().default(99),
       draft: z.boolean().default(false),
+      area: z.string().optional(),
+      photography: z.string().optional(),
     }),
 });
 
