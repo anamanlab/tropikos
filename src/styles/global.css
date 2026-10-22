@@ -80,7 +80,8 @@
   }
 
   :focus-visible {
-    outline: 1px solid var(--color-ink);
+    /* currentColor keeps the ring visible on both paper and onyx sections. */
+    outline: 1px solid currentColor;
     outline-offset: 4px;
   }
 
