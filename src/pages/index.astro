@@ -45,17 +45,19 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 3);
       </picture>
       <video
         data-hero-video
-        data-wide-src="/media/hero-tropikos-wide.mp4"
-        data-tall-src="/media/hero-tropikos-tall.mp4"
-        class="absolute inset-0 -z-10 h-full w-full object-cover opacity-0 transition-opacity duration-700 ease-out"
-        width="960"
-        height="540"
+        autoplay
         muted
         loop
         playsinline
-        preload="none"
+        preload="auto"
+        class="absolute inset-0 -z-10 h-full w-full object-cover"
+        width="1280"
+        height="720"
         aria-label="Registro de interiores: sala de estar do Apartamento Edf Diva com cobogó terracota, iluminação quente, sofá curvo e marcenaria autoral"
-      ></video>
+      >
+        <source media="(max-width: 767px)" src="/media/hero-tropikos-tall.mp4" type="video/mp4" />
+        <source src="/media/hero-tropikos-wide.mp4" type="video/mp4" />
+      </video>
       <div class="hero-film-scrim absolute inset-0 -z-10" aria-hidden="true"></div>
 
       <div class="shell flex items-start justify-between gap-4">
@@ -206,56 +208,40 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 3);
       );
     }
 
-    function selectHeroSource(video: HTMLVideoElement) {
-      const isMobile = window.matchMedia('(max-width: 767px)').matches;
-      const source = isMobile ? video.dataset.tallSrc : video.dataset.wideSrc;
-      if (source && video.getAttribute('src') !== source) {
-        video.src = source;
-        video.load();
-      }
-    }
-
     if (hero) {
       if (heroToggle) heroToggle.hidden = false;
-      setHeroState(false);
-      let sourceSelected = false;
-
-      hero.addEventListener('playing', () => {
-        setHeroState(true);
-        hero.style.opacity = '1';
-      });
-      hero.addEventListener('play', () => setHeroState(true));
-      hero.addEventListener('pause', () => setHeroState(false));
-
-      const playHero = () => {
-        if (!sourceSelected) {
-          selectHeroSource(hero);
-          sourceSelected = true;
-        }
-        hero.play().catch(() => setHeroState(false));
-      };
+      hero.muted = true;
+      hero.defaultMuted = true;
 
       if (reduceMotion) {
+        hero.pause();
         setHeroState(false);
       } else {
-        const schedulePlay = () => {
-          if (typeof window.requestIdleCallback === 'function') {
-            window.requestIdleCallback(playHero, { timeout: 1200 });
-          } else {
-            window.setTimeout(playHero, 300);
+        const startAutoplay = () => {
+          hero.muted = true;
+          const playPromise = hero.play();
+          if (playPromise !== undefined) {
+            playPromise
+              .then(() => setHeroState(true))
+              .catch(() => setHeroState(false));
           }
         };
 
-        if (document.readyState === 'complete') {
-          schedulePlay();
-        } else {
-          window.addEventListener('load', schedulePlay, { once: true });
-        }
+        startAutoplay();
+        hero.addEventListener('loadeddata', () => {
+          if (hero.paused && !reduceMotion) {
+            startAutoplay();
+          }
+        }, { once: true });
       }
+
+      hero.addEventListener('playing', () => setHeroState(true));
+      hero.addEventListener('play', () => setHeroState(true));
+      hero.addEventListener('pause', () => setHeroState(false));
 
       heroToggle?.addEventListener('click', () => {
         if (hero.paused) {
-          playHero();
+          hero.play();
         } else {
           hero.pause();
         }
