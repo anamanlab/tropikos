@@ -45,7 +45,6 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 4);
       </picture>
       <video
         data-hero-video
-        src="/media/hero-tropikos-wide.mp4"
         poster="/media/hero-tropikos-wide-poster.webp"
         autoplay
         muted
@@ -211,20 +210,21 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 4);
     }
 
     if (hero) {
-      if (heroToggle) heroToggle.hidden = false;
       hero.muted = true;
       hero.defaultMuted = true;
 
-      // Select tall mobile video if viewport is narrow
-      if (window.innerWidth < 768 && hero.getAttribute('src') !== '/media/hero-tropikos-tall.mp4') {
-        hero.src = '/media/hero-tropikos-tall.mp4';
-        hero.poster = '/media/hero-tropikos-tall-poster.webp';
+      // Toggle button is only revealed when the video is paused (e.g. autoplay blocked),
+      // so during normal playback there is no play/pause label over the film.
+      function revealToggle(paused: boolean) {
+        if (!heroToggle) return;
+        heroToggle.hidden = !paused;
       }
 
       const attemptPlay = () => {
         if (reduceMotion) {
           hero.pause();
           setHeroState(false);
+          revealToggle(true);
           return;
         }
 
@@ -234,26 +234,48 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 4);
         if (p !== undefined) {
           p.then(() => {
             setHeroState(true);
+            revealToggle(false);
           }).catch(() => {
             if (hero.paused) {
               setHeroState(false);
+              revealToggle(true);
             }
           });
         }
       };
 
+      // Wait for media to be ready before attempting playback (avoids play() rejection
+      // caused by calling it on an unloaded source, which left the poster + play label).
+      const startWhenReady = () => {
+        if (hero.readyState >= 2) {
+          attemptPlay();
+        } else {
+          hero.addEventListener('loadeddata', attemptPlay, { once: true });
+        }
+      };
+
       if (!hero.paused) {
         setHeroState(true);
+        revealToggle(false);
       } else {
-        attemptPlay();
+        startWhenReady();
       }
 
-      hero.addEventListener('playing', () => setHeroState(true));
-      hero.addEventListener('play', () => setHeroState(true));
-      hero.addEventListener('pause', () => setHeroState(false));
+      hero.addEventListener('playing', () => {
+        setHeroState(true);
+        revealToggle(false);
+      });
+      hero.addEventListener('play', () => {
+        setHeroState(true);
+        revealToggle(false);
+      });
+      hero.addEventListener('pause', () => {
+        setHeroState(false);
+        revealToggle(true);
+      });
 
       // In case browser autoplay policy strictly requires user engagement,
-      // any initial touch, click, or scroll immediately unpauses the muted video
+      // any initial touch, click, or scroll immediately unpauses the muted video.
       const unlockAutoplay = () => {
         if (hero.paused && !reduceMotion) {
           attemptPlay();
@@ -266,10 +288,11 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 4);
       heroToggle?.addEventListener('click', (e) => {
         e.stopPropagation();
         if (hero.paused) {
-          hero.play().then(() => setHeroState(true));
+          attemptPlay();
         } else {
           hero.pause();
           setHeroState(false);
+          revealToggle(true);
         }
       });
     }

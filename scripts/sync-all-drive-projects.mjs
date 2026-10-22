@@ -145,7 +145,7 @@ const PROJECT_CONFIGS = [
     ]
   },
   {
-    slug: 'apartamento-graca',
+    slug: 'apartamento-gracas',
     folder: 'Edjane Figueiredo - Apto Graças',
     files: [
       { name: 'Apto graças final_37 - Foto.jpg', out: '01-cover.webp' },

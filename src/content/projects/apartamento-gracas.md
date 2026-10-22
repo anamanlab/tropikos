@@ -1,5 +1,5 @@
 ---
-title: "Apartamento Graça"
+title: "Apartamento Graças"
 subtitle: "Painéis ripados, atmosfera intimista e marcenaria sob medida nas Graças"
 location: "Recife, PE"
 year: 2024
@@ -14,15 +14,15 @@ summary: "Projeto de interiores no tradicional bairro das Graças, onde a marcen
 area: "160 m²"
 order: 7
 featured: false
-cover: "../../assets/projects/apartamento-graca/01-cover.webp"
-coverAlt: "Sala de estar e jantar do Apartamento Graça com painéis ripados e iluminação acolhedora"
+cover: "../../assets/projects/apartamento-gracas/01-cover.webp"
+coverAlt: "Sala de estar e jantar do Apartamento Graças com painéis ripados e iluminação acolhedora"
 gallery:
-  - "../../assets/projects/apartamento-graca/02-cozinha-ilha.webp"
-  - "../../assets/projects/apartamento-graca/03-painel-ripado.webp"
-  - "../../assets/projects/apartamento-graca/04-luminaria-tecido.webp"
-  - "../../assets/projects/apartamento-graca/05-estante-livros.webp"
-  - "../../assets/projects/apartamento-graca/06-suite-casal.webp"
-  - "../../assets/projects/apartamento-graca/07-varanda-copa.webp"
+  - "../../assets/projects/apartamento-gracas/02-cozinha-ilha.webp"
+  - "../../assets/projects/apartamento-gracas/03-painel-ripado.webp"
+  - "../../assets/projects/apartamento-gracas/04-luminaria-tecido.webp"
+  - "../../assets/projects/apartamento-gracas/05-estante-livros.webp"
+  - "../../assets/projects/apartamento-gracas/06-suite-casal.webp"
+  - "../../assets/projects/apartamento-gracas/07-varanda-copa.webp"
 galleryAlt:
   - "Cozinha integrada com ilha central e marcenaria em tons suaves de cinza e madeira"
   - "Detalhe do painel ripado contínuo com portas pivotantes camufladas"
@@ -32,6 +32,6 @@ galleryAlt:
   - "Varanda integrada à área social com vista para as copas das árvores das Graças"
 ---
 
-O Apartamento Graça foi desenhado para uma família que valoriza o tempo de permanência em casa e a convivência íntima.
+O Apartamento Graças foi desenhado para uma família que valoriza o tempo de permanência em casa e a convivência íntima.
 
 A circulação é orientada por uma pele de marcenaria ripada que abraça os ambientes sociais, escondendo a entrada do lavabo e a passagem para a cozinha quando fechada. A iluminação indireta foi milimetricamente posicionada para valorizar os veios da madeira e os tecidos naturais do mobiliário.

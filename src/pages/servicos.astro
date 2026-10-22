@@ -1,6 +1,10 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
 import { SERVICES, SITE } from '@/site.config';
+import imgProjeto from '@/assets/projects/casa-brut/01-cover.webp';
+import imgInteriores from '@/assets/projects/apartamento-rosarinho/01-cover.webp';
+import imgObra from '@/assets/projects/bangalo-60-carneiros/01-cover.webp';
 
 const process = [
   {
@@ -35,7 +39,7 @@ const process = [
     <div class="mt-6 grid grid-cols-12 gap-5">
       <div class="col-span-12 lg:col-span-8">
         <h1
-          class="max-w-[14ch] text-[clamp(2.8rem,8vw,8rem)] leading-[0.88] tracking-[-0.05em]"
+          class="max-w-[14ch] text-[clamp(2.4rem,8vw,8rem)] leading-[0.88] tracking-[-0.05em] text-balance break-words"
         >
           Do primeiro estudo à entrega.
         </h1>
@@ -77,6 +81,71 @@ const process = [
         ))
       }
     </ul>
+  </section>
+
+  <section class="shell pb-[clamp(4rem,8vw,8rem)]">
+    <div class="rule-top flex items-baseline justify-between gap-4 py-4 mb-6">
+      <h2 class="caption">Matéria construída</h2>
+      <a href="/projetos" class="caption link-rule text-concrete">Ver portfólio completo ↗</a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+      <a href="/projetos/casa-brut" class="group block overflow-hidden">
+        <div class="aspect-[16/11] sm:aspect-[4/3] w-full overflow-hidden bg-hairline">
+          <Image
+            src={imgProjeto}
+            alt="Projeto Arquitetônico — Casa BRUT"
+            class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+            widths={[500, 800]}
+            sizes="(min-width: 768px) 33vw, 100vw"
+            format="webp"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <p class="caption mt-3 flex items-center justify-between text-concrete">
+          <span class="text-ink">01 Projeto Arquitetônico</span>
+          <span>Casa BRUT</span>
+        </p>
+      </a>
+
+      <a href="/projetos/apartamento-rosarinho" class="group block overflow-hidden">
+        <div class="aspect-[16/11] sm:aspect-[4/3] w-full overflow-hidden bg-hairline">
+          <Image
+            src={imgInteriores}
+            alt="Interiores e Marcenaria — Apartamento Rosarinho"
+            class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+            widths={[500, 800]}
+            sizes="(min-width: 768px) 33vw, 100vw"
+            format="webp"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <p class="caption mt-3 flex items-center justify-between text-concrete">
+          <span class="text-ink">02 Interiores e Marcenaria</span>
+          <span>Apto Rosarinho</span>
+        </p>
+      </a>
+
+      <a href="/projetos/bangalo-60-carneiros" class="group block overflow-hidden">
+        <div class="aspect-[16/11] sm:aspect-[4/3] w-full overflow-hidden bg-hairline">
+          <Image
+            src={imgObra}
+            alt="Execução e Acompanhamento — Bangalô 60 Carneiros"
+            class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+            widths={[500, 800]}
+            sizes="(min-width: 768px) 33vw, 100vw"
+            format="webp"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <p class="caption mt-3 flex items-center justify-between text-concrete">
+          <span class="text-ink">03 Execução de Obra</span>
+          <span>Bangalô 60</span>
+        </p>
+      </a>
+    </div>
   </section>
 
   <section class="inverse">

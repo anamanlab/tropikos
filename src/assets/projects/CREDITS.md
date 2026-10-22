@@ -1,59 +1,76 @@
-# Placeholder photography credits
+# Trópikos Arquitetos — Acervo e Créditos de Mídia
 
-The project covers, galleries, and studio-section image currently use placeholder
-images so the site can be reviewed as a complete visual system. Replace them
-with confirmed Trópikos project and studio photography before a public launch.
+Todos os projetos e fotografias presentes neste website são trabalhos originais e autorais do acervo do Trópikos Arquitetos, sincronizados diretamente dos arquivos oficiais de projetos e fotografia profissional.
 
-Stock images are from [Unsplash](https://unsplash.com/license) and are free to
-use. Attribution is not required by the license, but the source URLs are kept
-here for traceability. The Cozinha Espinheiro cover and first gallery image are
-frames from the studio reel supplied by Trópikos.
+---
 
-## Casa Boa Viagem
+## 1. Obras Construídas (Fotografia Oficial)
 
-- `cover.jpg` — https://images.unsplash.com/photo-1600585152915-d208bec867a1
-- `01.jpg` — https://images.unsplash.com/photo-1600047509358-9dc75507daeb
-- `02.jpg` — https://images.unsplash.com/photo-1600607687920-4e2a09cf159d
+### Bangalô 60 Carneiros
+- **Local**: Praia dos Carneiros, Tamandaré — PE
+- **Ano**: 2021
+- **Fotografia Oficial**: Walter Dias (`Silvio/Fotos/Bangalô 60 - Carneiros/PE`)
+- **Tipologia**: Residencial Litorâneo / Reforma Integral
 
-## Apartamento Graça
+### Bangalô 48 Carneiros
+- **Local**: Praia dos Carneiros, Tamandaré — PE
+- **Ano**: 2021
+- **Fotografia Oficial**: Walter Dias (`Silvio/Fotos/Bangalô 48 - Carneiros/PE`)
+- **Tipologia**: Residencial Litorâneo / Brises e Interiores
 
-- `cover.jpg` — https://images.unsplash.com/photo-1600210492486-724fe5c67fb0
-- `01.jpg` — https://images.unsplash.com/photo-1616486338812-3dadae4b4ace
-- `02.jpg` — https://images.unsplash.com/photo-1616594039964-ae9021a400a0
+### Casa Gravatá
+- **Local**: Gravatá — PE
+- **Ano**: 2021
+- **Fotografia Oficial**: Walter Dias (`Silvio/Fotos/Casa no centro de Gravatá/PE`)
+- **Tipologia**: Residencial Unifamiliar Serrano
 
-## Casa Aldeia
+### Apartamento Rosarinho
+- **Local**: Rosarinho, Recife — PE
+- **Ano**: 2023
+- **Fotografia Oficial**: Acervo Trópikos (`Silvio/Renders de projetos/Edjane Figueiredo - Apto Rosarinho/Fotos oficiais`)
+- **Tipologia**: Interiores Residencial
 
-- `cover.jpg` — https://images.unsplash.com/photo-1600607688969-a5bfcd646154
-- `01.jpg` — https://images.unsplash.com/photo-1600585154340-be6161a56a0c
-- `02.jpg` — https://images.unsplash.com/photo-1600585153490-76fb20a32601
+---
 
-## Cozinha Espinheiro
+## 2. Projetos Autorais & Interiores (3D e Modelagem)
 
-- `cover.webp` — frame from the Trópikos studio reel (supplied source)
-- `01.webp` — frame from the Trópikos studio reel (supplied source)
-- `02.jpg` — https://images.unsplash.com/photo-1600121848594-d8644e57abab
+### Apartamento Edf Diva (Hero Vídeo)
+- **Local**: Recife — PE
+- **Ano**: 2023
+- **Mídia**: Vídeo hero responsivo + Renders 4K (`Silvio/Renders de projetos/Jan Carlo Apartamento Edf Diva`)
 
-## Casa Pina
+### Casa BRUT
+- **Local**: Recife — PE
+- **Ano**: 2024
+- **Mídia**: Renders fotorrealistas e volumetria em concreto aparente (`Silvio/Renders de projetos/Casa BRUT`)
 
-- `cover.jpg` — https://images.unsplash.com/photo-1600573472550-8090b5e0745e
-- `01.jpg` — https://images.unsplash.com/photo-1600607687939-ce8a6c25118c
-- `02.jpg` — https://images.unsplash.com/photo-1600585154526-990dced4db0d
+### Apartamento Graças
+- **Local**: Graças, Recife — PE
+- **Ano**: 2024
+- **Mídia**: Renders 4K de marcenaria ripada e interiores (`Silvio/Renders de projetos/Edjane Figueiredo - Apto Graças`)
 
-## Loft Setúbal
+### Casa Ipubi
+- **Local**: Ipubi — PE (Sertão do Araripe)
+- **Ano**: 2023
+- **Mídia**: Renders 4K de fachada com cobogó autoral em cerâmica vermelha (`Silvio/Renders de projetos/Casa Ipubi`)
 
-- `cover.jpg` — https://images.unsplash.com/photo-1618221195710-dd6b41faaea6
-- `01.jpg` — https://images.unsplash.com/photo-1615529182904-14819c35db37
-- `02.jpg` — https://images.unsplash.com/photo-1615874959474-d609969a20ed
+### Casas Geminadas Condomínio
+- **Local**: Gravatá — PE
+- **Ano**: 2023
+- **Mídia**: Renders 3D de volumetria e lazer privativo (`Silvio/Renders de projetos/Bruno Caffé Casas geminadas em condomínio`)
 
-## Casa Monte
+---
 
-- `cover.jpg` — https://images.unsplash.com/photo-1512917774080-9991f1c4c750
-- `01.jpg` — https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde
-- `02.jpg` — https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3
+## 3. Comercial e Saúde (Obra Entregue)
 
-## Studio section
+### Clínica Esthetica
+- **Local**: Recife — PE
+- **Ano**: 2022
+- **Mídia**: Registro fotográfico dos ambientes concluídos (`Silvio/Renders de projetos/Clínica Esthetica/DEPOIS`)
 
-- `public/media/estudio-processo.webp` — Photo by Caroline Badran on Unsplash
-  (shot for architect Érica Rodrigues):
-  https://unsplash.com/photos/modern-office-space-with-plants-and-artwork-xTmez98cqAM
-  Placeholder for the Trópikos studio; replace with real studio photography.
+---
+
+## 4. Estúdio & Ensaio de Prancheta
+
+- **Fotografia**: Ensaio `Shooting - Nati` (`Silvio/Renders de projetos/Edjane Figueiredo - Apto Rosarinho/Shooting - Nati`)
+- **Uso**: Páginas `/estudio` e chamada visual na `/`
