@@ -27,6 +27,10 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# Root scratch & raw files
+/*.mp4
+/* (2).*
+
 # editor
 .vscode/*
 !.vscode/extensions.json
