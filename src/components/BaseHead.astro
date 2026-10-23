@@ -21,10 +21,54 @@ const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || 'G-7KB6VK4D5Y';
 const fullTitle = pageTitle.includes(SITE.name) ? pageTitle : `${pageTitle} — ${SITE.name}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImage = new URL(image, Astro.site);
+const siteUrl = (Astro.site?.toString() ?? 'https://tropikos.com.br/').replace(/\/$/, '');
+const organizationId = `${siteUrl}/#organization`;
+
+const postalAddress = {
+  '@type': 'PostalAddress',
+  streetAddress: `${SITE.address.street} — ${SITE.address.building}`,
+  addressLocality: SITE.address.city,
+  addressRegion: SITE.address.state,
+  postalCode: SITE.address.postalCode,
+  addressCountry: SITE.address.country,
+};
+
+const contactPoint = {
+  '@type': 'ContactPoint',
+  contactType: 'customer service',
+  telephone: SITE.phone,
+  email: SITE.email,
+  areaServed: 'BR',
+  availableLanguage: ['Portuguese', 'English'],
+};
+
+// A plain Organization node is the identity signal agents look for before
+// they cite or recommend a business. The ArchitecturalService node below
+// keeps the local-business details (geo, opening hours, price range).
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': organizationId,
+  name: SITE.name,
+  alternateName: SITE.shortName,
+  url: `${siteUrl}/`,
+  logo: new URL('/icon-512.png', Astro.site).toString(),
+  image: new URL('/og-image.png', Astro.site).toString(),
+  description: SITE.description,
+  foundingDate: String(SITE.founded),
+  email: SITE.email,
+  telephone: SITE.phone,
+  address: postalAddress,
+  contactPoint,
+  sameAs: [SITE.instagram, SITE.linktree],
+  knowsAbout: ['Arquitetura', 'Interiores', 'Execução de obra', 'Consultoria'],
+};
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ArchitecturalService',
+  '@id': `${siteUrl}/#architectural-service`,
+  parentOrganization: { '@id': organizationId },
   name: SITE.name,
   description: SITE.description,
   url: Astro.site?.toString(),
@@ -32,14 +76,8 @@ const jsonLd = {
   telephone: SITE.phone,
   foundingDate: String(SITE.founded),
   priceRange: '$$',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: `${SITE.address.street} — ${SITE.address.building}`,
-    addressLocality: SITE.address.city,
-    addressRegion: SITE.address.state,
-    postalCode: SITE.address.postalCode,
-    addressCountry: SITE.address.country,
-  },
+  address: postalAddress,
+  contactPoint,
   geo: {
     '@type': 'GeoCoordinates',
     latitude: -8.0476,
@@ -114,4 +152,5 @@ const jsonLd = {
 <Font cssVariable="--ff-body" preload />
 <Font cssVariable="--ff-mono" />
 
+<script is:inline type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
 <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

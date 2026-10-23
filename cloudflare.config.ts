@@ -8,9 +8,11 @@ export default defineConfig({
 		assets: {
 			htmlHandling: "auto-trailing-slash",
 			notFoundHandling: "404-page",
-			// Run the Worker first for media so it can serve byte ranges.
-			// All other requests are still served directly as static assets.
-			runWorkerFirst: ["/media/*"],
+			// Run the Worker first for every request so it can negotiate
+			// Markdown, add `Vary: Accept`, return Markdown 404 bodies, and
+			// keep byte ranges working for the hero film. Static files are
+			// still served through the ASSETS binding.
+			runWorkerFirst: true,
 		},
 		env: {
 			ASSETS: bindings.assets(),

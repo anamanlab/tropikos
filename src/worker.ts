@@ -1,14 +1,14 @@
 /**
- * Worker entrypoint for /media/* requests.
+ * Worker entrypoint for agent-friendly content negotiation and media ranges.
  *
- * Workers Static Assets served directly by the platform ignore the `Range`
- * header (they return a full `200` with no `Accept-Ranges`). Desktop browsers
- * rely on range requests to stream video, so the hero film can stall and stay
- * on the poster frame.
+ * The site is otherwise static. This Worker runs first for every request so it
+ * can:
  *
- * This Worker runs first for `/media/*` (see `worker.assets.runWorkerFirst` in
- * cloudflare.config.ts) and turns those responses into standards-compliant
- * partial content (`206`) responses. Non-media requests never invoke it.
+ * 1. serve a Markdown representation at the same canonical URL when an agent
+ *    asks for `Accept: text/markdown` (with `Vary: Accept` so HTML and
+ *    Markdown cache entries never collide);
+ * 2. return a Markdown problem body for 404s requested as Markdown;
+ * 3. keep byte-range playback working for the hero film under `/media/*`.
  */
 
 interface AssetsFetcher {
@@ -24,8 +24,17 @@ interface ByteRange {
   end: number;
 }
 
+interface MediaRange {
+  type: string;
+  q: number;
+}
+
 const RANGE_PATTERN = /^bytes=(\d*)-(\d*)$/;
 const CACHE_CONTROL = "public, max-age=86400";
+const MARKDOWN_CACHE_CONTROL = "public, max-age=300, must-revalidate";
+const MARKDOWN_CONTENT_TYPE = "text/markdown; charset=utf-8";
+const HTML_CONTENT_TYPE = "text/html; charset=utf-8";
+const SITE_ORIGIN = "https://tropikos.com.br";
 
 /** Parse a single `bytes=` range against a known file size. */
 function parseRange(header: string, size: number): ByteRange | null {
@@ -88,87 +97,297 @@ function ifRangeMatches(request: Request, asset: Response): boolean {
   return Boolean(lastModified && ifRange === lastModified);
 }
 
+/** Split an Accept header into media ranges, preserving valid q-values. */
+export function parseAcceptHeader(header: string): MediaRange[] {
+  return header
+    .split(",")
+    .map((part) => {
+      const [rawType, ...params] = part.trim().split(";");
+      const type = rawType.trim().toLowerCase();
+      let q = 1;
+
+      for (const param of params) {
+        const [rawKey, rawValue] = param.split("=");
+        if (rawKey?.trim().toLowerCase() !== "q") continue;
+        const value = Number(rawValue);
+        if (Number.isFinite(value)) q = Math.max(0, Math.min(1, value));
+      }
+
+      return { type, q };
+    })
+    .filter((range) => range.type.length > 0);
+}
+
+/**
+ * True when the request explicitly prefers Markdown over HTML.
+ *
+ * Wildcards alone (for example a bare wildcard Accept header from curl or a
+ * browser) must keep serving HTML. Only an explicit `text/markdown` entry can
+ * opt into Markdown.
+ */
+export function prefersMarkdown(accept: string | null): boolean {
+  if (!accept) return false;
+
+  const ranges = parseAcceptHeader(accept);
+  const markdownQ = Math.max(
+    0,
+    ...ranges.filter((range) => range.type === "text/markdown").map((range) => range.q),
+  );
+  if (markdownQ <= 0) return false;
+
+  const htmlQ = Math.max(
+    0,
+    ...ranges
+      .filter(
+        (range) =>
+          range.type === "text/html" || range.type === "text/*" || range.type === "*/*",
+      )
+      .map((range) => range.q),
+  );
+
+  return markdownQ >= htmlQ;
+}
+
+function normalizePath(pathname: string): string {
+  if (pathname === "/") return "/";
+  return pathname.replace(/\/+$/, "");
+}
+
+/** Static files (including /llms.txt and /_astro/*) are never Markdown pages. */
+function isAssetPath(pathname: string): boolean {
+  const lastSegment = pathname.split("/").pop() ?? "";
+  return lastSegment.includes(".");
+}
+
+/** Candidate Markdown asset paths for a page URL, in lookup order. */
+export function markdownPathCandidates(pathname: string): string[] {
+  const clean = normalizePath(pathname);
+  if (clean === "/") return ["/index.md"];
+  if (isAssetPath(clean)) return [];
+  return [`${clean}.md`, `${clean}/index.md`];
+}
+
+function appendVary(headers: Headers, value: string): void {
+  const current = headers.get("Vary");
+  if (!current) {
+    headers.set("Vary", value);
+    return;
+  }
+
+  const values = current.split(",").map((part) => part.trim().toLowerCase());
+  if (!values.includes("*") && !values.includes(value.toLowerCase())) {
+    headers.set("Vary", `${current}, ${value}`);
+  }
+}
+
+function copyHeaders(source: Headers): Headers {
+  return new Headers(source);
+}
+
+/** The Markdown problem body used for any missing page requested as Markdown. */
+export function notFoundMarkdown(pathname: string): string {
+  const path = pathname || "/";
+  return [
+    "# 404 — Página não encontrada",
+    "",
+    `O caminho \`${path}\` não existe neste site.`,
+    "",
+    "Use um dos links abaixo para continuar:",
+    "",
+    `- [Início](${SITE_ORIGIN}/)`,
+    `- [Índice para agentes (llms.txt)](${SITE_ORIGIN}/llms.txt)`,
+    `- [Conteúdo completo para agentes (llms-full.txt)](${SITE_ORIGIN}/llms-full.txt)`,
+    `- [Sitemap](${SITE_ORIGIN}/sitemap-index.xml)`,
+    `- [Contato](${SITE_ORIGIN}/contact)`,
+    "",
+    "Se você seguiu um link antigo, o sitemap lista todas as páginas atuais.",
+  ].join("\n");
+}
+
+function markdownResponse(body: BodyInit | null, status = 200): Response {
+  return new Response(body, {
+    status,
+    headers: {
+      "Content-Type": MARKDOWN_CONTENT_TYPE,
+      Vary: "Accept",
+      "Cache-Control": status === 200 ? MARKDOWN_CACHE_CONTROL : "no-store",
+      "X-Content-Type-Options": "nosniff",
+    },
+  });
+}
+
+async function serveMarkdown(
+  request: Request,
+  env: Env,
+  pathname: string,
+): Promise<Response | null> {
+  for (const candidate of markdownPathCandidates(pathname)) {
+    const url = new URL(request.url);
+    url.pathname = candidate;
+
+    const asset = await env.ASSETS.fetch(new URL(url));
+    if (!asset.ok) continue;
+
+    return markdownResponse(request.method === "HEAD" ? null : asset.body, 200);
+  }
+
+  return null;
+}
+
+async function notFoundHtml(request: Request, env: Env): Promise<Response> {
+  const url = new URL(request.url);
+  url.pathname = "/404.html";
+  const asset = await env.ASSETS.fetch(new URL(url));
+
+  if (asset.ok) {
+    const headers = copyHeaders(asset.headers);
+    headers.set("Content-Type", HTML_CONTENT_TYPE);
+    headers.set("Cache-Control", "no-store");
+    appendVary(headers, "Accept");
+    return new Response(request.method === "HEAD" ? null : asset.body, {
+      status: 404,
+      headers,
+    });
+  }
+
+  const headers = new Headers({
+    "Content-Type": "text/plain; charset=utf-8",
+    "Cache-Control": "no-store",
+  });
+  appendVary(headers, "Accept");
+  return new Response("404 — Página não encontrada.", { status: 404, headers });
+}
+
+async function handleMedia(request: Request, env: Env, url: URL): Promise<Response> {
+  const contentType = contentTypeFor(url.pathname);
+
+  // Fetch the complete asset and handle ranges ourselves so behaviour is
+  // identical whether or not the assets binding honours Range. Conditional
+  // headers (If-None-Match, If-Modified-Since) are still forwarded.
+  const assetHeaders = new Headers(request.headers);
+  assetHeaders.delete("Range");
+  const asset = await env.ASSETS.fetch(
+    new Request(request.url, { method: request.method, headers: assetHeaders }),
+  );
+
+  const headers = withMediaHeaders(asset.headers, contentType, asset.ok);
+
+  // Pass through errors, conditional responses, and non-GET/HEAD methods.
+  if (!asset.ok || request.method !== "GET" || asset.status === 206) {
+    return new Response(bodyAllowed(asset.status, request.method) ? asset.body : null, {
+      status: asset.status,
+      statusText: asset.statusText,
+      headers,
+    });
+  }
+
+  const rangeHeader = request.headers.get("Range");
+  if (!rangeHeader || !ifRangeMatches(request, asset)) {
+    return new Response(asset.body, {
+      status: asset.status,
+      statusText: asset.statusText,
+      headers,
+    });
+  }
+
+  // Multiple ranges are not used by media elements. Serve the complete
+  // response and let Cloudflare slice it if needed.
+  if (rangeHeader.includes(",")) {
+    return new Response(asset.body, {
+      status: asset.status,
+      statusText: asset.statusText,
+      headers,
+    });
+  }
+
+  // Never slice an encoded payload: byte offsets refer to the encoded body.
+  const encoding = headers.get("Content-Encoding");
+  if (encoding && encoding.toLowerCase() !== "identity") {
+    return new Response(asset.body, {
+      status: asset.status,
+      statusText: asset.statusText,
+      headers,
+    });
+  }
+  if (encoding) headers.delete("Content-Encoding");
+
+  const bytes = await asset.arrayBuffer();
+  const size = bytes.byteLength;
+  const range = parseRange(rangeHeader, size);
+
+  if (!range) {
+    return new Response(null, {
+      status: 416,
+      headers: {
+        "Accept-Ranges": "bytes",
+        "Cache-Control": "no-store",
+        "Content-Range": `bytes */${size}`,
+      },
+    });
+  }
+
+  const { start, end } = range;
+  headers.set("Content-Length", String(end - start + 1));
+  headers.set("Content-Range", `bytes ${start}-${end}/${size}`);
+
+  return new Response(bytes.slice(start, end + 1), { status: 206, headers });
+}
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
 
-    // Defensive: the runtime only routes /media/* here, but keep the Worker
-    // safe if that configuration ever changes.
-    if (!url.pathname.startsWith("/media/")) {
-      return env.ASSETS.fetch(request);
+    if (url.pathname.startsWith("/media/")) {
+      return handleMedia(request, env, url);
     }
 
-    const contentType = contentTypeFor(url.pathname);
+    const isRead = request.method === "GET" || request.method === "HEAD";
+    const wantsMarkdown = isRead && prefersMarkdown(request.headers.get("Accept"));
 
-    // Fetch the complete asset and handle ranges ourselves so behaviour is
-    // identical whether or not the assets binding honours Range. Conditional
-    // headers (If-None-Match, If-Modified-Since) are still forwarded.
-    const assetHeaders = new Headers(request.headers);
-    assetHeaders.delete("Range");
-    const asset = await env.ASSETS.fetch(
-      new Request(request.url, { method: request.method, headers: assetHeaders }),
-    );
+    if (wantsMarkdown) {
+      const markdown = await serveMarkdown(request, env, url.pathname);
+      if (markdown) return markdown;
 
-    const headers = withMediaHeaders(asset.headers, contentType, asset.ok);
+      // A missing static file (CSS, image, etc.) should not turn into a
+      // Markdown page. Page-like URLs get the Markdown 404 body below.
+      if (isAssetPath(normalizePath(url.pathname))) {
+        return env.ASSETS.fetch(request);
+      }
 
-    // Pass through errors, conditional responses, and non-GET/HEAD methods.
-    if (!asset.ok || request.method !== "GET" || asset.status === 206) {
-      return new Response(bodyAllowed(asset.status, request.method) ? asset.body : null, {
-        status: asset.status,
-        statusText: asset.statusText,
-        headers,
-      });
+      return markdownResponse(
+        request.method === "HEAD" ? null : notFoundMarkdown(url.pathname),
+        404,
+      );
     }
 
-    const rangeHeader = request.headers.get("Range");
-    if (!rangeHeader || !ifRangeMatches(request, asset)) {
-      return new Response(asset.body, {
-        status: asset.status,
-        statusText: asset.statusText,
-        headers,
-      });
+    const asset = await env.ASSETS.fetch(request);
+
+    if (asset.status === 404) {
+      return notFoundHtml(request, env);
     }
 
-    // Multiple ranges are not used by media elements. Serve the complete
-    // response and let Cloudflare slice it if needed.
-    if (rangeHeader.includes(",")) {
-      return new Response(asset.body, {
-        status: asset.status,
-        statusText: asset.statusText,
-        headers,
-      });
+    const contentType = asset.headers.get("Content-Type") ?? "";
+    if (!contentType.toLowerCase().includes("text/html")) {
+      return asset;
     }
 
-    // Never slice an encoded payload: byte offsets refer to the encoded body.
-    const encoding = headers.get("Content-Encoding");
-    if (encoding && encoding.toLowerCase() !== "identity") {
-      return new Response(asset.body, {
-        status: asset.status,
-        statusText: asset.statusText,
-        headers,
-      });
-    }
-    if (encoding) headers.delete("Content-Encoding");
+    const headers = copyHeaders(asset.headers);
+    appendVary(headers, "Accept");
 
-    const bytes = await asset.arrayBuffer();
-    const size = bytes.byteLength;
-    const range = parseRange(rangeHeader, size);
-
-    if (!range) {
-      return new Response(null, {
-        status: 416,
-        headers: {
-          "Accept-Ranges": "bytes",
-          "Cache-Control": "no-store",
-          "Content-Range": `bytes */${size}`,
-        },
-      });
+    // Discoverability for agents that read HTML first: point at the parallel
+    // Markdown representation without changing the canonical URL.
+    const markdownPath = markdownPathCandidates(url.pathname)[0];
+    if (markdownPath) {
+      headers.set(
+        "Link",
+        `<${new URL(markdownPath, request.url).toString()}>; rel="alternate"; type="text/markdown"`,
+      );
     }
 
-    const { start, end } = range;
-    headers.set("Content-Length", String(end - start + 1));
-    headers.set("Content-Range", `bytes ${start}-${end}/${size}`);
-
-    return new Response(bytes.slice(start, end + 1), { status: 206, headers });
+    return new Response(asset.body, {
+      status: asset.status,
+      statusText: asset.statusText,
+      headers,
+    });
   },
 };

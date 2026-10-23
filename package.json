@@ -19,10 +19,11 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro check && astro build && node scripts/generate-agent-markdown.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
+    "test": "pnpm build && node --experimental-strip-types --test tests/*.test.mjs",
     "icons": "node scripts/generate-icons.mjs",
     "deploy": "pnpm build && cf deploy",
     "deploy:dry": "pnpm build && cf deploy --dry-run"
@@ -39,6 +40,7 @@
     "@tailwindcss/vite": "^4.3.3",
     "cf": "1.0.0-beta.20",
     "tailwindcss": "^4.3.3",
+    "turndown": "^7.2.4",
     "typescript": "^6.0.3",
     "wrangler": "^4.152.0"
   }

@@ -1,0 +1,117 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema.astro';
+import { SITE } from '@/site.config';
+
+const updated = '23 de outubro de 2026';
+---
+
+<BaseLayout
+  title="Privacidade"
+  description="Resumo da política de privacidade do Trópikos Arquitetos: dados coletados, finalidades, compartilhamento, retenção e direitos dos titulares sob a LGPD."
+>
+  <BreadcrumbSchema
+    items={[
+      { name: 'Início', url: '/' },
+      { name: 'Privacidade', url: '/privacy' },
+    ]}
+  />
+
+  <section class="shell pt-[calc(var(--header-y)+5rem)] pb-[clamp(4rem,8vw,8rem)]">
+    <p class="caption text-concrete">(Privacy) Privacidade</p>
+    <h1
+      class="mt-6 max-w-[16ch] text-[clamp(2.4rem,7.4vw,7.4rem)] leading-[0.9] tracking-[-0.05em] text-balance break-words"
+    >
+      Seus dados, com clareza.
+    </h1>
+    <p class="body-copy mt-6 max-w-[54ch] text-concrete">
+      Esta página resume como o Trópikos Arquitetos trata dados pessoais. A política completa, com
+      base legal e detalhes de cookies, está em
+      <a href="/privacidade" class="link-rule tap">/privacidade</a>. Última atualização:
+      {updated}.
+    </p>
+
+    <div class="mt-[clamp(3rem,7vw,6rem)] max-w-[72ch] space-y-10">
+      <section>
+        <h2 class="text-[clamp(1.3rem,2.2vw,1.8rem)] leading-[1.1] tracking-[-0.03em]">
+          Quem é o controlador
+        </h2>
+        <p class="body-copy mt-4 text-concrete">
+          O controlador dos dados coletados por este site é o <strong class="text-ink">Trópikos
+          Arquitetos</strong>, com sede em {SITE.address.street}, {SITE.address.building},
+          {SITE.address.district}, {SITE.address.city} — {SITE.address.state}, CEP
+          {SITE.address.postalCode}. Contato do controlador:
+          <a href={`mailto:${SITE.email}`} class="link-rule tap">{SITE.email}</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-[clamp(1.3rem,2.2vw,1.8rem)] leading-[1.1] tracking-[-0.03em]">
+          Quais dados coletamos
+        </h2>
+        <p class="body-copy mt-4 text-concrete">
+          Coletamos apenas o mínimo necessário: dados de navegação (páginas visitadas, origem do
+          tráfego, dispositivo e navegador) quando você aceita analytics; e os dados que você
+          compartilha voluntariamente por e-mail ou WhatsApp, como nome, telefone, endereço do
+          imóvel, fotos e prazo. A preferência de consentimento fica armazenada no seu navegador.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-[clamp(1.3rem,2.2vw,1.8rem)] leading-[1.1] tracking-[-0.03em]">
+          Para que usamos
+        </h2>
+        <p class="body-copy mt-4 text-concrete">
+          Usamos dados de navegação para medir acessos e melhorar o site, com base no seu
+          consentimento. Usamos os dados de contato para responder a mensagens, preparar propostas
+          e executar medidas pré-contratuais. Também podemos tratar dados para segurança e
+          prevenção a fraudes, com base em legítimo interesse.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-[clamp(1.3rem,2.2vw,1.8rem)] leading-[1.1] tracking-[-0.03em]">
+          Com quem compartilhamos
+        </h2>
+        <p class="body-copy mt-4 text-concrete">
+          Não vendemos nem alugamos dados. Compartilhamos apenas com os prestadores necessários:
+          Google Analytics para medição (quando autorizado), Cloudflare para hospedagem e entrega
+          do site, e WhatsApp/Meta quando você escolhe iniciar uma conversa por esse canal. Cada
+          serviço tem sua própria política de privacidade.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-[clamp(1.3rem,2.2vw,1.8rem)] leading-[1.1] tracking-[-0.03em]">
+          Seus direitos
+        </h2>
+        <p class="body-copy mt-4 text-concrete">
+          Nos termos da LGPD (Lei nº 13.709/2018), você pode confirmar a existência de tratamento,
+          acessar, corrigir, anonimizar, bloquear ou eliminar seus dados, solicitar portabilidade,
+          revogar o consentimento e obter informações sobre compartilhamento. Para exercer qualquer
+          direito, escreva para
+          <a href={`mailto:${SITE.email}`} class="link-rule tap">{SITE.email}</a> com o assunto
+          “LGPD — direitos do titular”. Respondemos em até 15 dias.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-[clamp(1.3rem,2.2vw,1.8rem)] leading-[1.1] tracking-[-0.03em]">
+          Retenção e segurança
+        </h2>
+        <p class="body-copy mt-4 text-concrete">
+          Dados de analytics seguem a configuração do Google Analytics (de 2 a 14 meses). Dados de
+          contato são mantidos enquanto a relação comercial existir e pelo prazo legal aplicável.
+          Adotamos HTTPS, acesso restrito e infraestrutura com proteção DDoS. Em caso de incidente
+          com risco relevante, notificamos a ANPD e os titulares afetados, conforme o Art. 48 da
+          LGPD.
+        </p>
+      </section>
+
+      <p class="caption text-concrete">
+        Para a política completa, volte a
+        <a href="/privacidade" class="link-rule">/privacidade</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
