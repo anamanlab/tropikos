@@ -1,21 +1,22 @@
 ---
 title: "Bangalô 48 Carneiros"
-subtitle: "Brises em madeira, sombra tropical e conexão fluida com a natureza"
-location: "Praia dos Carneiros, PE"
+subtitle: "Arquitetura de veraneio, terraço gourmet e lazer privativo sob os coqueirais"
+location: "Praia dos Carneiros, Tamandaré, PE"
 year: 2021
 typology: "Residencial Litorâneo"
 category: "construido"
 scope:
-  - "Projeto Arquitetônico de Interiores"
-  - "Marcenaria Sob Medida"
-  - "Consultoria de Acabamentos"
-summary: "Intervenção arquitetônica em bangalô de veraneio, marcada por brises verticais de madeira que controlam o sol da tarde e conferem ritmo plástico às fachadas e varandas."
+  - "Design de Interiores"
+  - "Área Gourmet Externa"
+  - "Ambientação e Mobiliário"
+  - "Consultoria de Iluminação"
+summary: "Intervenção de interiores e ambientação em bangalô de veraneio na Praia dos Carneiros, com terraço gourmet sob pergolado rústico, piscina privativa com iluminação cênica crepuscular, rede artesanal colorida e lounge com peças em cerâmica regional e fibras naturais."
 area: "195 m²"
 photography: "Walter Dias"
 order: 6
 featured: false
 cover: "../../assets/projects/bangalo-48-carneiros/01-cover.webp"
-coverAlt: "Varanda frontal e deck do Bangalô 48 emoldurados por vegetação tropical e brises de madeira"
+coverAlt: "Vista crepuscular completa da fachada chalé do Bangalô 48, com piscina privativa iluminada em azul, deck e terraço gourmet acolhedores"
 gallery:
   - "../../assets/projects/bangalo-48-carneiros/02-estar-integrado.webp"
   - "../../assets/projects/bangalo-48-carneiros/03-brise-madeira.webp"
@@ -25,15 +26,15 @@ gallery:
   - "../../assets/projects/bangalo-48-carneiros/07-banheiro-jardim.webp"
   - "../../assets/projects/bangalo-48-carneiros/08-deck-privativo.webp"
 galleryAlt:
-  - "Área social integrada com mobiliário de linhas baixas e piso monolítico"
-  - "Fachada com brises verticais articulados em cumaru"
-  - "Jogo de sombras projetadas pelo ripado no piso e nas paredes internas"
-  - "Suíte principal com vistas abertas para a copa das árvores"
-  - "Composição de texturas naturais com linho, palha e madeira natural"
-  - "Banheiro com abertura zenital e jardim privativo"
-  - "Deck de madeira privativo voltado para a área de descanso"
+  - "Terraço gourmet diurno com mesa redonda e cadeiras em corda náutica rosé sob pergolado em toras de madeira"
+  - "Rede artesanal multicolorida com pompons e franjas em primeiro plano, emoldurando a piscina privativa e o chalé sob céu aberto"
+  - "Deck coberto com pergolado em madeira e vidro, poltrona de design geométrico em corda e mesa de centro tramada em tom coral"
+  - "Varanda gourmet com mesa de jantar redonda e centro giratório com louça em terracota, bancada de apoio com TV e frigobar"
+  - "Detalhe da mesa posta com pratos cerâmicos em terracota, jogos americanos rendados rosé e taças de vinho"
+  - "Lounge na varanda com estofado cinza, manta terracota com franjas artesanais, poltrona em corda náutica e mesa de centro redonda"
+  - "Parede com textura rústica branca decorada com trio de máscaras em cerâmica de barro e pendente em palha artesanal"
 ---
 
-No Bangalô 48, o partido arquitetônico esteve focado na proteção solar e no conforto bioclimático.
+O Bangalô 48 celebra o espírito do veraneio pernambucano através da valorização do artesanato local, do conforto tátil e da convivência ao ar livre.
 
-O uso sistemático de brises verticais em cumaru permite regular a entrada de claridade ao longo das horas do dia, gerando um grafismo dinâmico de luz e sombra no piso e nas superfícies caiadas. O mobiliário privilegia o design nacional com peças baixas em madeira natural e fibras que convidam à permanência despretensiosa.
+A intervenção focou na qualificação do terraço e da área de lazer externa, criando múltiplos ambientes de permanência: mesa de jantar redonda para refeições em família, lounge com estofados e mantas com franjas para descanso, e deck com espreguiçadeiras e poltronas em corda náutica voltadas para a piscina privativa. As tonalidades quentes de terracota e coral dialogam harmonicamente com a cerâmica de barro figurativa e a madeira natural.

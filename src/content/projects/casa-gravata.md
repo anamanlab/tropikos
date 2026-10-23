@@ -1,22 +1,22 @@
 ---
-title: "Casa Gravatá"
-subtitle: "Arquitetura serrana, estrutura em madeira aparente e horizonte agreste"
+title: "Casa Centro Gravatá"
+subtitle: "Reforma sensível no centro urbano, marcenaria verde sálvia e memória afetiva"
 location: "Gravatá, PE"
 year: 2021
 typology: "Residencial Unifamiliar"
-category: "construido"
+category: "reforma"
 scope:
-  - "Projeto Arquitetônico"
   - "Projeto de Reforma"
-  - "Interiores"
-  - "Acompanhamento Técnico"
-summary: "Residência serrana em Gravatá projetada para acolher o clima ameno do planalto da Borborema, com pé-direito generoso, tesouras de madeira aparentes e integração com a lareira e a paisagem das colinas."
-area: "340 m²"
+  - "Arquitetura de Interiores"
+  - "Marcenaria Sob Medida"
+  - "Consultoria de Restauro e Materiais"
+summary: "Reforma de residência urbana no centro histórico de Gravatá, unindo a preservação de pisos em ladrilho hidráulico floral e soleiras em mármore à introdução de cozinha contemporânea em verde sálvia, pérgola lateral com cobogós cerâmicos e acolhedores ambientes de convivência."
+area: "260 m²"
 photography: "Walter Dias"
 order: 3
 featured: true
 cover: "../../assets/projects/casa-gravata/01-cover.webp"
-coverAlt: "Vista panorâmica da Casa Gravatá com deck em madeira e telhado em tesouras de madeira"
+coverAlt: "Cozinha contemporânea com marcenaria planejada em verde sálvia, puxadores triangulares em madeira, bancada em granito escuro e armários aéreos em vidro canelado"
 gallery:
   - "../../assets/projects/casa-gravata/02-pavilhao-estar.webp"
   - "../../assets/projects/casa-gravata/03-colunas-madeira.webp"
@@ -26,15 +26,15 @@ gallery:
   - "../../assets/projects/casa-gravata/07-banco-pedra.webp"
   - "../../assets/projects/casa-gravata/08-piscina-noturna.webp"
 galleryAlt:
-  - "Pavilhão central de estar com estrutura de cobertura em madeira aparente"
-  - "Ritmo das colunas em madeira bruta marcando a circulação perimetral"
-  - "Entrada de luz natural ao entardecer no planalto de Gravatá"
-  - "Área de refeições e lareira central integrada à cozinha"
-  - "Varanda da suíte com vista para as colinas agrestes"
-  - "Banco esculpido em alvenaria e pedra regional junto à circulação"
-  - "Área de lazer e piscina iluminada com reflexos na água"
+  - "Fachada frontal urbana da casa na rua em paralelepípedos, com volume de entrada em tijolinho aparente, portão geométrico em ferro e cobogós"
+  - "Corredor lateral com pérgula em concreto gerando sombras no piso de pedra, canteiro ajardinado e painel de cobogó cerâmico vazado"
+  - "Pátio frontal ajardinado com banco em ripas de madeira maciça sob treliça metálica na parede caiada e vaso cerâmico artístico"
+  - "Sala de estar acolhedora com moradora idosa lendo no sofá vintage rosa seco de quatro lugares, mesa de centro com livros e iluminação natural"
+  - "Varanda interna com piso em ladrilho hexagonal cinza, portas articuladas tipo veneziana em madeira e rede de descanso"
+  - "Perspectiva da circulação interna destacando o padrão geométrico do piso hexagonal e o painel de madeira com venezianas"
+  - "Encontro refinado de materiais no piso: ladrilho hidráulico floral clássico, cerâmica verde oliva, soleira em mármore branco e ralo linear em granito"
 ---
 
-Implantada no topo de uma colina em Gravatá, a casa responde às oscilações térmicas do Agreste pernambucano, onde os dias são ensolarados e as noites frescas e ventiladas.
+A reforma da Casa Centro Gravatá é um exercício de respeito à memória construída e às camadas temporais de uma residência urbana no Agreste pernambucano.
 
-A cobertura em duas águas com madeira estrutural aparente abriga uma sequência fluida de salas integradas, onde a lareira funciona como ponto focal nas noites de inverno. Grandes vãos envidraçados emolduram a vegetação serrana, garantindo ventilação permanente e iluminação difusa.
+O projeto equilibra a conservação de elementos pré-existentes — como os ladrilhos hidráulicos florais originais, as soleiras em mármore branco e as esquadrias em venezianas de madeira — com a inserção precisa de novos componentes contemporâneos. A cozinha foi renovada com marcenaria sob medida em tom verde sálvia e vidro canelado, enquanto a circulação lateral ganhou uma pérgula em concreto e cobogós cerâmicos que filtram a luz serrana e qualificam os jardins internos.

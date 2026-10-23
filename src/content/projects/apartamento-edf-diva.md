@@ -1,33 +1,31 @@
 ---
-title: Apartamento Edf Diva
-subtitle: Interiores integrados com cobogó terracota e marcenaria autoral
-location: Recife, PE
+title: "Apartamento Edf Diva"
+subtitle: "Estante linear iluminada, mesa escultural em pedra e sofisticação em mármore rosso"
+location: "Recife, PE"
 year: 2023
-typology: Interiores
-category: projeto
-scope: ['Interiores', 'Marcenaria', 'Iluminação']
-summary: Projeto de interiores que integra sala de estar, jantar e cozinha, valorizando a ventilação natural com cobogós terracota e marcenaria em madeira natural.
+typology: "Interiores Residencial"
+category: "projeto"
+scope:
+  - "Projeto de Arquitetura de Interiores"
+  - "Marcenaria e Mobiliário Sob Medida"
+  - "Projeto Luminotécnico"
+  - "Curadoria de Arte Popular Brasileira"
+summary: "Projeto de interiores residencial no Edifício Diva, explorando estante linear com iluminação em LED e arte popular em cerâmica, mesa de jantar escultural em pedra perfurada, suíte com painel de madeira em treliça tridimensional e banheiro com bancada esculpida em mármore rosso travertino."
 area: "145 m²"
-cover: ../../assets/projects/apartamento-edf-diva/cover.jpg
-coverAlt: Sala de estar integrada com parede de cobogó terracota, iluminação quente e marcenaria sob medida
-gallery:
-  - ../../assets/projects/apartamento-edf-diva/01.jpg
-  - ../../assets/projects/apartamento-edf-diva/02.jpg
-  - ../../assets/projects/apartamento-edf-diva/03.jpg
-galleryAlt:
-  - Sala de estar e jantar integradas com paleta quente e materiais naturais
-  - Suíte principal com marcenaria sob medida e iluminação indireta
-  - Lavabo com bancada esculpida e painéis amadeirados
-featured: false
 order: 5
+featured: false
+cover: "../../assets/projects/apartamento-edf-diva/cover.jpg"
+coverAlt: "Estante linear da sala de estar com rack suspenso em madeira nogueira, prateleiras retroiluminadas com cerâmica popular brasileira e plantas pendentes, e tapete ondulado orgânico"
+gallery:
+  - "../../assets/projects/apartamento-edf-diva/01.jpg"
+  - "../../assets/projects/apartamento-edf-diva/02.jpg"
+  - "../../assets/projects/apartamento-edf-diva/03.jpg"
+galleryAlt:
+  - "Sala de jantar com mesa redonda escultural em pedra clara e base perfurada por orifícios orgânicos, poltronas em tecido bouclé off-white e trio de pendentes em vidro soprado"
+  - "Suíte de casal com cama baixa plataforma estofada em tecido bouclé, parede revestida em painel de madeira escura com treliça tridimensional e floreira de costelas-de-adão sob a janela"
+  - "Vista superior em plongée do banheiro da suíte com bancada esculpida em mármore rosso travertino avermelhado, piso e box em ladrilhos pontilhados em terracota e nicho iluminado"
 ---
 
-O projeto para o Apartamento no Edifício Diva partiu da necessidade de ampliar os espaços sociais e conectar a área de estar à luz e à brisa do Recife. O ponto de partida foi a introdução de uma parede divisória em cobogó cerâmico terracota, elemento tradicional da arquitetura moderna pernambucana que filtra a luz solar e preserva a ventilação cruzada.
+O projeto para o Apartamento no Edifício Diva articula a elegância do design contemporâneo à riqueza material da arte popular brasileira e das pedras naturais.
 
-## Integração e Materialidade
-
-A transição entre estar, jantar e cozinha se dá de forma contínua através de um piso unificado e de uma marcenaria desenhada exclusivamente para o espaço. O painel ripado e o móvel baixo da sala abraçam o ambiente, contrastando com o sofá curvo em tecido texturizado claro e o tapete de desenho orgânico.
-
-## Luz e Conforto
-
-A iluminação foi concebida de forma indireta e intimista, com sancas lineares embutidas no forro que banham as superfícies verticais, valorizando a textura da cerâmica e o calor da madeira. Nos dormitórios e áreas íntimas, a paleta sóbria se mantém, com armários embutidos e cabeceiras desenhadas para acolher o descanso.
+A área social é estruturada por uma estante horizontal contínua com rack suspenso em madeira nogueira natural e prateleiras metálicas brancas retroiluminadas por LED, servindo como galeria para esculturas de cerâmica figurativa e vegetação pendente. A sala de jantar ganha destaque com a mesa redonda monolítica esculpida em pedra porosa com perfurações esculturais. Na área íntima, a suíte combina o conforto de uma cama baixa em tecido bouclé com painel de madeira usinada em treliça geométrica, enquanto o banheiro surpreende pelo uso dramático do mármore rosso travertino esculpido e ladrilhos com detalhes em terracota.

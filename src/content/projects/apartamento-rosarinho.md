@@ -1,22 +1,22 @@
 ---
 title: "Apartamento Rosarinho"
-subtitle: "Laje em concreto aparente, marcenaria integrada e fluidez urbana"
+subtitle: "Interiores contemporâneos, vista urbana panorâmica e marcenaria sob medida"
 location: "Recife, PE"
 year: 2023
 typology: "Interiores Residencial"
 category: "construido"
 scope:
-  - "Projeto de Reforma de Interiores"
-  - "Marcenaria Autoral"
+  - "Projeto de Arquitetura de Interiores"
+  - "Marcenaria Sob Medida"
   - "Projeto Luminotécnico"
-  - "Curadoria de Mobiliário"
-summary: "Reforma completa de apartamento no bairro do Rosarinho, revelando o teto original em concreto aparente e unificando as áreas sociais por meio de marcenaria sob medida em madeira clara e serralheria minimalista."
+  - "Curadoria de Mobiliário e Arte"
+summary: "Projeto de interiores e reforma no bairro do Rosarinho, integrando living com vista panorâmica para o Recife, sala de TV com painel em cimento queimado e portas espelhadas bronze, sala de jantar com cadeiras em palhinha e couro caramelo, home office planejado e suíte acolhedora."
 area: "135 m²"
 photography: "Fotografia Oficial Trópikos"
 order: 2
 featured: true
 cover: "../../assets/projects/apartamento-rosarinho/01-cover.webp"
-coverAlt: "Área social integrada do Apartamento Rosarinho com teto em concreto aparente e marcenaria clara"
+coverAlt: "Living integrado com vista panorâmica para a cidade através da cortina de vidro, poltrona em couro caramelo, sofá cinza e galeria de quadros decorativos"
 gallery:
   - "../../assets/projects/apartamento-rosarinho/02-estar-aparador.webp"
   - "../../assets/projects/apartamento-rosarinho/03-mesa-pendente.webp"
@@ -26,15 +26,15 @@ gallery:
   - "../../assets/projects/apartamento-rosarinho/07-lavabo-concreto.webp"
   - "../../assets/projects/apartamento-rosarinho/08-iluminacao-natural.webp"
 galleryAlt:
-  - "Sala de estar com aparador suspenso em marcenaria e tela de arte pernambucana"
-  - "Sala de jantar com mesa em madeira maciça e luminária pendente contemporânea"
-  - "Portal de circulação em marcenaria delimitando suavemente área social e íntima"
-  - "Bancada gourmet integrada com acabamento em quartzo e armários ripados"
-  - "Suíte principal com cabeceira estofada em linho e iluminação indireta"
-  - "Lavabo com bancada monolítica e cuba esculpida"
-  - "Luz natural da tarde banhando os materiais e texturas do espaço social"
+  - "Sala de estar com painel de TV em acabamento cimento queimado, rack com portas espelhadas bronze, adega climatizada embutida e iluminação por trilhos de spots pretos"
+  - "Estação de trabalho e estudos com cadeira giratória mesh preta e composição de quadros temáticos pop/gamer na parede cinza"
+  - "Cabeceira da suíte em marcenaria clara com mesa de cabeceira embutida, luminária aramada de apoio, pendente em cobre e enxoval vinho e rosé"
+  - "Sala de jantar com mesa de tampo em vidro preto, cadeiras com encosto em palhinha e assento em couro caramelo, espelho amplo e pendentes geométricos aramados"
+  - "Home office planejado com bancada e armários aéreos em marcenaria cinza grafite, computador e cadeira ergonômica"
+  - "Armário roupeiro planejado em madeira clara natural com puxadores pretos lineares e vista para o quarto infantil ao fundo"
+  - "Detalhe da cabeceira com nicho iluminado por fita de LED indireta, relógio, escultura decorativa e quadros de arte na parede"
 ---
 
-O projeto do Apartamento Rosarinho partiu do desejo de desobstruir a planta original dos anos 90, criando um único ambiente contínuo para receber, cozinhar e conviver.
+O projeto para o Apartamento no Rosarinho transformou o espaço existente em um lar cosmopolita, funcional e acolhedor para a rotina da família.
 
-A decisão de descascar o gesso e expor a laje nervurada de concreto confere identidade tectônica e honestidade aos materiais. Painéis e portas mimetizadas em carvalho natural escondem as áreas de serviço e abrigam armários funcionais sem poluição visual.
+A integração dos ambientes sociais privilegia a vista panorâmica para a paisagem urbana do Recife através do fechamento em cortina de vidro. A materialidade combina o aspecto contemporâneo do cimento queimado no painel da sala com o calor da marcenaria em madeira clara, vidros espelhados bronze e toques de couro caramelo nas cadeiras de jantar e poltrona do living. Na área íntima, soluções inteligentes de marcenaria otimizam as estações de home office e os dormitórios com iluminação indireta pontual.

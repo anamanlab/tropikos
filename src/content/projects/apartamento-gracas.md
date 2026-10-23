@@ -1,21 +1,21 @@
 ---
 title: "Apartamento Graças"
-subtitle: "Painéis ripados, atmosfera intimista e marcenaria sob medida nas Graças"
+subtitle: "Laje nervurada em concreto aparente, textura mineral, cristaleira bronze e suíte tecnológica"
 location: "Recife, PE"
 year: 2024
 typology: "Interiores Residencial"
 category: "projeto"
 scope:
   - "Projeto de Arquitetura de Interiores"
-  - "Marcenaria e Serralheria Sob Medida"
   - "Projeto Luminotécnico Cênico"
-  - "Modelagem e Renders 4K"
-summary: "Projeto de interiores no tradicional bairro das Graças, onde a marcenaria ripada em madeira freijó envolve os volumes sociais, camuflando acessos e criando uma experiência acolhedora de aconchego."
+  - "Marcenaria e Serralheria Sob Medida"
+  - "Modelagem 3D e Renders 4K"
+summary: "Projeto de interiores de alto padrão no bairro das Graças, combinando laje nervurada em concreto aparente com iluminação perimetral em LED, paredes com textura de granitina, cristaleira e adega piso-teto em vidro bronze, banheiro em mármore Nero Marquina e suíte com setup integrado de trabalho."
 area: "160 m²"
 order: 7
 featured: false
 cover: "../../assets/projects/apartamento-gracas/01-cover.webp"
-coverAlt: "Sala de estar e jantar do Apartamento Graças com painéis ripados e iluminação acolhedora"
+coverAlt: "Living e sala de jantar contemporâneos sob laje nervurada em concreto aparente com iluminação perimetral em LED, paredes em granitina, painel preto espelhado com TV e mesa com cadeiras cromadas"
 gallery:
   - "../../assets/projects/apartamento-gracas/02-cozinha-ilha.webp"
   - "../../assets/projects/apartamento-gracas/03-painel-ripado.webp"
@@ -24,14 +24,14 @@ gallery:
   - "../../assets/projects/apartamento-gracas/06-suite-casal.webp"
   - "../../assets/projects/apartamento-gracas/07-varanda-copa.webp"
 galleryAlt:
-  - "Cozinha integrada com ilha central e marcenaria em tons suaves de cinza e madeira"
-  - "Detalhe do painel ripado contínuo com portas pivotantes camufladas"
-  - "Luminária de tecido orgânico criando ponto de iluminação difusa sobre o estar"
-  - "Estante de livros e objetos com nichos assimétricos iluminados por fitas LED"
-  - "Suíte máster com cabeceira estofada e composição de espelhos bronze"
-  - "Varanda integrada à área social com vista para as copas das árvores das Graças"
+  - "Vista reversa do living com grande sofá modular off-white, cristaleira em vidro bronze iluminada do chão ao teto e mesa de copa com cadeiras curvas de pés cromados"
+  - "Banheiro de luxo contemporâneo com revestimento marmorizado escuro no box com vidro fumê, bancada em mármore branco com cuba esculpida e espelho com perfis verticais de LED"
+  - "Vista superior da bancada do banheiro em mármore branco com cuba esculpida, torneira curva de bica alta em inox escovado, marcenaria suspensa e bandeja decorativa"
+  - "Cristaleira e torre de vinhos piso-teto em vidro bronze iluminada, bancada gourmet com adega embutida e copa com mesa redonda e luminária pendente cúpula"
+  - "Suíte contemporânea integrada com cama de casal, closet com portas em vidro transparente, painel em marcenaria branca com TV embutida e bancada de trabalho com cadeira ergonômica verde"
+  - "Setup de trabalho e gaming integrado ao quarto com três monitores panorâmicos, gabinete gamer com iluminação interna, bancada em 'L' com fita LED embutida e cama de casal ao fundo"
 ---
 
-O Apartamento Graças foi desenhado para uma família que valoriza o tempo de permanência em casa e a convivência íntima.
+O projeto de interiores para o Apartamento Graças aposta em uma estética brutalista-minimalista refinada, onde a honestidade dos materiais dita a identidade dos espaços.
 
-A circulação é orientada por uma pele de marcenaria ripada que abraça os ambientes sociais, escondendo a entrada do lavabo e a passagem para a cozinha quando fechada. A iluminação indireta foi milimetricamente posicionada para valorizar os veios da madeira e os tecidos naturais do mobiliário.
+A laje nervurada em concreto aparente na área social foi emoldurada por uma sanca perimetral com fita de LED contínua, realçando o contraste entre o concreto e as paredes revestidas em textura mineral de granitina clara. A área social integra living, jantar e uma imponente torre cristaleira em vidro bronze com adega climatizada. Na área íntima, a suíte une repouso e trabalho com closet em vidro transparente e uma bancada de alta performance tecnológica com múltiplos monitores e iluminação ergonômica.
