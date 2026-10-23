@@ -1,5 +1,7 @@
 ---
-// LGPD consent banner. Stores choice in localStorage; updates GA4 Consent Mode v2.
+// LGPD consent banner. Persists the choice in a first-party cookie (shared by
+// tropikos.com.br and www.tropikos.com.br) and localStorage; updates GA4
+// Consent Mode v2.
 ---
 <div
   id="consent-banner"
@@ -32,6 +34,7 @@
 <script is:inline>
   (function () {
     var KEY = 'tropikos_consent';
+    var MAX_AGE = 60 * 60 * 24 * 365; // 1 year
     var banner = document.getElementById('consent-banner');
     if (!banner) return;
 
@@ -46,10 +49,54 @@
       }
     }
 
-    var stored = null;
-    try { stored = localStorage.getItem(KEY); } catch (e) {}
+    // Share the choice between the apex and www hosts. Other hosts (local dev,
+    // workers.dev previews) get a host-only cookie.
+    function cookieDomain() {
+      return /(^|\.)tropikos\.com\.br$/.test(window.location.hostname)
+        ? '; Domain=tropikos.com.br'
+        : '';
+    }
 
-    if (stored === 'accept' || stored === 'deny') {
+    function readCookie() {
+      var prefix = KEY + '=';
+      var parts = document.cookie ? document.cookie.split('; ') : [];
+      for (var i = 0; i < parts.length; i++) {
+        if (parts[i].indexOf(prefix) === 0) {
+          try { return decodeURIComponent(parts[i].slice(prefix.length)); } catch (e) { return null; }
+        }
+      }
+      return null;
+    }
+
+    function writeCookie(choice) {
+      document.cookie = KEY + '=' + encodeURIComponent(choice) +
+        '; Path=/; Max-Age=' + MAX_AGE + '; SameSite=Lax' +
+        (window.location.protocol === 'https:' ? '; Secure' : '') +
+        cookieDomain();
+    }
+
+    function readStored() {
+      // The cookie wins because it is the value shared across apex and www.
+      // localStorage is the fallback for visitors who accepted before the
+      // cookie was introduced, or where cookies are unavailable.
+      var fromCookie = readCookie();
+      if (fromCookie === 'accept' || fromCookie === 'deny') return fromCookie;
+
+      var value = null;
+      try { value = localStorage.getItem(KEY); } catch (e) {}
+      return value === 'accept' || value === 'deny' ? value : null;
+    }
+
+    function store(choice) {
+      try { localStorage.setItem(KEY, choice); } catch (e) {}
+      writeCookie(choice);
+    }
+
+    var stored = readStored();
+
+    if (stored) {
+      // Keep both stores in sync in case a previous visit only wrote one.
+      store(stored);
       apply(stored);
       return;
     }
@@ -63,7 +110,8 @@
     banner.querySelectorAll('[data-consent]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var choice = btn.getAttribute('data-consent');
-        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        if (choice !== 'accept' && choice !== 'deny') return;
+        store(choice);
         apply(choice);
         banner.classList.add('hidden');
         var floatBtn2 = document.querySelector('.whatsapp-float');
