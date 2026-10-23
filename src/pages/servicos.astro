@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema.astro';
 import { SERVICES, SITE } from '@/site.config';
 import imgProjeto from '@/assets/projects/casa-brut/01-cover.webp';
 import imgInteriores from '@/assets/projects/apartamento-rosarinho/01-cover.webp';
@@ -34,6 +35,7 @@ const process = [
   title="Serviços"
   description="Projeto arquitetônico, interiores, execução de obra e consultoria no Recife — Trópikos Arquitetos."
 >
+  <BreadcrumbSchema items={[{ name: 'Início', url: '/' }, { name: 'Serviços', url: '/servicos' }]} />
   <section class="shell pt-[calc(var(--header-y)+5rem)]">
     <p class="caption text-concrete">(03) Serviços</p>
     <div class="mt-6 grid grid-cols-12 gap-5">
@@ -87,6 +89,7 @@ const process = [
     <div class="rule-top flex items-baseline justify-between gap-4 py-4 mb-6">
       <h2 class="caption">Matéria construída</h2>
       <a href="/projetos" class="caption link-rule text-concrete">Ver portfólio completo ↗</a>
+      <a href="/perguntas" class="caption link-rule text-concrete">Perguntas frequentes ↗</a>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
       <a href="/projetos/casa-brut" class="group block overflow-hidden">
@@ -183,10 +186,10 @@ const process = [
       Conte o que você quer construir.
     </p>
     <a
-      href={`https://wa.me/${SITE.whatsapp}`}
+      href={SITE.whatsappHref}
       target="_blank"
       rel="noopener"
-      class="caption mt-8 inline-flex items-center gap-2 border-b border-hairline pb-1 transition-opacity hover:opacity-50"
+      class="caption mt-8 inline-flex items-center gap-2 border-b border-hairline pb-1 transition-opacity hover:opacity-50 tap"
     >
       Falar no WhatsApp <span aria-hidden="true">↗</span>
     </a>

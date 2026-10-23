@@ -1,9 +1,28 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema.astro';
 import { SITE } from '@/site.config';
-import studioSpace from '@/assets/studio/01-estudio-espaco.webp';
-import studioCollab from '@/assets/studio/03-estudio-colaboracao.webp';
+import studioDuo from '@/assets/studio/04-socios-tropikos.webp';
+import brunoPortrait from '@/assets/studio/bruno-icaro.webp';
+import silvioPortrait from '@/assets/studio/silvio-melo-jr.webp';
+
+const partners = [
+  {
+    name: 'Sílvio Melo Jr.',
+    role: 'Sócio-fundador · Arquiteto e urbanista',
+    bio: 'Acompanha o projeto do primeiro estudo à entrega das chaves. O canteiro é parte do método: estar presente na obra, ajustar o que só aparece quando a construção começa e garantir que a intenção desenhada chegue de pé ao fim.',
+    image: silvioPortrait,
+    alt: 'Retrato de Sílvio Melo Jr., sócio-fundador do Trópikos Arquitetos, à mesa do estúdio',
+  },
+  {
+    name: 'Bruno Ícaro',
+    role: 'Sócio-fundador · Arquiteto e urbanista',
+    bio: 'Seu trabalho começa pelo lugar: orientação, clima, topografia e o modo de morar de quem chega. Interessa-se pela passagem entre arquitetura e interiores, pelo detalhe que resolve mais de uma questão e pela matéria que envelhece bem.',
+    image: brunoPortrait,
+    alt: 'Retrato de Bruno Ícaro, sócio-fundador do Trópikos Arquitetos, à mesa do estúdio',
+  },
+];
 
 const principles = [
   {
@@ -40,6 +59,14 @@ const facts = [
   title="Estúdio"
   description="Trópikos Arquitetos é um escritório de arquitetura e interiores no Recife, com projeto e execução sob o mesmo teto."
 >
+  <BreadcrumbSchema items={[{ name: 'Início', url: '/' }, { name: 'Estúdio', url: '/estudio' }]} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      { '@type': 'Person', name: 'Bruno Ícaro', jobTitle: 'Sócio-fundador · Arquiteto e urbanista', worksFor: { '@type': 'Organization', name: 'Trópikos Arquitetos' } },
+      { '@type': 'Person', name: 'Sílvio Melo Jr.', jobTitle: 'Sócio-fundador · Arquiteto e urbanista', worksFor: { '@type': 'Organization', name: 'Trópikos Arquitetos' } },
+    ],
+  })} />
   <section class="shell pt-[calc(var(--header-y)+5rem)]">
     <p class="caption text-concrete">(02) Estúdio</p>
     <h1
@@ -84,33 +111,50 @@ const facts = [
   </section>
 
   <section class="shell pb-[clamp(4rem,8vw,8rem)]">
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6">
-      <figure class="overflow-hidden">
-        <Image
-          src={studioSpace}
-          alt="Espaço de criação e pranchetas do Trópikos Arquitetos"
-          class="aspect-[4/5] sm:aspect-[3/4] w-full object-cover"
-          widths={[600, 1000, 1400]}
-          sizes="(min-width: 640px) 50vw, 100vw"
-          format="webp"
-        />
-        <figcaption class="caption text-concrete mt-3">
-          Prancheta e estúdio · Parnamirim, Recife
-        </figcaption>
-      </figure>
-      <figure class="overflow-hidden">
-        <Image
-          src={studioCollab}
-          alt="Discussão de materiais, amostras e pranchas arquitetônicas"
-          class="aspect-[4/5] sm:aspect-[3/4] w-full object-cover"
-          widths={[600, 1000, 1400]}
-          sizes="(min-width: 640px) 50vw, 100vw"
-          format="webp"
-        />
-        <figcaption class="caption text-concrete mt-3">
-          Pesquisa de matéria, texturas e detalhamento
-        </figcaption>
-      </figure>
+    <figure class="overflow-hidden">
+      <Image
+        src={studioDuo}
+        alt="Sílvio Melo Jr., à esquerda, e Bruno Ícaro, à direita — sócios-fundadores do Trópikos Arquitetos, lado a lado no estúdio"
+        class="aspect-[4/5] sm:aspect-[3/2] w-full object-cover object-[center_18%]"
+        widths={[800, 1200, 1600]}
+        sizes="100vw"
+        format="webp"
+      />
+      <figcaption
+        class="caption text-concrete mt-3 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1"
+      >
+        <span>Os sócios · Sílvio Melo Jr. (esq.) e Bruno Ícaro (dir.)</span>
+        <span>Retrato no estúdio</span>
+      </figcaption>
+    </figure>
+
+    <div class="rule-top mt-[clamp(3rem,6vw,5rem)] flex flex-wrap items-baseline justify-between gap-4 py-4">
+      <h2 class="caption">Sócios-fundadores</h2>
+      <p class="caption text-concrete">Dois arquitetos, uma mesma mesa</p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-6">
+      {
+        partners.map((partner) => (
+          <article>
+            <figure class="overflow-hidden">
+              <Image
+                src={partner.image}
+                alt={partner.alt}
+                class="aspect-[3/4] w-full object-cover"
+                widths={[600, 900, 1200]}
+                sizes="(min-width: 640px) 50vw, 100vw"
+                format="webp"
+              />
+            </figure>
+            <h3 class="mt-5 text-[clamp(1.4rem,2.3vw,1.9rem)] leading-[1.08] tracking-[-0.03em]">
+              {partner.name}
+            </h3>
+            <p class="caption text-concrete mt-2">{partner.role}</p>
+            <p class="body-copy mt-4 max-w-[44ch] text-concrete">{partner.bio}</p>
+          </article>
+        ))
+      }
     </div>
   </section>
 
@@ -157,7 +201,10 @@ const facts = [
         </address>
         <p class="body-copy mt-6">
           <a class="link-rule tap" href={`mailto:${SITE.email}`}>{SITE.email}</a><br />
-          <a class="link-rule tap" href={`https://wa.me/${SITE.whatsapp}`}>{SITE.phone}</a>
+          <a class="link-rule tap" href={`tel:${SITE.phone.replace(/\D/g, '')}`}>{SITE.phone}</a><br />
+          <a class="link-rule tap" href={SITE.whatsappHref} target="_blank" rel="noopener">
+            WhatsApp ↗
+          </a>
         </p>
         <p class="body-copy mt-6 text-concrete">
           Atendimento com hora marcada, de segunda a sexta, das 9h às 18h.

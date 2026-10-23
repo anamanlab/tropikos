@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema.astro';
 import ProjectRow from '@/components/ProjectRow.astro';
 import ProjectCard from '@/components/ProjectCard.astro';
 
@@ -17,6 +18,7 @@ const counts = {
 ---
 
 <BaseLayout title="Projetos" description="Projetos selecionados do Trópikos Arquitetos — Recife, PE.">
+  <BreadcrumbSchema items={[{ name: 'Início', url: '/' }, { name: 'Projetos', url: '/projetos' }]} />
   <section class="shell pt-[calc(var(--header-y)+5rem)]">
     <div class="grid grid-cols-12 gap-5">
       <div class="col-span-12 md:col-span-8">

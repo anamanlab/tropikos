@@ -77,7 +77,10 @@ const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`)
         <p class="caption text-concrete mb-2">Contato</p>
         <p class="body-copy">
           <a class="link-rule tap" href={`mailto:${SITE.email}`}>{SITE.email}</a><br />
-          <a class="link-rule tap" href={`https://wa.me/${SITE.whatsapp}`}>{SITE.phone}</a>
+          <a class="link-rule tap" href={`tel:${SITE.phone.replace(/\D/g, '')}`}>{SITE.phone}</a><br />
+          <a class="link-rule tap" href={SITE.whatsappHref} target="_blank" rel="noopener">
+            WhatsApp ↗
+          </a>
         </p>
       </div>
       <div>

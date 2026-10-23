@@ -1,0 +1,77 @@
+---
+// LGPD consent banner. Stores choice in localStorage; updates GA4 Consent Mode v2.
+---
+<div
+  id="consent-banner"
+  class="fixed inset-x-0 bottom-0 z-[60] hidden border-t border-hairline bg-paper text-ink"
+  role="dialog"
+  aria-live="polite"
+  aria-label="Consentimento de cookies"
+>
+  <div class="shell flex flex-col gap-4 py-4 sm:flex-row sm:items-center sm:justify-between">
+    <p class="body-copy max-w-[60ch] text-concrete">
+      Usamos cookies para medir acessos e melhorar a experiência. Você pode aceitar ou recusar a
+      coleta de dados analíticos.
+    </p>
+    <div class="flex shrink-0 items-center gap-3">
+      <button
+        type="button"
+        data-consent="deny"
+        class="caption border-b border-hairline pb-1 transition-opacity hover:opacity-50 tap"
+      >
+        Recusar
+      </button>
+      <button
+        type="button"
+        data-consent="accept"
+        class="caption border-b border-hairline pb-1 transition-opacity hover:opacity-50 tap"
+      >
+        Aceitar
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var KEY = 'tropikos_consent';
+    var banner = document.getElementById('consent-banner');
+    if (!banner) return;
+
+    function apply(choice) {
+      if (typeof window.gtag === 'function') {
+        window.gtag('consent', 'update', {
+          analytics_storage: choice === 'accept' ? 'granted' : 'denied',
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied'
+        });
+      }
+    }
+
+    var stored = null;
+    try { stored = localStorage.getItem(KEY); } catch (e) {}
+
+    if (stored === 'accept' || stored === 'deny') {
+      apply(stored);
+      return;
+    }
+
+    // No choice yet — show banner and hide the floating WhatsApp button so it
+    // doesn't overlap the consent actions.
+    var floatBtn = document.querySelector('.whatsapp-float');
+    if (floatBtn) floatBtn.classList.add('hidden');
+    banner.classList.remove('hidden');
+
+    banner.querySelectorAll('[data-consent]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var choice = btn.getAttribute('data-consent');
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        apply(choice);
+        banner.classList.add('hidden');
+        var floatBtn2 = document.querySelector('.whatsapp-float');
+        if (floatBtn2) floatBtn2.classList.remove('hidden');
+      });
+    });
+  })();
+</script>

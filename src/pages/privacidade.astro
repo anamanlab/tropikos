@@ -1,0 +1,217 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema.astro';
+import { SITE } from '@/site.config';
+
+const updated = '23 de outubro de 2026';
+---
+<BaseLayout
+  title="Política de privacidade"
+  description="Política de privacidade do site do Trópikos Arquitetos, em conformidade com a LGPD (Lei 13.709/2018)."
+>
+  <BreadcrumbSchema items={[{ name: 'Início', url: '/' }, { name: 'Privacidade', url: '/privacidade' }]} />
+
+  <section class="shell pt-[calc(var(--header-y)+5rem)] pb-[clamp(4rem,8vw,8rem)]">
+    <p class="caption text-concrete">(Legal) Privacidade</p>
+    <h1
+      class="mt-6 max-w-[16ch] text-[clamp(2.4rem,7.4vw,7.4rem)] leading-[0.9] tracking-[-0.05em] text-balance break-words"
+    >
+      Política de privacidade
+    </h1>
+    <p class="body-copy mt-6 max-w-[52ch] text-concrete">
+      Última atualização: {updated}. Esta política descreve como o Trópikos Arquitetos coleta,
+      usa e protege seus dados pessoais, em conformidade com a Lei Geral de Proteção de Dados
+      (LGPD — Lei nº 13.709/2018).
+    </p>
+
+    <div class="mt-[clamp(3rem,7vw,6rem)] grid grid-cols-1 gap-10 md:grid-cols-12">
+      <div class="md:col-span-8 md:col-start-3 space-y-10">
+
+        <section>
+          <h2 class="text-[clamp(1.3rem,2.2vw,1.8rem)] leading-[1.1] tracking-[-0.03em]">1. Quem somos (controlador)</h2>
+          <p class="body-copy mt-4 text-concrete">
+            O controlador dos dados pessoais coletados por este site é o <strong class="text-ink">Trópikos Arquitetos</strong>,
+            inscrito no CAU/PE, com sede em {SITE.address.street}, {SITE.address.building}, {SITE.address.district},
+            {SITE.address.city} — {SITE.address.state}, CEP {SITE.address.postalCode}.
+          </p>
+          <p class="body-copy mt-3 text-concrete">
+            Contato do controlador: <a class="link-rule tap" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+            · <a class="link-rule tap" href={SITE.whatsappHref} target="_blank" rel="noopener">WhatsApp {SITE.phone}</a>.
+          </p>
+          <p class="body-copy mt-3 text-concrete">
+            Encarregado (DPO) pelo tratamento de dados: Bruno Ícaro e Sílvio Melo Jr., sócios-fundadores,
+            contatáveis pelo e-mail acima.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-[clamp(1.3rem,2.2vw,1.8rem)] leading-[1.1] tracking-[-0.03em]">2. Quais dados coletamos</h2>
+          <p class="body-copy mt-4 text-concrete">Coletamos apenas o mínimo necessário para o funcionamento do site e para responder ao seu contato:</p>
+          <ul class="body-copy mt-3 space-y-2 text-concrete list-disc pl-5">
+            <li><strong class="text-ink">Dados de navegação (analytics):</strong> páginas visitadas, tempo de permanência, origem do tráfego, tipo de dispositivo e navegador, endereço IP (anonimizado pelo Google Analytics).</li>
+            <li><strong class="text-ink">Dados de contato voluntários:</strong> quando você nos escreve por e-mail ou WhatsApp, coletamos o que você compartilha (nome, telefone, endereço do imóvel, fotos, prazo).</li>
+            <li><strong class="text-ink">Cookies e armazenamento local:</strong> preferência de consentimento (aceitar/recusar analytics), armazenada no seu navegador.</li>
+          </ul>
+          <p class="body-copy mt-3 text-concrete">Não coletamos dados sensíveis (Art. 5º, II da LGPD), não realizamos perfilamento automatizado e não direcionamos o site a menores de 18 anos. Se identificarmos dados de menores, eles serão eliminados.</p>
+        </section>
+
+        <section>
+          <h2 class="text-[clamp(1.3rem,2.2vw,1.8rem)] leading-[1.1] tracking-[-0.03em]">3. Finalidade e base legal (Art. 7 e Art. 9)</h2>
+          <div class="mt-4 overflow-x-auto">
+            <table class="w-full text-left body-copy">
+              <thead>
+                <tr class="border-b border-hairline">
+                  <th class="py-2 pr-4 caption text-concrete">Finalidade</th>
+                  <th class="py-2 pr-4 caption text-concrete">Dados</th>
+                  <th class="py-2 caption text-concrete">Base legal</th>
+                </tr>
+              </thead>
+              <tbody class="text-concrete">
+                <tr class="border-b border-hairline">
+                  <td class="py-3 pr-4">Medir acessos e melhorar o site</td>
+                  <td class="py-3 pr-4">Dados de navegação</td>
+                  <td class="py-3">Consentimento (Art. 7, I) — via banner de cookies</td>
+                </tr>
+                <tr class="border-b border-hairline">
+                  <td class="py-3 pr-4">Responder a contatos e orçamentos</td>
+                  <td class="py-3 pr-4">Dados enviados por você</td>
+                  <td class="py-3">Execução de contrato / medidas pré-contratuais (Art. 7, V)</td>
+                </tr>
+                <tr>
+                  <td class="py-3 pr-4">Segurança e prevenção a fraudes</td>
+                  <td class="py-3 pr-4">Dados de navegação</td>
+                  <td class="py-3">Legítimo interesse (Art. 7, IX)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-[clamp(1.3rem,2.2vw,1.8rem)] leading-[1.1] tracking-[-0.03em]">4. Compartilhamento de dados</h2>
+          <p class="body-copy mt-4 text-concrete">
+            Não vendemos nem alugamos seus dados. Compartilhamos apenas com os prestadores necessários para o
+            funcionamento do site:
+          </p>
+          <ul class="body-copy mt-3 space-y-2 text-concrete list-disc pl-5">
+            <li><strong class="text-ink">Google Analytics (Google LLC)</strong> — medição de acessos. Os dados podem ser transferidos para servidores nos Estados Unidos.</li>
+            <li><strong class="text-ink">Cloudflare</strong> — hospedagem e entrega do site (CDN).</li>
+            <li><strong class="text-ink">WhatsApp (Meta)</strong> — quando você clica em um link de WhatsApp, a conversa ocorre na plataforma da Meta, sujeita à política de privacidade dela.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-[clamp(1.3rem,2.2vw,1.8rem)] leading-[1.1] tracking-[-0.03em]">5. Transferência internacional</h2>
+          <p class="body-copy mt-4 text-concrete">
+            O Google Analytics pode transferir dados para os Estados Unidos. Essa transferência ocorre com base em
+            cláusulas contratuais padrão (Google LLC) e demais garantias aplicáveis — os Estados Unidos não estão
+            na lista de jurisdições adequadas da ANPD. A União Europeia e o Espaço Econômico Europeu são
+            considerados jurisdições adequadas desde janeiro de 2026 (decisão de adequação mútua Brasil–UE).
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-[clamp(1.3rem,2.2vw,1.8rem)] leading-[1.1] tracking-[-0.03em]">6. Retenção</h2>
+          <p class="body-copy mt-4 text-concrete">
+            Os dados de analytics são retidos pelo Google Analytics conforme a configuração da propriedade (de 2 a
+            14 meses). Dados de contato (e-mails e mensagens de WhatsApp) são mantidos enquanto a relação comercial
+            existir e pelo prazo legal aplicável. Você pode solicitar a exclusão a qualquer momento (seção 7).
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-[clamp(1.3rem,2.2vw,1.8rem)] leading-[1.1] tracking-[-0.03em]">7. Seus direitos (Art. 18 da LGPD)</h2>
+          <p class="body-copy mt-4 text-concrete">Você pode, a qualquer momento e gratuitamente:</p>
+          <ul class="body-copy mt-3 space-y-2 text-concrete list-disc pl-5">
+            <li>Confirmar a existência de tratamento dos seus dados;</li>
+            <li>Acessar seus dados;</li>
+            <li>Corrigir dados incompletos, inexatos ou desatualizados;</li>
+            <li>Solicitar anonimização, bloqueio ou eliminação;</li>
+            <li>Solicitar portabilidade;</li>
+            <li>Revogar o consentimento;</li>
+            <li>Obter informações sobre compartilhamento;</li>
+            <li>Revisar decisões tomadas unicamente com base em tratamento automatizado.</li>
+          </ul>
+          <p class="body-copy mt-3 text-concrete">
+            Para revogar o consentimento de analytics, limpe os dados do site no seu navegador; o banner de
+            consentimento voltará a aparecer na próxima visita.
+          </p>
+          <p class="body-copy mt-3 text-concrete">
+            Para exercer seus direitos, envie um e-mail para
+            <a class="link-rule tap" href={`mailto:${SITE.email}`}>{SITE.email}</a> com o assunto "LGPD — direitos do titular".
+            Responderemos em até 15 dias.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-[clamp(1.3rem,2.2vw,1.8rem)] leading-[1.1] tracking-[-0.03em]">8. Cookies</h2>
+          <p class="body-copy mt-4 text-concrete">
+            Este site usa cookies e armazenamento local para:
+          </p>
+          <div class="mt-4 overflow-x-auto">
+            <table class="w-full text-left body-copy">
+              <thead>
+                <tr class="border-b border-hairline">
+                  <th class="py-2 pr-4 caption text-concrete">Nome</th>
+                  <th class="py-2 pr-4 caption text-concrete">Tipo</th>
+                  <th class="py-2 pr-4 caption text-concrete">Finalidade</th>
+                  <th class="py-2 caption text-concrete">Duração</th>
+                </tr>
+              </thead>
+              <tbody class="text-concrete">
+                <tr class="border-b border-hairline">
+                  <td class="py-3 pr-4"><code class="text-[0.9em]">tropikos_consent</code></td>
+                  <td class="py-3 pr-4">Armazenamento local</td>
+                  <td class="py-3 pr-4">Preferência de consentimento (aceitar/recusar)</td>
+                  <td class="py-3">Até ser apagado</td>
+                </tr>
+                <tr class="border-b border-hairline">
+                  <td class="py-3 pr-4"><code class="text-[0.9em]">_ga</code></td>
+                  <td class="py-3 pr-4">Cookie (GA4)</td>
+                  <td class="py-3 pr-4">Identificar usuário (analytics) — apenas com consentimento</td>
+                  <td class="py-3">2 anos</td>
+                </tr>
+                <tr>
+                  <td class="py-3 pr-4"><code class="text-[0.9em]">_ga_*</code></td>
+                  <td class="py-3 pr-4">Cookie (GA4)</td>
+                  <td class="py-3 pr-4">Manter estado da sessão — apenas com consentimento</td>
+                  <td class="py-3">2 anos</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="body-copy mt-3 text-concrete">
+            Os cookies de analytics são definidos apenas se você aceitar no banner de consentimento. Sem aceite,
+            nenhuma medição é realizada.
+          </p>
+          <p class="body-copy mt-3 text-concrete">
+            Você pode alterar sua escolha a qualquer momento limpando os dados do site no seu navegador;
+            o banner voltará a aparecer.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-[clamp(1.3rem,2.2vw,1.8rem)] leading-[1.1] tracking-[-0.03em]">9. Segurança</h2>
+          <p class="body-copy mt-4 text-concrete">
+            Adotamos medidas técnicas e administrativas para proteger seus dados: HTTPS em todo o site,
+            hospedagem em infraestrutura com proteção DDoS e backups, acesso restrito aos dados.
+            Em caso de incidente de segurança com risco relevante, notificaremos a ANPD e os titulares
+            afetados conforme o Art. 48 da LGPD.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-[clamp(1.3rem,2.2vw,1.8rem)] leading-[1.1] tracking-[-0.03em]">10. Alterações nesta política</h2>
+          <p class="body-copy mt-4 text-concrete">
+            Esta política pode ser atualizada. A data da última atualização está no topo da página.
+            Mudanças significativas serão comunicadas no site.
+          </p>
+        </section>
+
+        <p class="caption mt-12 text-concrete">
+          Trópikos Arquitetos · CAU/PE · Recife, PE · Desde {SITE.founded}
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

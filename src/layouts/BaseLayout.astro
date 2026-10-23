@@ -2,6 +2,8 @@
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import MenuOverlay from '@/components/MenuOverlay.astro';
+import ConsentBanner from '@/components/ConsentBanner.astro';
+import WhatsAppFloat from '@/components/WhatsAppFloat.astro';
 import BaseHead from '@/components/BaseHead.astro';
 import { SITE } from '@/site.config';
 import '@/styles/global.css';
@@ -36,5 +38,26 @@ const { title, description, image, footer = true } = Astro.props;
     </main>
     {footer && <Footer />}
     <MenuOverlay />
+    <ConsentBanner />
+    <WhatsAppFloat />
+
+    <script is:inline>
+      // Track conversion-intent clicks (WhatsApp, phone, email) as GA4 events.
+      // No-op when gtag isn't loaded (no Measurement ID configured yet).
+      (function () {
+        function track(name, url) {
+          if (typeof window.gtag !== 'function') return;
+          try { window.gtag('event', name, { link_url: url }); } catch (e) {}
+        }
+        document.addEventListener('click', function (e) {
+          var a = e.target && e.target.closest ? e.target.closest('a') : null;
+          if (!a) return;
+          var href = a.getAttribute('href') || '';
+          if (href.indexOf('https://wa.me') === 0) track('whatsapp_click', href);
+          else if (href.indexOf('tel:') === 0) track('phone_click', href);
+          else if (href.indexOf('mailto:') === 0) track('email_click', href);
+        }, { passive: true });
+      })();
+    </script>
   </body>
 </html>

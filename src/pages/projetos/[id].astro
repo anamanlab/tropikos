@@ -3,6 +3,7 @@ import { getCollection, render, type CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import AdaptiveGallery from '@/components/AdaptiveGallery.astro';
+import { SITE } from '@/site.config';
 
 export async function getStaticPaths() {
   const entries = await getCollection('projects', ({ data }) => !data.draft);
@@ -158,6 +159,21 @@ const indexLabel = String(position + 1).padStart(2, '0');
         </section>
       )
     }
+
+    <section class="shell py-[clamp(4rem,8vw,8rem)]">
+      <p class="caption text-concrete">Gostou deste projeto?</p>
+      <p class="mt-5 max-w-[22ch] text-[clamp(2rem,4.6vw,4.2rem)] leading-[0.95] tracking-[-0.045em]">
+        Vamos conversar sobre o seu.
+      </p>
+      <a
+        href={SITE.whatsappHref}
+        target="_blank"
+        rel="noopener"
+        class="caption mt-8 inline-flex items-center gap-2 border-b border-hairline pb-1 transition-opacity hover:opacity-50 tap"
+      >
+        Falar no WhatsApp <span aria-hidden="true">↗</span>
+      </a>
+    </section>
 
     <section class="inverse relative isolate overflow-hidden">
       {

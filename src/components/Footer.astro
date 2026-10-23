@@ -23,10 +23,18 @@ const year = new Date().getFullYear();
         </a>
         <p class="caption text-concrete mb-5">Vamos construir</p>
         <a
-          href={`mailto:${SITE.email}`}
+          href={SITE.whatsappHref}
+          target="_blank"
+          rel="noopener"
           class="display block max-w-[16ch] text-[clamp(2.1rem,4.6vw,4.6rem)] leading-[0.92] tracking-[-0.045em] transition-opacity hover:opacity-55"
         >
           Fale com o estúdio
+        </a>
+        <a
+          href={`mailto:${SITE.email}`}
+          class="caption mt-4 inline-block border-b border-paper/40 pb-1 text-paper/80 transition-opacity hover:opacity-55 tap"
+        >
+          ou por e-mail ↗
         </a>
       </div>
 
@@ -53,6 +61,11 @@ const year = new Date().getFullYear();
               </li>
             ))
           }
+          <li>
+            <a href="/perguntas" class="transition-opacity hover:opacity-55">
+              Perguntas
+            </a>
+          </li>
         </ul>
       </div>
 
@@ -107,6 +120,9 @@ const year = new Date().getFullYear();
       <p class="caption text-concrete">
         {SITE.address.city}, {SITE.address.state} — {SITE.country}
       </p>
+      <a href="/privacidade" class="caption text-concrete transition-colors hover:text-paper">
+        Privacidade
+      </a>
       <a href="#main" class="caption text-concrete transition-colors hover:text-paper">
         Voltar ao topo ↑
       </a>

@@ -22,6 +22,9 @@ export const SITE = {
   phone: '+55 81 99302-0201',
   phoneAlt: '+55 81 99767-4444',
   whatsapp: '5581993020201',
+  whatsappHref:
+    'https://wa.me/5581993020201?text=' +
+    encodeURIComponent('Olá, vim pelo site e gostaria de conversar sobre um projeto.'),
   instagram: 'https://www.instagram.com/tropikosarq/',
   instagramHandle: '@tropikosarq',
   linktree: 'https://linktr.ee/tropikosarq',

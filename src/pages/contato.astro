@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema.astro';
 import { SITE } from '@/site.config';
 
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
@@ -11,6 +12,7 @@ const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
   title="Contato"
   description="Fale com o Trópikos Arquitetos — arquitetura e interiores no Recife, PE."
 >
+  <BreadcrumbSchema items={[{ name: 'Início', url: '/' }, { name: 'Contato', url: '/contato' }]} />
   <section class="shell pt-[calc(var(--header-y)+5rem)]">
     <p class="caption text-concrete">(04) Contato</p>
     <h1
@@ -24,22 +26,27 @@ const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
         <p class="caption text-concrete mb-4">E-mail</p>
         <a
           href={`mailto:${SITE.email}`}
-          class="block max-w-full text-[clamp(1.2rem,2.9vw,2.6rem)] leading-[1.1] tracking-[-0.035em] break-words transition-opacity hover:opacity-50"
+          class="block max-w-full text-[clamp(1.2rem,2.9vw,2.6rem)] leading-[1.1] tracking-[-0.035em] break-words transition-opacity hover:opacity-50 tap"
         >
           {SITE.email}
         </a>
 
         <p class="caption text-concrete mt-12 mb-4">WhatsApp</p>
         <a
-          href={`https://wa.me/${SITE.whatsapp}`}
+          href={SITE.whatsappHref}
           target="_blank"
           rel="noopener"
           aria-label={`Conversar no WhatsApp: ${SITE.phone}`}
-          class="block text-[clamp(1.4rem,3.2vw,2.8rem)] leading-[1.1] tracking-[-0.035em] transition-opacity hover:opacity-50"
+          class="block text-[clamp(1.4rem,3.2vw,2.8rem)] leading-[1.1] tracking-[-0.035em] transition-opacity hover:opacity-50 tap"
         >
           {SITE.phone} <span aria-hidden="true">↗</span>
         </a>
-        <p class="body-copy mt-1 text-concrete">Conversar no WhatsApp · {SITE.phoneAlt}</p>
+        <p class="body-copy mt-1 text-concrete">
+          Conversar no WhatsApp ·{' '}
+          <a href={`tel:${SITE.phoneAlt.replace(/\D/g, '')}`} class="link-rule tap">
+            {SITE.phoneAlt}
+          </a>
+        </p>
 
         <p class="caption text-concrete mt-12 mb-4">Instagram e links</p>
         <div class="flex flex-col items-start gap-3">
