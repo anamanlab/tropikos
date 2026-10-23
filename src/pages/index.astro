@@ -1,5 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProjectBand from '@/components/ProjectBand.astro';
 import ProjectRow from '@/components/ProjectRow.astro';
@@ -9,6 +11,13 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
   (a, b) => a.data.order - b.data.order,
 );
 const featured = projects.filter((entry) => entry.data.featured).slice(0, 4);
+
+// Version the hero film URLs by content so replacing a video busts the CDN
+// cache automatically instead of serving the previous file for up to a day.
+const mediaVersion = (path: string) =>
+  createHash('sha256').update(readFileSync(path)).digest('hex').slice(0, 10);
+const heroWideSrc = `/media/hero-tropikos-wide.mp4?v=${mediaVersion('./public/media/hero-tropikos-wide.mp4')}`;
+const heroTallSrc = `/media/hero-tropikos-tall.mp4?v=${mediaVersion('./public/media/hero-tropikos-tall.mp4')}`;
 ---
 
 <BaseLayout title={`${SITE.name} — Arquitetura no Recife`}>
@@ -45,7 +54,8 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 4);
       </picture>
       <video
         data-hero-video
-        src="/media/hero-tropikos-wide.mp4"
+        data-wide-src={heroWideSrc}
+        data-tall-src={heroTallSrc}
         poster="/media/hero-tropikos-wide-poster.webp"
         autoplay
         muted
@@ -56,10 +66,55 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 4);
         width="1280"
         height="720"
         aria-label="Registro de interiores: sala de estar do Apartamento Edf Diva com cobogó terracota, iluminação quente, sofá curvo e marcenaria autoral"
-      >
-        <source media="(max-width: 767px)" src="/media/hero-tropikos-tall.mp4" type="video/mp4" />
-        <source src="/media/hero-tropikos-wide.mp4" type="video/mp4" />
-      </video>
+      ></video>
+      <script is:inline>
+        (function () {
+          var video = document.querySelector('[data-hero-video]');
+          if (!video) return;
+
+          var mobile = window.matchMedia('(max-width: 767px)').matches;
+          if (mobile) video.poster = '/media/hero-tropikos-tall-poster.webp';
+
+          // Respect reduced-motion: keep the poster and never load the film.
+          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            video.removeAttribute('autoplay');
+            return;
+          }
+
+          video.muted = true;
+          video.defaultMuted = true;
+          var wideSrc =
+            video.getAttribute('data-wide-src') || '/media/hero-tropikos-wide.mp4';
+          var tallSrc =
+            video.getAttribute('data-tall-src') || '/media/hero-tropikos-tall.mp4';
+          video.src = mobile ? tallSrc : wideSrc;
+
+          var attempt = function () {
+            if (!video.paused) return;
+            var played = video.play();
+            if (played && typeof played.catch === 'function') played.catch(function () {});
+          };
+
+          // Autoplay is allowed for muted media, but some browsers still wait
+          // for data. Nudge once now and again when the first frame is ready.
+          video.addEventListener('loadeddata', attempt);
+          attempt();
+
+          // Invisible fallback: if autoplay is blocked, the first interaction
+          // starts the film. No button and no visible playback label.
+          var unlock = function () {
+            attempt();
+          };
+          ['pointerdown', 'touchstart', 'keydown', 'scroll'].forEach(function (type) {
+            window.addEventListener(type, unlock, { passive: true });
+          });
+          video.addEventListener('playing', function () {
+            ['pointerdown', 'touchstart', 'keydown', 'scroll'].forEach(function (type) {
+              window.removeEventListener(type, unlock);
+            });
+          });
+        })();
+      </script>
       <div class="hero-film-scrim absolute inset-0 -z-10" aria-hidden="true"></div>
 
       <div class="shell flex items-start justify-between gap-4">
@@ -186,42 +241,4 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 4);
       }
     </ul>
   </section>
-
-  <script>
-    const hero = document.querySelector<HTMLVideoElement>('[data-hero-video]');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (hero) {
-      hero.muted = true;
-      hero.defaultMuted = true;
-
-      if (reduceMotion) {
-        hero.pause();
-      } else {
-        const tryPlay = () => {
-          hero.muted = true;
-          hero.defaultMuted = true;
-          hero.play().catch(() => {
-            // Autoplay blocked: wait for a user gesture (handled below).
-          });
-        };
-
-        // Native autoplay with an explicit `src` should start on its own;
-        // this is only a safety net for late-loading media.
-        if (hero.readyState >= 2) {
-          tryPlay();
-        } else {
-          hero.addEventListener('loadeddata', tryPlay, { once: true });
-        }
-
-        // Unlock on first user interaction if autoplay was blocked.
-        const unlock = () => {
-          if (hero.paused && !reduceMotion) tryPlay();
-        };
-        window.addEventListener('click', unlock, { passive: true, once: true });
-        window.addEventListener('touchstart', unlock, { passive: true, once: true });
-        window.addEventListener('scroll', unlock, { passive: true, once: true });
-      }
-    }
-  </script>
 </BaseLayout>
