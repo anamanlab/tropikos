@@ -127,9 +127,9 @@
     letter-spacing: -0.05em;
   }
 
-  /* The signature: type as architecture, sized to bleed off both edges. */
+  /* The signature: type as architecture, sized to command the hero while keeping all glyphs visible. */
   .wordmark {
-    font-size: clamp(4.75rem, 24vw, 42rem);
+    font-size: clamp(4rem, 21.2vw, 38rem);
     line-height: 0.78;
     letter-spacing: -0.06em;
     font-weight: 400;
