@@ -129,14 +129,14 @@
 
   /* The signature: type as architecture, sized to bleed off both edges. */
   .wordmark {
-    font-size: clamp(4rem, 18vw, 32rem);
+    font-size: clamp(4rem, 22.2vw, 40rem);
     line-height: 0.78;
     letter-spacing: -0.055em;
     font-weight: 400;
     white-space: nowrap;
     display: block;
     width: max-content;
-    margin-left: 0;
+    margin-left: -0.7vw;
     padding-top: 0.14em;
     user-select: none;
   }
