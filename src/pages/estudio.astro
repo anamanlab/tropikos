@@ -3,7 +3,6 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema.astro';
 import { SITE } from '@/site.config';
-import studioDuo from '@/assets/studio/04-socios-tropikos.webp';
 import brunoPortrait from '@/assets/studio/bruno-icaro.webp';
 import silvioPortrait from '@/assets/studio/silvio-melo-jr.webp';
 
@@ -111,24 +110,7 @@ const facts = [
   </section>
 
   <section class="shell pb-[clamp(4rem,8vw,8rem)]">
-    <figure class="overflow-hidden">
-      <Image
-        src={studioDuo}
-        alt="Sílvio Melo Jr., à esquerda, e Bruno Ícaro, à direita — sócios-fundadores do Trópikos Arquitetos, lado a lado no estúdio"
-        class="aspect-[4/5] sm:aspect-[3/2] w-full object-cover object-[center_18%]"
-        widths={[800, 1200, 1600]}
-        sizes="100vw"
-        format="webp"
-      />
-      <figcaption
-        class="caption text-concrete mt-3 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1"
-      >
-        <span>Os sócios · Sílvio Melo Jr. (esq.) e Bruno Ícaro (dir.)</span>
-        <span>Retrato no estúdio</span>
-      </figcaption>
-    </figure>
-
-    <div class="rule-top mt-[clamp(3rem,6vw,5rem)] flex flex-wrap items-baseline justify-between gap-4 py-4">
+    <div class="rule-top flex flex-wrap items-baseline justify-between gap-4 py-4">
       <h2 class="caption">Sócios-fundadores</h2>
       <p class="caption text-concrete">Dois arquitetos, uma mesma mesa</p>
     </div>
