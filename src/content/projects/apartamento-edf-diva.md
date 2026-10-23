@@ -1,6 +1,6 @@
 ---
 title: "Apartamento Edf Diva"
-subtitle: "Estante linear iluminada, mesa escultural em pedra e sofisticação em mármore rosso"
+subtitle: "Cobogó terracota, estante linear iluminada, mesa escultural em pedra e mármore rosso"
 location: "Recife, PE"
 year: 2023
 typology: "Interiores Residencial"
@@ -10,7 +10,7 @@ scope:
   - "Marcenaria e Mobiliário Sob Medida"
   - "Projeto Luminotécnico"
   - "Curadoria de Arte Popular Brasileira"
-summary: "Projeto de interiores residencial no Edifício Diva, explorando estante linear com iluminação em LED e arte popular em cerâmica, mesa de jantar escultural em pedra perfurada, suíte com painel de madeira em treliça tridimensional e banheiro com bancada esculpida em mármore rosso travertino."
+summary: "Projeto de interiores no Edifício Diva unindo parede divisória em cobogó cerâmico terracota, estante linear com iluminação em LED e arte popular brasileira, mesa de jantar escultural em pedra perfurada, suíte com painel em treliça tridimensional e banheiro esculpido em mármore rosso travertino."
 area: "145 m²"
 order: 5
 featured: false
@@ -26,6 +26,6 @@ galleryAlt:
   - "Vista superior em plongée do banheiro da suíte com bancada esculpida em mármore rosso travertino avermelhado, piso e box em ladrilhos pontilhados em terracota e nicho iluminado"
 ---
 
-O projeto para o Apartamento no Edifício Diva articula a elegância do design contemporâneo à riqueza material da arte popular brasileira e das pedras naturais.
+O projeto para o Apartamento no Edifício Diva articula a elegância do design contemporâneo à riqueza material da arte popular brasileira e dos elementos tradicionais pernambucanos.
 
-A área social é estruturada por uma estante horizontal contínua com rack suspenso em madeira nogueira natural e prateleiras metálicas brancas retroiluminadas por LED, servindo como galeria para esculturas de cerâmica figurativa e vegetação pendente. A sala de jantar ganha destaque com a mesa redonda monolítica esculpida em pedra porosa com perfurações esculturais. Na área íntima, a suíte combina o conforto de uma cama baixa em tecido bouclé com painel de madeira usinada em treliça geométrica, enquanto o banheiro surpreende pelo uso dramático do mármore rosso travertino esculpido e ladrilhos com detalhes em terracota.
+A área social é marcada pela presença da parede divisória em cobogó cerâmico terracota, filtrando a luz e promovendo ventilação contínua na sala de estar. O ambiente conta com sofá curvo modular em tecido bouclé, tapete ondulado orgânico e uma estante horizontal contínua com rack suspenso em nogueira e prateleiras retroiluminadas por LED. Na sala de jantar, destaca-se a mesa monolítica esculpida em pedra porosa perfurada. A área íntima dispõe de suíte com cabeceira macia e painel usinado em treliça tridimensional, complementada por banheiro com bancada esculpida em mármore rosso travertino.

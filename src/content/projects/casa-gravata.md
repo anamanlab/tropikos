@@ -4,7 +4,7 @@ subtitle: "Reforma sensível no centro urbano, marcenaria verde sálvia e memór
 location: "Gravatá, PE"
 year: 2021
 typology: "Residencial Unifamiliar"
-category: "reforma"
+category: "construido"
 scope:
   - "Projeto de Reforma"
   - "Arquitetura de Interiores"
