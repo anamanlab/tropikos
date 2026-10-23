@@ -91,6 +91,8 @@ const heroTallSrc = `/media/hero-tropikos-tall.mp4?v=${mediaVersion('./public/me
           var tallSrc =
             video.getAttribute('data-tall-src') || '/media/hero-tropikos-tall.mp4';
           video.src = mobile ? tallSrc : wideSrc;
+          // Force the media element to pick up the new src before playback.
+          try { video.load(); } catch (e) {}
 
           var attempt = function () {
             if (!video.paused) return;
@@ -127,8 +129,8 @@ const heroTallSrc = `/media/hero-tropikos-tall.mp4?v=${mediaVersion('./public/me
       <div>
         <div class="crop">
           <h1 class="wordmark text-paper">
-            TRÓPIKOS <span class="sr-only"
-              >Arquitetos — arquitetura e interiores no Recife, Pernambuco</span
+            TRÓPIKOS<span class="sr-only">
+              Arquitetos — arquitetura e interiores no Recife, Pernambuco</span
             >
           </h1>
         </div>
