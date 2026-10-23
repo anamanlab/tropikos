@@ -78,11 +78,8 @@ const heroTallSrc = `/media/hero-tropikos-tall.mp4?v=${mediaVersion('./public/me
           var mobile = window.matchMedia('(max-width: 767px)').matches;
           if (mobile) video.poster = '/media/hero-tropikos-tall-poster.webp';
 
-          // Respect reduced-motion: keep the poster and never load the film.
-          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            video.removeAttribute('autoplay');
-            return;
-          }
+          // Respect reduced-motion for animations, but still allow the film to
+          // play on explicit user request via the fallback control below.
 
           video.muted = true;
           video.defaultMuted = true;
@@ -94,11 +91,28 @@ const heroTallSrc = `/media/hero-tropikos-tall.mp4?v=${mediaVersion('./public/me
           // Force the media element to pick up the new src before playback.
           try { video.load(); } catch (e) {}
 
-          var attempt = function () {
-            if (!video.paused) return;
-            var played = video.play();
-            if (played && typeof played.catch === 'function') played.catch(function () {});
+          var playBtn = document.querySelector('[data-hero-play]');
+          var showPlay = function () {
+            if (playBtn) playBtn.classList.remove('hidden');
           };
+          var hidePlay = function () {
+            if (playBtn) playBtn.classList.add('hidden');
+          };
+
+          var attempt = function () {
+            if (!video.paused) { hidePlay(); return; }
+            var played = video.play();
+            if (played && typeof played.catch === 'function') {
+              played.catch(function () { showPlay(); });
+            }
+          };
+
+          if (playBtn) {
+            playBtn.addEventListener('click', function () {
+              attempt();
+              hidePlay();
+            });
+          }
 
           // Autoplay is allowed for muted media, but some browsers still wait
           // for data. Nudge once now and again when the first frame is ready.
@@ -120,6 +134,16 @@ const heroTallSrc = `/media/hero-tropikos-tall.mp4?v=${mediaVersion('./public/me
           });
         })();
       </script>
+      <button
+        type="button"
+        data-hero-play
+        class="absolute bottom-4 right-4 z-20 hidden h-9 w-9 items-center justify-center rounded-full bg-paper/85 text-ink backdrop-blur transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper"
+        aria-label="Reproduzir vídeo do hero"
+      >
+        <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+      </button>
       <div class="hero-film-scrim absolute inset-0 -z-10" aria-hidden="true"></div>
 
       <div class="shell flex items-start justify-between gap-4">

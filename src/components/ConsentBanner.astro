@@ -3,32 +3,29 @@
 ---
 <div
   id="consent-banner"
-  class="fixed inset-x-0 bottom-0 z-[60] hidden border-t border-hairline bg-paper text-ink"
+  class="fixed bottom-3 left-3 right-3 z-[60] hidden max-w-sm rounded-md border border-hairline bg-paper/95 p-3 text-ink shadow-sm backdrop-blur sm:left-auto sm:right-4"
   role="dialog"
   aria-live="polite"
   aria-label="Consentimento de cookies"
 >
-  <div class="shell flex flex-col gap-4 py-4 sm:flex-row sm:items-center sm:justify-between">
-    <p class="body-copy max-w-[60ch] text-concrete">
-      Usamos cookies para medir acessos e melhorar a experiência. Você pode aceitar ou recusar a
-      coleta de dados analíticos.
-    </p>
-    <div class="flex shrink-0 items-center gap-3">
-      <button
-        type="button"
-        data-consent="deny"
-        class="caption border-b border-hairline pb-1 transition-opacity hover:opacity-50 tap"
-      >
-        Recusar
-      </button>
-      <button
-        type="button"
-        data-consent="accept"
-        class="caption border-b border-hairline pb-1 transition-opacity hover:opacity-50 tap"
-      >
-        Aceitar
-      </button>
-    </div>
+  <p class="caption text-concrete">
+    Usamos cookies para medir acessos. Aceitar ou recusar?
+  </p>
+  <div class="mt-2 flex items-center gap-4">
+    <button
+      type="button"
+      data-consent="deny"
+      class="caption border-b border-hairline pb-0.5 transition-opacity hover:opacity-50 tap"
+    >
+      Recusar
+    </button>
+    <button
+      type="button"
+      data-consent="accept"
+      class="caption border-b border-hairline pb-0.5 transition-opacity hover:opacity-50 tap"
+    >
+      Aceitar
+    </button>
   </div>
 </div>
 
