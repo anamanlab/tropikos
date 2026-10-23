@@ -52,13 +52,19 @@ Não é o encaixe certo para compra de móveis prontos, projetos sem visita téc
 
 ## Projetos selecionados
 
-- Apartamento Edf Diva
-- Casa BRUT
-- Apartamento Rosarinho
-- Bangalô 60 Carneiros
-- Casa Boa Viagem
-- Casa Gravatá
-- (lista completa em /projetos)
+- Apartamento Edf Diva (Recife, PE)
+- Apartamento Rosarinho (Recife, PE)
+- Casa Centro Gravatá (Gravatá, PE)
+- Casa BRUT (Recife, PE)
+- Bangalô 60 Carneiros (Tamandaré, PE)
+- Bangalô 48 Carneiros (Tamandaré, PE)
+- Apartamento Graças (Recife, PE)
+- Casa Ipubi (Ipubi, PE)
+- Casas Geminadas Condomínio (Gravatá, PE)
+- Clínica Esthetica (Recife, PE)
+- Casa em Bonito (Bonito, PE)
+- Casa Ouricuri (Ouricuri, PE)
+- (catálogo completo em /projetos)
 
 ## Como começar um projeto
 

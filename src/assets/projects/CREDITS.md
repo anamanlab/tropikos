@@ -59,6 +59,16 @@ Todos os projetos e fotografias presentes neste website são trabalhos originais
 - **Ano**: 2023
 - **Mídia**: Renders 3D de volumetria e lazer privativo (`Silvio/Renders de projetos/Bruno Caffé Casas geminadas em condomínio`)
 
+### Casa em Bonito
+- **Local**: Bonito — PE
+- **Ano**: 2022
+- **Mídia**: Renders 3D de inserção na paisagem serrana (`Silvio/Renders de projetos/Catarina Tigre - Casa em Bonito/Renders`) em colaboração com Thiago Abreu
+
+### Casa Ouricuri
+- **Local**: Ouricuri — PE (Sertão do Araripe)
+- **Ano**: 2023
+- **Mídia**: Renders 4K UHD de interiores e escada flutuante em granilite (`Silvio/Renders de projetos/Casa em Ouricuri/render`)
+
 ---
 
 ## 3. Comercial e Saúde (Obra Entregue)
