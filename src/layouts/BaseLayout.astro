@@ -38,8 +38,8 @@ const { title, description, image, footer = true } = Astro.props;
     </main>
     {footer && <Footer />}
     <MenuOverlay />
-    <ConsentBanner />
     <WhatsAppFloat />
+    <ConsentBanner />
 
     <script is:inline>
       // Track conversion-intent clicks (WhatsApp, phone, email) as GA4 events.
