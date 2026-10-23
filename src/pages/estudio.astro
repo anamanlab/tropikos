@@ -59,7 +59,7 @@ const facts = [
   description="Trópikos Arquitetos é um escritório de arquitetura e interiores no Recife, com projeto e execução sob o mesmo teto."
 >
   <BreadcrumbSchema items={[{ name: 'Início', url: '/' }, { name: 'Estúdio', url: '/estudio' }]} />
-  <script type="application/ld+json" set:html={JSON.stringify({
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
     '@context': 'https://schema.org',
     '@graph': [
       { '@type': 'Person', name: 'Bruno Ícaro', jobTitle: 'Sócio-fundador · Arquiteto e urbanista', worksFor: { '@type': 'Organization', name: 'Trópikos Arquitetos' } },

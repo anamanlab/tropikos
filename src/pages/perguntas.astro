@@ -70,7 +70,7 @@ const faqJsonLd = {
 ---
 <BaseLayout title="Perguntas frequentes" description="Perguntas frequentes sobre arquitetura, projetos, reformas e contratação de arquiteto no Recife — Trópikos Arquitetos.">
   <BreadcrumbSchema items={[{ name: 'Início', url: '/' }, { name: 'Perguntas frequentes', url: '/perguntas' }]} />
-  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
 
   <section class="shell pt-[calc(var(--header-y)+5rem)]">
     <p class="caption text-concrete">(FAQ) Perguntas frequentes</p>
@@ -87,7 +87,7 @@ const faqJsonLd = {
   <section class="shell py-[clamp(4rem,8vw,8rem)]">
     <div class="max-w-[72ch]">
       {
-        faqs.map((f, i) => (
+        faqs.map((f) => (
           <details class="border-b border-hairline py-6 group">
             <summary class="flex cursor-pointer list-none items-baseline justify-between gap-4">
               <span class="text-[clamp(1.15rem,1.8vw,1.5rem)] leading-[1.15] tracking-[-0.02em]">

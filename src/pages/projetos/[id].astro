@@ -2,6 +2,7 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema.astro';
 import AdaptiveGallery from '@/components/AdaptiveGallery.astro';
 import { SITE } from '@/site.config';
 
@@ -42,7 +43,14 @@ const next = all[(position + 1) % all.length];
 const indexLabel = String(position + 1).padStart(2, '0');
 ---
 
-<BaseLayout title={title} description={summary}>
+<BaseLayout title={title} description={summary} image={cover?.src}>
+  <BreadcrumbSchema
+    items={[
+      { name: 'Início', url: '/' },
+      { name: 'Projetos', url: '/projetos' },
+      { name: title, url: `/projetos/${entry.id}` },
+    ]}
+  />
   <article>
     <header class="shell pt-[calc(var(--header-y)+4rem)]">
       <div class="flex items-center justify-between gap-4">

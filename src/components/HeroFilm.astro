@@ -1,0 +1,152 @@
+---
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { SITE } from '@/site.config';
+
+// Version the hero film URLs by content so replacing a video busts the CDN
+// cache automatically instead of serving the previous file for up to a day.
+const mediaVersion = (path: string) =>
+  createHash('sha256').update(readFileSync(path)).digest('hex').slice(0, 10);
+const heroWideSrc = `/media/hero-tropikos-wide.mp4?v=${mediaVersion('./public/media/hero-tropikos-wide.mp4')}`;
+const heroTallSrc = `/media/hero-tropikos-tall.mp4?v=${mediaVersion('./public/media/hero-tropikos-tall.mp4')}`;
+---
+
+<div
+  class="hero-film relative isolate mt-auto flex min-h-[clamp(26rem,66svh,52rem)] flex-col justify-between overflow-hidden bg-onyx py-[var(--header-y)] text-paper"
+>
+  <picture class="absolute inset-0 -z-10 block h-full w-full">
+    <source media="(max-width: 767px)" srcset="/media/hero-tropikos-tall-poster.webp" type="image/webp" />
+    <img
+      src="/media/hero-tropikos-wide-poster.webp"
+      alt=""
+      width="1280"
+      height="720"
+      fetchpriority="high"
+      decoding="async"
+      class="h-full w-full object-cover"
+    />
+  </picture>
+  <video
+    data-hero-video
+    data-wide-src={heroWideSrc}
+    data-tall-src={heroTallSrc}
+    poster="/media/hero-tropikos-wide-poster.webp"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    class="absolute inset-0 -z-10 h-full w-full object-cover"
+    width="1280"
+    height="720"
+    aria-label="Registro de interiores: sala de estar do Apartamento Edf Diva com cobogó terracota, iluminação quente, sofá curvo e marcenaria autoral"
+  ></video>
+  <script is:inline>
+    (function () {
+      var video = document.querySelector('[data-hero-video]');
+      if (!video) return;
+
+      var mobile = window.matchMedia('(max-width: 767px)').matches;
+      if (mobile) video.poster = '/media/hero-tropikos-tall-poster.webp';
+
+      // Respect reduced-motion for animations, but still allow the film to
+      // play on explicit user request via the fallback control below.
+
+      video.muted = true;
+      video.defaultMuted = true;
+      var wideSrc =
+        video.getAttribute('data-wide-src') || '/media/hero-tropikos-wide.mp4';
+      var tallSrc =
+        video.getAttribute('data-tall-src') || '/media/hero-tropikos-tall.mp4';
+      video.src = mobile ? tallSrc : wideSrc;
+      // Force the media element to pick up the new src before playback.
+      try { video.load(); } catch (e) {}
+
+      var playBtn = document.querySelector('[data-hero-play]');
+      var showPlay = function () {
+        if (playBtn) playBtn.classList.remove('hidden');
+      };
+      var hidePlay = function () {
+        if (playBtn) playBtn.classList.add('hidden');
+      };
+
+      var attempt = function () {
+        if (!video.paused) { hidePlay(); return; }
+        var played = video.play();
+        if (played && typeof played.catch === 'function') {
+          played.catch(function () { showPlay(); });
+        }
+      };
+
+      if (playBtn) {
+        playBtn.addEventListener('click', function () {
+          attempt();
+          hidePlay();
+        });
+      }
+
+      // Autoplay is allowed for muted media, but some browsers still wait
+      // for data. Nudge once now and again when the first frame is ready.
+      video.addEventListener('loadeddata', attempt);
+      attempt();
+
+      // Invisible fallback: if autoplay is blocked, the first interaction
+      // starts the film. No button and no visible playback label.
+      var unlock = function () {
+        attempt();
+      };
+      ['pointerdown', 'touchstart', 'keydown', 'scroll'].forEach(function (type) {
+        window.addEventListener(type, unlock, { passive: true });
+      });
+      video.addEventListener('playing', function () {
+        ['pointerdown', 'touchstart', 'keydown', 'scroll'].forEach(function (type) {
+          window.removeEventListener(type, unlock);
+        });
+      });
+    })();
+  </script>
+  <button
+    type="button"
+    data-hero-play
+    class="absolute bottom-4 right-4 z-20 hidden h-9 w-9 items-center justify-center rounded-full bg-paper/85 text-ink backdrop-blur transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper"
+    aria-label="Reproduzir vídeo do hero"
+  >
+    <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true">
+      <path d="M8 5v14l11-7z" />
+    </svg>
+  </button>
+  <div class="hero-film-scrim absolute inset-0 -z-10" aria-hidden="true"></div>
+
+  <div class="shell flex items-start justify-between gap-4">
+    <p class="caption text-paper/90">Registro de interiores · Apartamento Edf Diva</p>
+  </div>
+
+  <div>
+    <div class="crop">
+      <h1 class="wordmark text-paper">
+        TRÓPIKOS<span class="sr-only">
+          Arquitetos — arquitetura e interiores no Recife, Pernambuco</span
+        >
+      </h1>
+    </div>
+    <div class="shell rule-top-soft mt-5 flex flex-wrap items-baseline justify-between gap-3 pt-4">
+      <p class="caption text-paper/80">
+        Arquitetura e interiores no Recife · Obra sob controle
+      </p>
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+        <a href="/projetos/apartamento-edf-diva" class="caption link-rule text-paper/80 tap">
+          Ver o projeto ↗
+        </a>
+        <a
+          href={SITE.whatsappHref}
+          target="_blank"
+          rel="noopener"
+          class="caption link-rule text-paper/80 tap"
+        >
+          Falar no WhatsApp ↗
+        </a>
+        <p class="caption hidden text-paper/80 sm:block">Recife — PE · 08°03′S 34°52′W</p>
+      </div>
+    </div>
+  </div>
+</div>

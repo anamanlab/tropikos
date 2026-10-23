@@ -21,6 +21,11 @@ const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || 'G-7KB6VK4D5Y';
 const fullTitle = pageTitle.includes(SITE.name) ? pageTitle : `${pageTitle} — ${SITE.name}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImage = new URL(image, Astro.site);
+const imageType = socialImage.pathname.endsWith('.png')
+  ? 'image/png'
+  : socialImage.pathname.endsWith('.webp')
+    ? 'image/webp'
+    : 'image/jpeg';
 const siteUrl = (Astro.site?.toString() ?? 'https://tropikos.com.br/').replace(/\/$/, '');
 const organizationId = `${siteUrl}/#organization`;
 
@@ -117,7 +122,7 @@ const jsonLd = {
 <meta property="og:description" content={description} />
 <meta property="og:image" content={socialImage} />
 <meta property="og:image:secure_url" content={socialImage} />
-<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:type" content={imageType} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content={fullTitle} />
@@ -140,7 +145,7 @@ const jsonLd = {
 
 <!-- Google Analytics 4 (gtag.js) + Consent Mode v2 (LGPD).
      Measurement ID: G-7KB6VK4D5Y. Consent defaults to denied until the user accepts. -->
-<script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
 <script is:inline define:vars={{ gaId }}>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
