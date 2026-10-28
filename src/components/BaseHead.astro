@@ -1,6 +1,6 @@
 ---
 import { Font } from 'astro:assets';
-import { SITE } from '@/site.config';
+import { AREA_SERVED, SITE } from '@/site.config';
 
 interface Props {
   title: string;
@@ -98,7 +98,7 @@ const jsonLd = {
       closes: '18:00',
     },
   ],
-  areaServed: ['Recife', 'Pernambuco', 'Nordeste'],
+  areaServed: [...AREA_SERVED, 'Pernambuco', 'Nordeste'],
   sameAs: [SITE.instagram, SITE.linktree],
 };
 ---

@@ -29,9 +29,9 @@ Astro 7 + Tailwind 4 static site for Trópikos Arquitetos, a pt-BR architecture 
 
 ## Content editing
 
-- Required frontmatter: `title`, `location`, `year` (number), `typology`, `summary` (max 400 chars). `cover` and `gallery` are optional; missing media renders the intentional technical-grid placeholder.
+- Required frontmatter: `title`, `location`, `year` (number), `typology`, `status`, `summary` (max 400 chars). `cover` and `gallery` are optional; missing media renders the intentional technical-grid placeholder.
 - Put project images under `src/assets/` and reference them relatively; `public/` files bypass Astro's responsive WebP pipeline. Keep `galleryAlt` aligned with `gallery`.
-- `category` is `construido | projeto | comercial | reforma`. The `/projetos` filter UI only exposes the first three, so a `reforma` entry appears in "Todos" but has no filter button.
+- `category` is `construido | projeto | comercial | reforma` and describes the type of work; `status` is `construido | projeto` and is what the project card badge prints, so a `comercial` or `reforma` project still declares whether it was built. The `/projetos` filter UI only exposes the first three categories, so a `reforma` entry appears in "Todos" but has no filter button.
 - Projects sort by `order` ascending; `draft: true` hides an entry from every page. The home page shows `featured: true` entries, capped at the first four by `order`.
 - Project/studio media is real archive material; see `src/assets/projects/CREDITS.md`. Never invent project facts, credits, or substitute stock imagery. The README's Unsplash placeholder notice is stale.
 - Renaming a project slug? Add 301s to `public/_redirects` (there is already an `apartamento-graca` → `apartamento-gracas` redirect).
@@ -58,4 +58,4 @@ Astro 7 + Tailwind 4 static site for Trópikos Arquitetos, a pt-BR architecture 
 
 - `cloudflare.config.ts` is the real Worker config (name, compatibility date, static assets, 404, run-first routing). `wrangler.config.ts` only tells cf's bundler where `dist/` is; this is a static build, not SSR — don't add `@astrojs/cloudflare`.
 - `SITE_URL` in `astro.config.mjs` and the sitemap URL in `public/robots.txt` are hardcoded together; canonical, OG, and sitemap URLs derive from `SITE_URL`. Update both if the domain changes.
-- Production: https://tropikos.com.br. CI (`.github/workflows/ci.yml`) runs only `pnpm build` for pushes/PRs to `main`; run `pnpm test` locally when the change touches the Worker, SEO metadata, or agent output.
+- Production: https://tropikos.com.br. CI (`.github/workflows/ci.yml`) runs `pnpm build` and then `pnpm test` for pushes/PRs to `main`; the suite fails rather than skips when `dist/` is missing under `CI=true`.

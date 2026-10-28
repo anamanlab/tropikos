@@ -1,0 +1,47 @@
+---
+import { SITE } from '@/site.config';
+
+interface Props {
+  /** Name of the service being offered in these places. */
+  name: string;
+  /** Cities covered. Base city is added automatically. */
+  cities: string[];
+  description: string;
+  /** Path of the page emitting the node, so the entity has an addressable @id. */
+  path: string;
+}
+
+const { name, cities, description, path } = Astro.props;
+const siteUrl = (Astro.site?.toString() ?? 'https://tropikos.com.br/').replace(/\/$/, '');
+// Match the canonical form (trailing slash) so the node and the page do not
+// describe two different URLs for the same resource.
+const url = `${siteUrl}${path.replace(/\/$/, '')}/`;
+
+// Cities carry no geo coordinates on purpose: the studio publishes no verified
+// boundary data per municipality, and an invented centroid is worse than none.
+const areaServed = [SITE.city, ...cities.filter((city) => city !== SITE.city)].map((city) => ({
+  '@type': 'City',
+  name: city,
+  containedInPlace: {
+    '@type': 'AdministrativeArea',
+    name: `${SITE.state}, ${SITE.country}`,
+  },
+}));
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${url}#service`,
+  name,
+  description,
+  url,
+  serviceType: 'Arquitetura, interiores e execução de obra',
+  areaServed,
+  // Reference, not a copy: this keeps the single Recife address from BaseHead
+  // as the only postal location any page claims.
+  provider: { '@id': `${siteUrl}/#architectural-service` },
+  availableLanguage: ['Portuguese'],
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

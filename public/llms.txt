@@ -41,11 +41,24 @@ Não é o encaixe certo para compra de móveis prontos, projetos sem visita téc
 - Estúdio: https://tropikos.com.br/estudio
 - Projetos: https://tropikos.com.br/projetos
 - Serviços: https://tropikos.com.br/servicos
+- Atuação (cidades atendidas): https://tropikos.com.br/atuacao
 - Perguntas frequentes: https://tropikos.com.br/perguntas
 - Contato: https://tropikos.com.br/contato
 - Privacidade: https://tropikos.com.br/privacidade
 - Conteúdo completo para agentes: https://tropikos.com.br/llms-full.txt
 - Sitemap: https://tropikos.com.br/sitemap-index.xml
+
+## Atuação
+
+O estúdio tem sede no Recife, no Parnamirim, e atende projetos em outras cidades de Pernambuco. **Não há escritórios nessas cidades.** O desenvolvimento do projeto acontece à distância; levantamento, vistorias de obra e entrega acontecem em visitas presenciais agendadas, com o custo de deslocamento previsto no escopo e combinado antes da contratação.
+
+Onde há obra concluída: Recife (Apartamento Rosarinho), Gravatá (Casa Centro Gravatá), Praia dos Carneiros em Tamandaré (Bangalô 48 e Bangalô 60). As demais cidades são atendimento a projetos, sem obra executada até o momento — as páginas de cada cidade dizem isso de forma explícita.
+
+- Olinda: https://tropikos.com.br/atuacao/olinda
+- Jaboatão dos Guararapes: https://tropikos.com.br/atuacao/jaboatao-dos-guararapes
+- Paulista: https://tropikos.com.br/atuacao/paulista
+- Caruaru: https://tropikos.com.br/atuacao/caruaru
+- Gravatá: https://tropikos.com.br/atuacao/gravata
 
 ## Projetos
 
@@ -70,4 +83,4 @@ Envie o endereço do imóvel, algumas fotos e uma ideia de prazo. Na primeira co
 
 ## Keywords
 
-arquitetura recife, arquiteto recife, projeto arquitetônico recife, interiores recife, arquitetura autoral, execução de obra recife, reforma recife, arquitetura nordeste, escritório de arquitetura pernambuco
+arquitetura recife, arquiteto recife, projeto arquitetônico recife, interiores recife, arquitetura autoral, execução de obra recife, reforma recife, arquitetura nordeste, escritório de arquitetura pernambuco, arquiteto olinda, arquiteto jaboatao dos guararapes, arquiteto paulista pe, arquiteto caruaru, arquiteto gravata

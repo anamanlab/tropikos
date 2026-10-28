@@ -5,6 +5,7 @@ location: "Bonito, PE"
 year: 2022
 typology: "Residencial Unifamiliar"
 category: "projeto"
+status: "projeto"
 scope:
   - "Projeto Arquitetônico"
   - "Estudo de Inserção na Paisagem Serrana"

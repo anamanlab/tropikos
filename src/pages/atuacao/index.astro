@@ -1,0 +1,141 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema.astro';
+import ServiceAreaSchema from '@/components/ServiceAreaSchema.astro';
+import { SERVICE_AREAS, SERVICE_MODEL, SITE } from '@/site.config';
+
+const description =
+  'Onde o Trópikos Arquitetos atende: Recife, Olinda, Jaboatão dos Guararapes, Paulista, Caruaru e Gravatá. Sede no Recife, visitas técnicas sob agendamento.';
+---
+
+<BaseLayout title="Arquiteto em Pernambuco" description={description}>
+  <BreadcrumbSchema
+    items={[
+      { name: 'Início', url: '/' },
+      { name: 'Atuação', url: '/atuacao' },
+    ]}
+  />
+  <ServiceAreaSchema
+    name="Arquitetura e interiores em Pernambuco"
+    cities={SERVICE_AREAS.map((area) => area.city)}
+    description={description}
+    path="/atuacao"
+  />
+
+  <section class="shell pt-[calc(var(--header-y)+5rem)]">
+    <p class="caption text-concrete">(04) Atuação</p>
+    <div class="mt-6 grid grid-cols-12 gap-5">
+      <div class="col-span-12 lg:col-span-8">
+        <h1
+          class="max-w-[15ch] text-[clamp(2.4rem,8vw,8rem)] leading-[0.88] tracking-[-0.05em] text-balance break-words"
+        >
+          Sede no Recife, projeto em Pernambuco.
+        </h1>
+      </div>
+      <div class="col-span-12 lg:col-span-4 lg:pt-16">
+        <p class="body-copy max-w-[34ch] text-concrete">
+          O estúdio é um só. Fora da capital, o projeto anda igual — o que muda é o deslocamento,
+          que é combinado antes de começar, não durante.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell mt-[clamp(4rem,8vw,7rem)]">
+    <div class="rule-top flex items-baseline justify-between gap-4 py-4">
+      <h2 class="caption">Áreas atendidas</h2>
+      <p class="caption text-concrete">({String(SERVICE_AREAS.length).padStart(2, '0')})</p>
+    </div>
+    <ul>
+      {
+        SERVICE_AREAS.map((area) => (
+          <li class="border-b border-hairline">
+            <a
+              href={`/atuacao/${area.slug}`}
+              class="group grid grid-cols-[1fr_auto] items-start gap-x-4 gap-y-1 py-7 sm:grid-cols-[1fr_auto_auto] sm:items-baseline sm:gap-6 sm:py-9"
+            >
+              <div class="col-start-1 row-start-1">
+                <h3 class="text-[clamp(1.6rem,3.4vw,2.6rem)] leading-[1.02] tracking-[-0.04em] transition-opacity group-hover:opacity-50">
+                  {area.city}
+                </h3>
+                <p class="body-copy mt-1 max-w-[46ch] text-concrete">{area.hubNote}</p>
+              </div>
+              <span
+                class="caption col-start-2 row-start-1 justify-self-end text-concrete sm:col-start-3 sm:self-center"
+                aria-hidden="true">↗</span
+              >
+              <p
+                class="caption col-span-2 row-start-2 text-concrete sm:col-span-1 sm:col-start-2 sm:row-start-1 sm:justify-self-end sm:text-right"
+              >
+                {area.region}
+              </p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="body-copy mt-6 max-w-[52ch] text-concrete">
+      Os projetos na capital estão no <a href="/projetos" class="link-rule tap">portfólio</a> e na
+      <a href="/" class="link-rule tap">página inicial</a>. O escritório fica no Parnamirim, no
+      Recife, e recebe com hora marcada.
+    </p>
+  </section>
+
+  <section class="inverse mt-[clamp(4rem,8vw,7rem)]">
+    <div class="shell py-[clamp(4rem,8vw,8rem)]">
+      <div class="grid grid-cols-1 gap-10 md:grid-cols-12">
+        <div class="md:col-span-3">
+          <p class="caption text-concrete">Atendimento</p>
+          <h2 class="mt-4 max-w-[16ch] text-[clamp(1.6rem,2.8vw,2.4rem)] leading-[1.02] tracking-[-0.04em]">
+            {SERVICE_MODEL.heading}
+          </h2>
+        </div>
+        <div class="md:col-span-8 md:col-start-5">
+          <div class="grid gap-5">
+            {
+              SERVICE_MODEL.paragraphs.map((paragraph) => (
+                <p class="body-copy max-w-[56ch] text-concrete">{paragraph}</p>
+              ))
+            }
+          </div>
+          <ol class="mt-[clamp(2.5rem,5vw,3.5rem)]">
+            {
+              SERVICE_MODEL.steps.map((step) => (
+                <li class="border-b border-paper/25 py-6 first:pt-0">
+                  <div class="grid grid-cols-[2.2rem_1fr] gap-x-4 sm:grid-cols-[3.5rem_1fr_1.2fr] sm:gap-6">
+                    <span class="index text-concrete">{step.index}</span>
+                    <h3 class="text-[clamp(1.15rem,1.8vw,1.45rem)] leading-[1.14] tracking-[-0.025em]">
+                      {step.title}
+                    </h3>
+                    <p class="body-copy col-span-2 mt-2 text-concrete sm:col-span-1 sm:mt-0">
+                      {step.body}
+                    </p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell py-[clamp(4rem,8vw,8rem)]">
+    <p class="caption text-concrete">Próximo passo</p>
+    <p class="mt-5 max-w-[24ch] text-[clamp(2rem,4.6vw,4.2rem)] leading-[0.95] tracking-[-0.045em]">
+      Diga onde fica o imóvel.
+    </p>
+    <p class="body-copy mt-6 max-w-[46ch] text-concrete">
+      Na primeira conversa dizemos se o estúdio atende aquele endereço, quais etapas são
+      presenciais e quanto custa o deslocamento.
+    </p>
+    <a
+      href={SITE.whatsappHref}
+      target="_blank"
+      rel="noopener"
+      class="caption mt-8 inline-flex items-center gap-2 border-b border-hairline pb-1 transition-opacity hover:opacity-50 tap"
+    >
+      Falar no WhatsApp <span aria-hidden="true">↗</span>
+    </a>
+  </section>
+</BaseLayout>

@@ -5,6 +5,7 @@ location: "Praia dos Carneiros, Tamandaré, PE"
 year: 2021
 typology: "Residencial Litorâneo"
 category: "construido"
+status: "construido"
 scope:
   - "Projeto de Reforma"
   - "Design de Interiores"

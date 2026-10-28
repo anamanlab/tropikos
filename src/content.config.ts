@@ -12,6 +12,9 @@ const projects = defineCollection({
       year: z.number(),
       typology: z.string(),
       category: z.enum(['construido', 'projeto', 'comercial', 'reforma']).default('projeto'),
+      // Build stage, distinct from type: "comercial" or "reforma" says what the
+      // work is, not whether it was built. Every project must declare this.
+      status: z.enum(['construido', 'projeto']),
       scope: z.array(z.string()).default([]),
       summary: z.string().max(400),
       cover: image().optional(),
