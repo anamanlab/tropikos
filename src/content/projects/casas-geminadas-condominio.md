@@ -5,6 +5,7 @@ location: "Gravatá, PE"
 year: 2023
 typology: "Residencial Multifamiliar"
 category: "projeto"
+status: "projeto"
 scope:
   - "Projeto Arquitetônico Conceitual"
   - "Estudo de Fachadas e Volumetria"

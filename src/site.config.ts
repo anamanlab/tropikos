@@ -37,6 +37,10 @@ export const SITE = {
 /** E.164 tel: href. Keeps the leading "+", which a \D strip would drop. */
 export const telHref = (number: string) => `tel:${number.replace(/[\s()\-.]/g, '')}`;
 
+/** WhatsApp link whose prefilled message names the place, so the studio can see where a lead came from. */
+export const whatsappHrefFor = (message: string) =>
+  `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(message)}`;
+
 export const NAV_LINKS = [
   { label: 'Projetos', href: '/projetos', index: '01' },
   { label: 'Estúdio', href: '/estudio', index: '02' },
@@ -76,8 +80,8 @@ export const SERVICES = [
  * Service areas are cities the studio takes on work in — not offices. Each page
  * names the Recife base in its own words, explains how visits happen, and ties
  * the local content to real landmarks and real design consequences. `projects`
- * lists real portfolio ids; every card prints its own location and category, so
- * a visitor can tell built work from a 3D project, and one city from another.
+ * lists real portfolio ids; the build fails on an id that is missing or draft,
+ * and every card prints its own status and location.
  */
 export type ServiceArea = {
   slug: string;
@@ -92,7 +96,7 @@ export type ServiceArea = {
   intro: string[];
   /** A landmark or local condition, and what it changes in the project. */
   localLens: { place: string; body: string }[];
-  /** Prose answer to "where in this city does the work actually happen?". */
+  /** Prose answer to "what does the studio take on in this city?". */
   whereWeWork: string;
   /** How visits and travel are arranged for this city. */
   attendance: string;
@@ -168,7 +172,7 @@ export const SERVICE_AREAS: ServiceArea[] = [
       },
     ],
     whereWeWork:
-      'Na orla, o trabalho aparece em Casa Caiada, Bairro Novo e Jardim Atlântico, entre prédios dos anos 80 e 90 e casas em lote regular. No Sítio Histórico a intervenção costuma ser cirúrgica: recuperar o que existe e abrir só o necessário. Em Guadalupe e Rio Doce surge a casa de esquina com uso misto e a reforma de apartamento antigo, onde reorganizar a planta rende mais que acrescentar metragem.',
+      'Em Olinda, o atendimento se organiza por tipo de imóvel. Na orla — Casa Caiada, Bairro Novo e Jardim Atlântico — são apartamentos e casas em prédios dos anos 80 e 90, onde maresia, insolação e planta compartimentada pesam no estudo. No Sítio Histórico, é o casario protegido: a intervenção começa pela leitura do que a norma permite no lote. Em Guadalupe e Rio Doce, a casa de esquina com uso misto e o apartamento antigo, em que reorganizar a planta rende mais que acrescentar metragem.',
     attendance:
       'Olinda está na Região Metropolitana, então levantamento e vistorias cabem em visitas de meio período. As datas são combinadas no início do projeto e o deslocamento entra no escopo.',
     faq: [
@@ -194,7 +198,7 @@ export const SERVICE_AREAS: ServiceArea[] = [
       },
     ],
     projectsNote:
-      'Ainda não executamos obra em Olinda. Os projetos abaixo são trabalho real do estúdio, e cada cartão indica a cidade e a natureza do trabalho.',
+      'Ainda não executamos obra em Olinda. Os projetos abaixo são trabalho real do estúdio, e cada cartão indica a cidade e o estágio — construído ou projeto.',
     projects: ['apartamento-rosarinho', 'apartamento-gracas', 'bangalo-60-carneiros', 'casa-brut'],
   },
   {
@@ -232,7 +236,7 @@ export const SERVICE_AREAS: ServiceArea[] = [
       },
     ],
     whereWeWork:
-      'Na orla — Piedade, Candeias, Barra de Jangada — o trabalho é casa e apartamento com o mar perto: fundação, esquadria e revestimento pesam na conta. No miolo residencial de Prazeres, Jardim Petrópolis e Curado, o comum é a ampliação e a reforma de interiores em loteamento. Na avenida, o foco vira o uso comercial de rua, do fluxo de entrada ao depósito nos fundos.',
+      'Em Jaboatão dos Guararapes, o atendimento segue o endereço. Na orla — Piedade, Candeias, Barra de Jangada — são casas e apartamentos com o mar perto, onde fundação, esquadria e revestimento entram cedo no estudo. No miolo residencial de Prazeres, Jardim Petrópolis e Curado, o foco é ampliação e reforma de interiores em loteamento. Na avenida, é o uso comercial de rua, do fluxo de entrada ao depósito nos fundos.',
     attendance:
       'As visitas a Jaboatão dos Guararapes são programadas por etapa e cabem em deslocamentos curtos a partir do Recife. Quantidade e custo entram no escopo, combinados antes de começar.',
     faq: [
@@ -295,7 +299,7 @@ export const SERVICE_AREAS: ServiceArea[] = [
       },
     ],
     whereWeWork:
-      'O trabalho se divide entre a orla de Janga e Pau Amarelo, os terrenos maiores de Maria Farinha e a faixa da PE-15, em Paratibe, Meriú e Aurora. A tipologia muda muito de um ponto a outro — casa de veraneio, apartamento antigo de frente-mar, casa térrea em loteamento —, e é essa diferença que define o partido, não um modelo trazido do Recife.',
+      'O atendimento em Paulista acompanha as duas geografias da cidade. Na orla de Janga e Pau Amarelo, o caso típico é a casa de veraneio e o apartamento antigo de frente-mar; em Maria Farinha, o terreno maior, com água no subsolo e restinga por perto; no eixo da PE-15, em Paratibe, Meriú e Aurora, a casa térrea em loteamento e a construção por etapas. É essa diferença que define o partido — não um modelo trazido do Recife.',
     attendance:
       'Paulista está na Região Metropolitana. As idas ao imóvel e à obra são organizadas por etapa, em datas combinadas, com o deslocamento previsto no escopo antes da contratação.',
     faq: [
@@ -363,7 +367,7 @@ export const SERVICE_AREAS: ServiceArea[] = [
       },
     ],
     whereWeWork:
-      'O estúdio atende principalmente projetos residenciais e espaços comerciais de rua em Caruaru. A casa térrea em lote próprio é a tipologia mais comum, muitas vezes com ampliação prevista desde o começo; o comércio aparece ligado à feira e às avenidas centrais. As etapas presenciais são definidas no escopo e agendadas com antecedência.',
+      'Em Caruaru, o atendimento é voltado a projetos residenciais e a espaços comerciais de rua. Do lado residencial, predominam a casa térrea em lote próprio e a ampliação pensada desde o começo. Do lado comercial, a loja ligada à feira e às avenidas centrais. As etapas presenciais são definidas no escopo e agendadas com antecedência.',
     attendance:
       'Caruaru fica no Agreste, fora da Região Metropolitana. Levantamento, vistorias e entrega são reunidos em viagens combinadas com antecedência, e o deslocamento entra no escopo.',
     faq: [
@@ -430,7 +434,7 @@ export const SERVICE_AREAS: ServiceArea[] = [
       },
     ],
     whereWeWork:
-      'Além da reforma concluída no centro, há na cidade um projeto de casas geminadas para condomínio, com cobogó de tijolo aparente. O trabalho se divide entre a recuperação de casarões do centro, a residência de fim de semana e o lote em condomínio — três escalas diferentes, com a mesma atenção ao que já existe no lugar.',
+      'A reforma concluída no centro, em 2021, é a referência para a recuperação de casarões. O atendimento também cobre a residência de fim de semana e o lote em condomínio de serra — como o projeto de casas geminadas com cobogó de tijolo aparente. São três escalas, com a mesma atenção ao que já existe no lugar.',
     attendance:
       'Gravatá fica no Agreste e as visitas entram no escopo, combinadas com antecedência — o mesmo regime da obra que já entregamos no centro.',
     faq: [

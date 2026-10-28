@@ -5,6 +5,7 @@ location: "Ouricuri, PE"
 year: 2023
 typology: "Residencial Unifamiliar"
 category: "projeto"
+status: "projeto"
 scope:
   - "Projeto de Arquitetura de Interiores"
   - "Marcenaria e Serralheria Autoral"

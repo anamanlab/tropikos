@@ -5,6 +5,7 @@ location: "Recife, PE"
 year: 2024
 typology: "Interiores Residencial"
 category: "projeto"
+status: "projeto"
 scope:
   - "Projeto de Arquitetura de Interiores"
   - "Projeto Luminotécnico Cênico"

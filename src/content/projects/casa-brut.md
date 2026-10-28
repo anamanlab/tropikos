@@ -5,6 +5,7 @@ location: "Recife, PE"
 year: 2024
 typology: "Residencial Autoral"
 category: "projeto"
+status: "projeto"
 scope:
   - "Estudo Preliminar"
   - "Conceito Arquitetônico"

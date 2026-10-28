@@ -36,3 +36,8 @@ jobs:
 
       - name: Typecheck and build
         run: pnpm build
+
+      # The suite reads the built site, so it runs after the build. `CI=true`
+      # makes missing build output a failure instead of a skipped, green suite.
+      - name: Test
+        run: pnpm test

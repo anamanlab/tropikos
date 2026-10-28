@@ -5,6 +5,7 @@ location: "Gravatá, PE"
 year: 2021
 typology: "Residencial Unifamiliar"
 category: "construido"
+status: "construido"
 scope:
   - "Projeto de Reforma"
   - "Arquitetura de Interiores"

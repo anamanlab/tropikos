@@ -8,14 +8,15 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, typology, location, year, category, cover, coverAlt } = entry.data;
+const { title, typology, location, year, category, status, cover, coverAlt } = entry.data;
 
-const categoryLabels: Record<string, string> = {
+// The badge states build stage, not type: a "Comercial" or "Reforma" project can
+// be either built or still on paper, so the type lives in the caption instead.
+const statusLabels: Record<string, string> = {
   construido: 'Construído',
   projeto: 'Projeto 3D',
-  comercial: 'Comercial',
-  reforma: 'Reforma',
 };
+const statusLabel = statusLabels[status] ?? status;
 ---
 
 <a
@@ -43,7 +44,7 @@ const categoryLabels: Record<string, string> = {
       )
     }
     <span class="caption absolute left-3 top-3 bg-paper/90 px-2 py-0.5 text-ink backdrop-blur-sm sm:left-4 sm:top-4">
-      {categoryLabels[category] ?? category}
+      {statusLabel}
     </span>
   </div>
 

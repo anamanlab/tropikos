@@ -5,6 +5,7 @@ location: "Ipubi, PE"
 year: 2023
 typology: "Residencial Unifamiliar"
 category: "projeto"
+status: "projeto"
 scope:
   - "Projeto Arquitetônico"
   - "Estudo Bioclimático do Semiárido"

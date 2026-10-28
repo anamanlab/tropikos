@@ -52,6 +52,14 @@ function sentences(text) {
 }
 
 const built = await exists(path.join(dist, 'atuacao', 'olinda', 'index.html'));
+
+// A skipped suite reads as green, which is the wrong signal in CI. There the
+// build output is required; locally the skip stays so a single `node --test`
+// run does not need a fresh build.
+if (!built && process.env.CI) {
+  throw new Error('dist/atuacao is missing; run `pnpm build` before the service-area tests.');
+}
+
 const skip = built ? false : 'Run `pnpm build` before the service-area tests.';
 
 test('every service area builds a page reachable from the hub', async (t) => {
@@ -140,6 +148,53 @@ test('no page claims an office or an unearned work in the city', async (t) => {
 
     const workClaims = claimingSentences(text, workPattern(area.city));
     assert.deepEqual(workClaims, [], `${area.city} claims unearned local work`);
+  }
+});
+
+test('every configured project renders as a card on its city page', async (t) => {
+  if (skip) return t.skip(skip);
+
+  for (const area of SERVICE_AREAS) {
+    const html = await pageHtml(area.slug);
+    const cards = html.match(/class="project-item project-card/g)?.length ?? 0;
+    assert.equal(cards, area.projects.length, `${area.city} renders ${cards} cards`);
+
+    for (const id of area.projects) {
+      assert.ok(
+        html.includes(`href="/projetos/${id}"`),
+        `${area.city} is missing the card for "${id}"`,
+      );
+    }
+  }
+});
+
+test('every project card states whether it was built', async (t) => {
+  if (skip) return t.skip(skip);
+
+  for (const area of SERVICE_AREAS) {
+    const html = await pageHtml(area.slug);
+    const cards = html.match(/class="project-item project-card/g)?.length ?? 0;
+    const badges = [
+      ...html.matchAll(
+        /<span[^>]+class="caption absolute[^"]*"[^>]*>\s*(?:Construído|Projeto 3D)\s*<\/span>/g,
+      ),
+    ];
+    assert.equal(badges.length, cards, `${area.city} has a card without a status badge`);
+  }
+});
+
+test('the WhatsApp link names the city so inquiries can be traced', async (t) => {
+  if (skip) return t.skip(skip);
+
+  for (const area of SERVICE_AREAS) {
+    const html = await pageHtml(area.slug);
+    const links = [...html.matchAll(/href="(https:\/\/wa\.me\/[^"]+)"/g)].map((match) =>
+      decodeURIComponent(match[1]),
+    );
+    assert.ok(
+      links.some((href) => href.includes(area.city)),
+      `${area.city} only links to the generic WhatsApp message`,
+    );
   }
 });
 

@@ -5,6 +5,7 @@ location: "Recife, PE"
 year: 2022
 typology: "Comercial e Saúde"
 category: "comercial"
+status: "construido"
 scope:
   - "Projeto Arquitetônico de Interiores"
   - "Acessibilidade e Normas Sanitárias"

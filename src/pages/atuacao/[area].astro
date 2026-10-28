@@ -5,7 +5,7 @@ import FaqSchema from '@/components/FaqSchema.astro';
 import ServiceAreaSchema from '@/components/ServiceAreaSchema.astro';
 import ProjectCard from '@/components/ProjectCard.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { SERVICE_AREAS, SITE, type ServiceArea } from '@/site.config';
+import { SERVICE_AREAS, SITE, whatsappHrefFor, type ServiceArea } from '@/site.config';
 
 export function getStaticPaths() {
   return SERVICE_AREAS.map((area) => ({
@@ -20,11 +20,20 @@ interface Props {
 
 const { area } = Astro.props;
 
-const published = (await getCollection('projects')).filter((entry) => !entry.data.draft);
-const byId = new Map(published.map((entry) => [entry.id, entry]));
-const projects = area.projects
-  .map((id) => byId.get(id))
-  .filter((entry): entry is CollectionEntry<'projects'> => Boolean(entry));
+const all = await getCollection('projects');
+const byId = new Map(all.filter((entry) => !entry.data.draft).map((entry) => [entry.id, entry]));
+const drafts = new Set(all.filter((entry) => entry.data.draft).map((entry) => entry.id));
+
+// A mistyped id or a project that later went back to draft would otherwise
+// vanish from the grid without anyone noticing, so fail the build instead.
+const projects = area.projects.map((id): CollectionEntry<'projects'> => {
+  const entry = byId.get(id);
+  if (!entry) {
+    const reason = drafts.has(id) ? 'is a draft' : 'does not exist';
+    throw new Error(`/atuacao/${area.slug}: project "${id}" ${reason}.`);
+  }
+  return entry;
+});
 
 const siblings = SERVICE_AREAS.filter((sibling) => sibling.slug !== area.slug);
 const path = `/atuacao/${area.slug}`;
@@ -137,7 +146,7 @@ const path = `/atuacao/${area.slug}`;
   <section class="shell mt-[clamp(3rem,6vw,5rem)]">
     <div class="grid grid-cols-1 gap-x-6 gap-y-5 md:grid-cols-12">
       <div class="md:col-span-3">
-        <p class="caption text-concrete">Onde o trabalho acontece</p>
+        <p class="caption text-concrete">Que imóveis atendemos</p>
       </div>
       <div class="md:col-span-8 md:col-start-5">
         <p class="body-copy max-w-[60ch] text-concrete">{area.whereWeWork}</p>
@@ -218,7 +227,7 @@ const path = `/atuacao/${area.slug}`;
       Tem um imóvel em {area.city}?
     </p>
     <a
-      href={SITE.whatsappHref}
+      href={whatsappHrefFor(`Olá! Vim pelo site e quero conversar sobre um projeto em ${area.city}.`)}
       target="_blank"
       rel="noopener"
       class="caption mt-8 inline-flex items-center gap-2 border-b border-hairline pb-1 transition-opacity hover:opacity-50 tap"

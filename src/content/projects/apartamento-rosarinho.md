@@ -5,6 +5,7 @@ location: "Recife, PE"
 year: 2023
 typology: "Interiores Residencial"
 category: "construido"
+status: "construido"
 scope:
   - "Projeto de Arquitetura de Interiores"
   - "Marcenaria Sob Medida"
