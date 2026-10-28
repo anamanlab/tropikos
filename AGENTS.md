@@ -12,7 +12,7 @@ Astro 7 + Tailwind 4 static site for Trópikos Arquitetos, a pt-BR architecture 
 - Single test (after `pnpm build`): `node --experimental-strip-types --test --test-name-pattern="Markdown lookup" tests/agent-readiness.test.mjs`.
 - `pnpm preview` — serve the built `dist/`.
 - `pnpm icons` — regenerate `public/icon-192.png`, `icon-512.png`, `maskable-512.png`, and `apple-touch-icon.png` from `brand-kit/svg/tropikos-symbol-white.svg`; don't hand-edit those PNGs.
-- `pnpm deploy` / `pnpm deploy:dry` — build, then `cf deploy` / `cf deploy --dry-run`. Run `cf auth login` once. `cf` is the deploy CLI; do not use `wrangler deploy`.
+- `pnpm run deploy` / `pnpm run deploy:dry` — build, then `cf deploy` / `cf deploy --dry-run`. Run `cf auth login` once. `cf` is the deploy CLI; do not use `wrangler deploy`. Bare `pnpm deploy` is pnpm's own workspace command and fails on this single package.
 - No lint or formatter script/config exists; match the existing style manually.
 
 ## Architecture
