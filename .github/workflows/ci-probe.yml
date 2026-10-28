@@ -1,0 +1,35 @@
+name: CI Probe (throwaway)
+
+# Temporary. Exists only to answer two questions: does a push event schedule a
+# workflow at all, and does the pinned pnpm clear the install step.
+
+on:
+  push:
+    branches: [ci-pnpm-pin]
+  workflow_dispatch:
+
+jobs:
+  probe:
+    name: Probe install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Versions
+        run: |
+          echo "pnpm: $(pnpm --version)"
+          echo "node: $(node --version)"
+          echo "CI: ${CI:-unset}"
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
