@@ -3,3 +3,9 @@ packages:
 
 allowBuilds:
   esbuild: true
+  # pnpm >= 11 fails installs on unreviewed build scripts (strictDepBuilds).
+  # These two are declined, not approved: protobufjs' postinstall only builds
+  # its own CLI, and workerd's real binary ships in the @cloudflare/workerd-*
+  # platform packages, so nothing here needs either script to run.
+  protobufjs: false
+  workerd: false
