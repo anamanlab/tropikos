@@ -18,13 +18,12 @@ const site = 'https://tropikos.com.br';
 
 const pageOrder = [
   '/',
-  '/about',
   '/estudio',
   '/servicos',
   '/projetos',
   '/perguntas',
-  '/contact',
-  '/privacy',
+  '/contato',
+  '/privacidade',
 ];
 
 const turndown = new TurndownService({
@@ -128,11 +127,15 @@ for (const file of htmlFiles) {
   console.log(`markdown ${urlPath} -> ${path.relative(root, file.replace(/\.html$/, '.md'))}`);
 }
 
+// The 404 template has no content worth handing an agent and would otherwise
+// ride in via the catch-all below.
+const contentPages = pages.filter((page) => page.urlPath !== '/404');
+
 const ordered = [
   ...pageOrder
-    .map((urlPath) => pages.find((page) => page.urlPath === urlPath))
+    .map((urlPath) => contentPages.find((page) => page.urlPath === urlPath))
     .filter(Boolean),
-  ...pages.filter((page) => !pageOrder.includes(page.urlPath)),
+  ...contentPages.filter((page) => !pageOrder.includes(page.urlPath)),
 ];
 
 const full = [

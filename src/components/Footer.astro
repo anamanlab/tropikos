@@ -79,7 +79,7 @@ const year = new Date().getFullYear();
           </li>
           <li>
             <a
-              href={`https://wa.me/${SITE.whatsapp}`}
+              href={SITE.whatsappHref}
               target="_blank"
               rel="noopener"
               class="transition-opacity hover:opacity-55"
@@ -120,10 +120,17 @@ const year = new Date().getFullYear();
       <p class="caption text-concrete">
         {SITE.address.city}, {SITE.address.state} — {SITE.country}
       </p>
-      <a href="/privacidade" class="caption text-concrete transition-colors hover:text-paper">
+      <a href="/privacidade" class="caption text-concrete transition-colors hover:text-paper tap">
         Privacidade
       </a>
-      <a href="#main" class="caption text-concrete transition-colors hover:text-paper">
+      <button
+        type="button"
+        data-consent-open
+        class="caption text-concrete transition-colors hover:text-paper tap"
+      >
+        Preferências de cookie
+      </button>
+      <a href="#main" class="caption text-concrete transition-colors hover:text-paper tap">
         Voltar ao topo ↑
       </a>
     </div>

@@ -164,6 +164,16 @@
     border-color: var(--color-ink);
   }
 
+  /* Toggle state for the catalog filters and view switcher. The cue is rule
+     weight, not text color, so it survives 1.4.1; aria-pressed carries it to
+     assistive tech. */
+  .filter-btn[aria-pressed='true'],
+  .view-btn[aria-pressed='true'] {
+    border-bottom-width: 2px;
+    border-bottom-color: var(--color-ink);
+    margin-bottom: -1px;
+  }
+
   .rule-top {
     border-top: 1px solid var(--rule);
   }

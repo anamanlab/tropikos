@@ -2,8 +2,6 @@
 export const SITE = {
   name: 'Trópikos Arquitetos',
   shortName: 'TRÓPIKOS',
-  role: 'Arquitetura autoral. Obra sob controle.',
-  tagline: 'Arquitetura autoral, do conceito à materialização.',
   description:
     'Trópikos Arquitetos — escritório de arquitetura e interiores no Recife. Projetos autorais, execução e acompanhamento de obra do conceito à entrega.',
   city: 'Recife',
@@ -35,6 +33,9 @@ export const SITE = {
   cityCode: 'REC',
   cityCodeAlt: 'PAR',
 } as const;
+
+/** E.164 tel: href. Keeps the leading "+", which a \D strip would drop. */
+export const telHref = (number: string) => `tel:${number.replace(/[\s()\-.]/g, '')}`;
 
 export const NAV_LINKS = [
   { label: 'Projetos', href: '/projetos', index: '01' },

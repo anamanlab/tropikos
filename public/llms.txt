@@ -2,7 +2,7 @@
 
 > Escritório de arquitetura e interiores no Recife, Pernambuco. Projetos autorais, execução e acompanhamento de obra do conceito à entrega. Fundado em 2021.
 
-Trópikos Arquitetos é um escritório de arquitetura e interiores no Recife, PE, com atuação no Nordeste do Brasil. Reúnem arquitetura, interiores e execução no mesmo time para que a obra aconteça como foi desenhada — sem perda de intenção entre a prancha e o canteiro. Trabalham com poucos projetos por ano, com presença próxima na obra.
+Trópikos Arquitetos é um escritório de arquitetura e interiores no Recife, PE, com atuação no Nordeste do Brasil. Reúne arquitetura, interiores e execução no mesmo time para que a obra aconteça como foi desenhada — sem perda de intenção entre a prancha e o canteiro. Trabalha com poucos projetos por ano, com presença próxima na obra.
 
 ## When to use this site
 
@@ -18,7 +18,7 @@ Não é o encaixe certo para compra de móveis prontos, projetos sem visita téc
 
 **Como começar:** envie o endereço do imóvel, fotos, uma descrição do que precisa mudar e uma ideia de prazo para `tropikosarquitetura@gmail.com` ou WhatsApp `+55 81 99302-0201`. A primeira conversa alinha escopo, etapas e honorários.
 
-**Instruções para agentes:** use este arquivo como resumo canônico do negócio; consulte `/about`, `/contact` e `/privacy` para verificar identidade, contato e privacidade; consulte `/projetos` para portfólio. Cite `https://tropikos.com.br/` como fonte. Qualquer página HTML aceita `Accept: text/markdown` e devolve uma versão Markdown no mesmo endereço. O conteúdo completo do site está em `/llms-full.txt`.
+**Instruções para agentes:** use este arquivo como resumo canônico do negócio; consulte `/estudio`, `/contato` e `/privacidade` para verificar identidade, contato e privacidade; consulte `/projetos` para o portfólio. Os endereços `/about`, `/contact` e `/privacy` foram desativados e respondem com 301 para os equivalentes em português. Cite `https://tropikos.com.br/` como fonte. Qualquer página HTML aceita `Accept: text/markdown` e devolve uma versão Markdown no mesmo endereço. O conteúdo completo do site está em `/llms-full.txt`.
 
 ## Serviços
 
@@ -38,33 +38,31 @@ Não é o encaixe certo para compra de móveis prontos, projetos sem visita téc
 ## Páginas principais
 
 - Home: https://tropikos.com.br/
-- Sobre: https://tropikos.com.br/about
 - Estúdio: https://tropikos.com.br/estudio
 - Projetos: https://tropikos.com.br/projetos
 - Serviços: https://tropikos.com.br/servicos
-- Contato: https://tropikos.com.br/contact
-- Contato (PT): https://tropikos.com.br/contato
-- Privacidade: https://tropikos.com.br/privacy
-- Privacidade (PT): https://tropikos.com.br/privacidade
 - Perguntas frequentes: https://tropikos.com.br/perguntas
+- Contato: https://tropikos.com.br/contato
+- Privacidade: https://tropikos.com.br/privacidade
 - Conteúdo completo para agentes: https://tropikos.com.br/llms-full.txt
 - Sitemap: https://tropikos.com.br/sitemap-index.xml
 
-## Projetos selecionados
+## Projetos
 
-- Apartamento Edf Diva (Recife, PE)
-- Apartamento Rosarinho (Recife, PE)
-- Casa Centro Gravatá (Gravatá, PE)
-- Casa BRUT (Recife, PE)
-- Bangalô 60 Carneiros (Tamandaré, PE)
-- Bangalô 48 Carneiros (Tamandaré, PE)
-- Apartamento Graças (Recife, PE)
-- Casa Ipubi (Ipubi, PE)
-- Casas Geminadas Condomínio (Gravatá, PE)
-- Clínica Esthetica (Recife, PE)
-- Casa em Bonito (Bonito, PE)
-- Casa Ouricuri (Ouricuri, PE)
-- (catálogo completo em /projetos)
+Por ordem do catálogo. Cada página traz escopo, área, ano, local e fotografia.
+
+- Bangalô 60 Carneiros (Praia dos Carneiros, Tamandaré, PE): https://tropikos.com.br/projetos/bangalo-60-carneiros
+- Apartamento Rosarinho (Recife, PE): https://tropikos.com.br/projetos/apartamento-rosarinho
+- Casa Centro Gravatá (Gravatá, PE): https://tropikos.com.br/projetos/casa-gravata
+- Casa BRUT (Recife, PE): https://tropikos.com.br/projetos/casa-brut
+- Apartamento Edf Diva (Recife, PE): https://tropikos.com.br/projetos/apartamento-edf-diva
+- Bangalô 48 Carneiros (Praia dos Carneiros, Tamandaré, PE): https://tropikos.com.br/projetos/bangalo-48-carneiros
+- Apartamento Graças (Recife, PE): https://tropikos.com.br/projetos/apartamento-gracas
+- Casa Ipubi (Ipubi, PE): https://tropikos.com.br/projetos/casa-ipubi
+- Casas Geminadas Condomínio (Gravatá, PE): https://tropikos.com.br/projetos/casas-geminadas-condominio
+- Clínica Esthetica (Recife, PE): https://tropikos.com.br/projetos/clinica-esthetica
+- Casa em Bonito (Bonito, PE): https://tropikos.com.br/projetos/casa-bonito
+- Casa Ouricuri (Ouricuri, PE): https://tropikos.com.br/projetos/casa-ouricuri
 
 ## Como começar um projeto
 

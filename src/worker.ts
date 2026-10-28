@@ -35,6 +35,7 @@ const MARKDOWN_CACHE_CONTROL = "public, max-age=300, must-revalidate";
 const MARKDOWN_CONTENT_TYPE = "text/markdown; charset=utf-8";
 const HTML_CONTENT_TYPE = "text/html; charset=utf-8";
 const SITE_ORIGIN = "https://tropikos.com.br";
+const CANONICAL_HOST = new URL(SITE_ORIGIN).host;
 
 /** Parse a single `bytes=` range against a known file size. */
 function parseRange(header: string, size: number): ByteRange | null {
@@ -198,7 +199,7 @@ export function notFoundMarkdown(pathname: string): string {
     `- [Índice para agentes (llms.txt)](${SITE_ORIGIN}/llms.txt)`,
     `- [Conteúdo completo para agentes (llms-full.txt)](${SITE_ORIGIN}/llms-full.txt)`,
     `- [Sitemap](${SITE_ORIGIN}/sitemap-index.xml)`,
-    `- [Contato](${SITE_ORIGIN}/contact)`,
+    `- [Contato](${SITE_ORIGIN}/contato)`,
     "",
     "Se você seguiu um link antigo, o sitemap lista todas as páginas atuais.",
   ].join("\n");
@@ -216,11 +217,17 @@ function markdownResponse(body: BodyInit | null, status = 200): Response {
   });
 }
 
-async function serveMarkdown(
+/**
+ * The candidate Markdown asset that actually exists for a page URL. Astro emits
+ * `/` as `index.md` and `/404` as `404.md` but every other route as
+ * `<path>/index.md`, so the lookup order matters: a fixed guess would advertise
+ * alternates that 404.
+ */
+async function lookupMarkdown(
   request: Request,
   env: Env,
   pathname: string,
-): Promise<Response | null> {
+): Promise<{ path: string; body: BodyInit | null } | null> {
   for (const candidate of markdownPathCandidates(pathname)) {
     const url = new URL(request.url);
     url.pathname = candidate;
@@ -228,10 +235,19 @@ async function serveMarkdown(
     const asset = await env.ASSETS.fetch(new URL(url));
     if (!asset.ok) continue;
 
-    return markdownResponse(request.method === "HEAD" ? null : asset.body, 200);
+    return { path: candidate, body: request.method === "HEAD" ? null : asset.body };
   }
 
   return null;
+}
+
+async function serveMarkdown(
+  request: Request,
+  env: Env,
+  pathname: string,
+): Promise<Response | null> {
+  const found = await lookupMarkdown(request, env, pathname);
+  return found ? markdownResponse(found.body, 200) : null;
 }
 
 async function notFoundHtml(request: Request, env: Env): Promise<Response> {
@@ -337,6 +353,19 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
 
+    // www serves byte-identical content, so fold it onto the apex instead of
+    // splitting the duplicate. Scoped to the www host only so workers.dev and
+    // local previews are left alone.
+    if (url.host === `www.${CANONICAL_HOST}`) {
+      const target = new URL(request.url);
+      target.host = CANONICAL_HOST;
+      target.protocol = "https:";
+      return new Response(null, {
+        status: 301,
+        headers: { Location: target.toString(), "Cache-Control": "public, max-age=604800" },
+      });
+    }
+
     if (url.pathname.startsWith("/media/")) {
       return handleMedia(request, env, url);
     }
@@ -375,12 +404,13 @@ export default {
     appendVary(headers, "Accept");
 
     // Discoverability for agents that read HTML first: point at the parallel
-    // Markdown representation without changing the canonical URL.
-    const markdownPath = markdownPathCandidates(url.pathname)[0];
-    if (markdownPath) {
+    // Markdown representation without changing the canonical URL. Only advertise
+    // a candidate that resolved, so the alternate is never a 404.
+    const markdown = await lookupMarkdown(request, env, url.pathname);
+    if (markdown) {
       headers.set(
         "Link",
-        `<${new URL(markdownPath, request.url).toString()}>; rel="alternate"; type="text/markdown"`,
+        `<${new URL(markdown.path, request.url).toString()}>; rel="alternate"; type="text/markdown"`,
       );
     }
 

@@ -82,9 +82,37 @@ test('llms.txt includes explicit when-to-use guidance and agent instructions', a
   assert.match(llms, /Projeto arquitetônico residencial/);
   assert.match(llms, /tropikosarquitetura@gmail\.com/);
   assert.match(llms, /Accept: text\/markdown/);
-  assert.match(llms, /\/about/);
-  assert.match(llms, /\/contact/);
-  assert.match(llms, /\/privacy/);
+  assert.match(llms, /\/estudio/);
+  assert.match(llms, /\/contato/);
+  assert.match(llms, /\/privacidade/);
+});
+
+test('llms.txt does not direct agents to the retired English slugs', async () => {
+  const llms = await readFile(path.join(root, 'public/llms.txt'), 'utf8');
+  // Naming the retired slugs is fine (it documents the 301); pointing at them
+  // as a resource is not.
+  for (const retired of ['/about', '/contact', '/privacy']) {
+    assert.ok(
+      !llms.includes(`tropikos.com.br${retired}`),
+      `llms.txt links agents to the retired ${retired}`,
+    );
+  }
+});
+
+test('retired English slugs redirect to their Portuguese twins', async () => {
+  const redirects = await readFile(path.join(root, 'public/_redirects'), 'utf8');
+  const pairs = [
+    ['/about', '/estudio'],
+    ['/contact', '/contato'],
+    ['/privacy', '/privacidade'],
+  ];
+
+  for (const [from, to] of pairs) {
+    for (const suffix of ['', '/']) {
+      const rule = new RegExp(`^${from}${suffix}\\s+${to}${suffix}\\s+301$`, 'm');
+      assert.match(redirects, rule, `missing 301 ${from}${suffix} -> ${to}${suffix}`);
+    }
+  }
 });
 
 test('built output: homepage negotiates to a nonempty Markdown mirror', async (t) => {
@@ -130,11 +158,11 @@ test('built output: homepage title and H1 name the brand and the product', async
 });
 
 test('built output: trust anchors have at least 500 characters of main content', async (t) => {
-  if (!(await exists(path.join(dist, 'about/index.html')))) {
+  if (!(await exists(path.join(dist, 'estudio/index.html')))) {
     return t.skip('Run `pnpm build` before the build-output tests.');
   }
 
-  for (const slug of ['about', 'contact', 'privacy']) {
+  for (const slug of ['estudio', 'contato', 'privacidade']) {
     const html = await builtHtml(`${slug}/index.html`);
     const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1] ?? html;
     const text = visibleText(main);

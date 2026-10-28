@@ -1,2 +1,11 @@
 /projetos/apartamento-graca /projetos/apartamento-gracas 301
 /projetos/apartamento-graca/ /projetos/apartamento-gracas/ 301
+
+# English slugs served Portuguese copy and duplicated the PT routes. The PT
+# URLs are the canonical ones, so fold the three pairs onto them.
+/about /estudio 301
+/about/ /estudio/ 301
+/contact /contato 301
+/contact/ /contato/ 301
+/privacy /privacidade 301
+/privacy/ /privacidade/ 301

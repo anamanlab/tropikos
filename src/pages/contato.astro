@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema.astro';
-import { SITE } from '@/site.config';
+import { SITE, telHref } from '@/site.config';
 
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
   `${SITE.address.street}, ${SITE.address.building}, ${SITE.address.district}, ${SITE.address.city} - ${SITE.address.state}, ${SITE.address.postalCode}`,
@@ -43,7 +43,7 @@ const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
         </a>
         <p class="body-copy mt-1 text-concrete">
           Conversar no WhatsApp ·{' '}
-          <a href={`tel:${SITE.phoneAlt.replace(/\D/g, '')}`} class="link-rule tap">
+          <a href={telHref(SITE.phoneAlt)} class="link-rule tap">
             {SITE.phoneAlt}
           </a>
         </p>

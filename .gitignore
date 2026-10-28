@@ -35,3 +35,9 @@ pnpm-debug.log*
 .vscode/*
 !.vscode/extensions.json
 .idea/
+
+# local CLI settings
+.qoder/
+
+# third-party clone used to inspect the OpenSEO audit tool; never vendored here
+open-seo/

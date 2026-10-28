@@ -1,19 +1,19 @@
 ---
-// LGPD consent banner. Persists the choice in a first-party cookie (shared by
-// tropikos.com.br and www.tropikos.com.br) and localStorage; updates GA4
-// Consent Mode v2.
+// LGPD consent banner. The choice itself lives in window.tropikosConsent,
+// installed by BaseHead before gtag('config') runs; this component is only the
+// UI for granting, refusing, and revisiting it.
 ---
 <div
   id="consent-banner"
   class="fixed bottom-3 left-3 right-3 z-[60] hidden max-w-sm rounded-md border border-hairline bg-paper/95 p-3 text-ink shadow-sm backdrop-blur sm:left-auto sm:right-4"
   role="dialog"
-  aria-live="polite"
-  aria-label="Consentimento de cookies"
+  aria-labelledby="consent-banner-title"
 >
-  <p class="caption text-concrete">
+  <p id="consent-banner-title" class="caption text-concrete">
     Usamos cookies para medir acessos. Aceitar ou recusar?
   </p>
-  <div class="mt-2 flex items-center gap-4">
+  <p data-consent-status class="caption text-concrete mt-2 hidden" role="status"></p>
+  <div class="mt-2 flex flex-wrap items-center gap-4">
     <button
       type="button"
       data-consent="deny"
@@ -28,95 +28,98 @@
     >
       Aceitar
     </button>
+    <button
+      type="button"
+      data-consent="close"
+      class="caption link-rule text-concrete hidden tap"
+    >
+      Fechar
+    </button>
   </div>
 </div>
 
 <script is:inline>
   (function () {
-    var KEY = 'tropikos_consent';
-    var MAX_AGE = 60 * 60 * 24 * 365; // 1 year
     var banner = document.getElementById('consent-banner');
-    if (!banner) return;
+    var consent = window.tropikosConsent;
+    if (!banner || !consent) return;
 
-    function apply(choice) {
-      if (typeof window.gtag === 'function') {
-        window.gtag('consent', 'update', {
-          analytics_storage: choice === 'accept' ? 'granted' : 'denied',
-          ad_storage: 'denied',
-          ad_user_data: 'denied',
-          ad_personalization: 'denied'
-        });
-      }
-    }
-
-    // Share the choice between the apex and www hosts. Other hosts (local dev,
-    // workers.dev previews) get a host-only cookie.
-    function cookieDomain() {
-      return /(^|\.)tropikos\.com\.br$/.test(window.location.hostname)
-        ? '; Domain=tropikos.com.br'
-        : '';
-    }
-
-    function readCookie() {
-      var prefix = KEY + '=';
-      var parts = document.cookie ? document.cookie.split('; ') : [];
-      for (var i = 0; i < parts.length; i++) {
-        if (parts[i].indexOf(prefix) === 0) {
-          try { return decodeURIComponent(parts[i].slice(prefix.length)); } catch (e) { return null; }
-        }
-      }
-      return null;
-    }
-
-    function writeCookie(choice) {
-      document.cookie = KEY + '=' + encodeURIComponent(choice) +
-        '; Path=/; Max-Age=' + MAX_AGE + '; SameSite=Lax' +
-        (window.location.protocol === 'https:' ? '; Secure' : '') +
-        cookieDomain();
-    }
-
-    function readStored() {
-      // The cookie wins because it is the value shared across apex and www.
-      // localStorage is the fallback for visitors who accepted before the
-      // cookie was introduced, or where cookies are unavailable.
-      var fromCookie = readCookie();
-      if (fromCookie === 'accept' || fromCookie === 'deny') return fromCookie;
-
-      var value = null;
-      try { value = localStorage.getItem(KEY); } catch (e) {}
-      return value === 'accept' || value === 'deny' ? value : null;
-    }
-
-    function store(choice) {
-      try { localStorage.setItem(KEY, choice); } catch (e) {}
-      writeCookie(choice);
-    }
-
-    var stored = readStored();
-
-    if (stored) {
-      // Keep both stores in sync in case a previous visit only wrote one.
-      store(stored);
-      apply(stored);
-      return;
-    }
-
-    // No choice yet — show banner and hide the floating WhatsApp button so it
-    // doesn't overlap the consent actions.
+    var title = document.getElementById('consent-banner-title');
+    var status = banner.querySelector('[data-consent-status]');
+    var closeBtn = banner.querySelector('[data-consent="close"]');
+    var acceptBtn = banner.querySelector('[data-consent="accept"]');
     var floatBtn = document.querySelector('.whatsapp-float');
-    if (floatBtn) floatBtn.classList.add('hidden');
-    banner.classList.remove('hidden');
+    var trigger = null;
+    var mode = 'closed';
+
+    function label(choice) {
+      return choice === 'accept' ? 'Analytics aceito' : 'Analytics recusado';
+    }
+
+    function show(nextMode) {
+      mode = nextMode;
+      banner.classList.remove('hidden');
+      if (mode === 'revisit') {
+        title.textContent = 'Preferências de cookie';
+        status.textContent = 'Preferência atual: ' + label(consent.get());
+        status.classList.remove('hidden');
+        closeBtn.classList.remove('hidden');
+        acceptBtn.focus();
+      } else {
+        title.textContent = 'Usamos cookies para medir acessos. Aceitar ou recusar?';
+        status.classList.add('hidden');
+        closeBtn.classList.add('hidden');
+        if (floatBtn) floatBtn.classList.add('hidden');
+      }
+    }
+
+    function hide() {
+      mode = 'closed';
+      banner.classList.add('hidden');
+      if (floatBtn) floatBtn.classList.remove('hidden');
+      if (trigger && document.contains(trigger)) trigger.focus();
+    }
+
+    function announce(message) {
+      var live = document.createElement('p');
+      live.className = 'caption sr-only';
+      live.setAttribute('role', 'status');
+      live.textContent = message;
+      document.body.appendChild(live);
+      window.setTimeout(function () { live.remove(); }, 5000);
+    }
 
     banner.querySelectorAll('[data-consent]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var choice = btn.getAttribute('data-consent');
+        if (choice === 'close') {
+          hide();
+          return;
+        }
         if (choice !== 'accept' && choice !== 'deny') return;
-        store(choice);
-        apply(choice);
-        banner.classList.add('hidden');
-        var floatBtn2 = document.querySelector('.whatsapp-float');
-        if (floatBtn2) floatBtn2.classList.remove('hidden');
+
+        var wasRevisit = mode === 'revisit';
+        consent.set(choice);
+        consent.apply(choice);
+        hide();
+        if (wasRevisit) announce('Preferências de cookie salvas: ' + label(choice) + '.');
       });
     });
+
+    document.addEventListener('click', function (event) {
+      var opener = event.target.closest ? event.target.closest('[data-consent-open]') : null;
+      if (!opener) return;
+      event.preventDefault();
+      trigger = opener;
+      show('revisit');
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && mode !== 'closed') hide();
+    });
+
+    // A stored choice means BaseHead already set the right consent default, so
+    // there is nothing to ask on load. The banner still opens on demand above.
+    if (!consent.get()) show('first-visit');
   })();
 </script>

@@ -1,6 +1,6 @@
 ---
 import Logo from '@/components/Logo.astro';
-import { NAV_LINKS, SITE } from '@/site.config';
+import { NAV_LINKS, SITE, telHref } from '@/site.config';
 
 const path = Astro.url.pathname;
 const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`);
@@ -77,7 +77,7 @@ const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`)
         <p class="caption text-concrete mb-2">Contato</p>
         <p class="body-copy">
           <a class="link-rule tap" href={`mailto:${SITE.email}`}>{SITE.email}</a><br />
-          <a class="link-rule tap" href={`tel:${SITE.phone.replace(/\D/g, '')}`}>{SITE.phone}</a><br />
+          <a class="link-rule tap" href={telHref(SITE.phone)}>{SITE.phone}</a><br />
           <a class="link-rule tap" href={SITE.whatsappHref} target="_blank" rel="noopener">
             WhatsApp ↗
           </a>

@@ -2,7 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema.astro';
-import { SITE } from '@/site.config';
+import { SITE, telHref } from '@/site.config';
 import brunoPortrait from '@/assets/studio/bruno-icaro.webp';
 import silvioPortrait from '@/assets/studio/silvio-melo-jr.webp';
 
@@ -183,7 +183,7 @@ const facts = [
         </address>
         <p class="body-copy mt-6">
           <a class="link-rule tap" href={`mailto:${SITE.email}`}>{SITE.email}</a><br />
-          <a class="link-rule tap" href={`tel:${SITE.phone.replace(/\D/g, '')}`}>{SITE.phone}</a><br />
+          <a class="link-rule tap" href={telHref(SITE.phone)}>{SITE.phone}</a><br />
           <a class="link-rule tap" href={SITE.whatsappHref} target="_blank" rel="noopener">
             WhatsApp ↗
           </a>

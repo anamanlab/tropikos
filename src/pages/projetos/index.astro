@@ -45,28 +45,32 @@ const counts = {
         <button
           type="button"
           data-filter="all"
-          class="filter-btn caption link-rule tap active text-ink"
+          class="filter-btn caption link-rule tap"
+          aria-pressed="true"
         >
           Todos <span class="text-concrete">({String(counts.all).padStart(2, '0')})</span>
         </button>
         <button
           type="button"
           data-filter="construido"
-          class="filter-btn caption link-rule tap text-concrete"
+          class="filter-btn caption link-rule tap"
+          aria-pressed="false"
         >
           Construídos <span class="text-concrete">({String(counts.construido).padStart(2, '0')})</span>
         </button>
         <button
           type="button"
           data-filter="projeto"
-          class="filter-btn caption link-rule tap text-concrete"
+          class="filter-btn caption link-rule tap"
+          aria-pressed="false"
         >
           Projetos & Renders <span class="text-concrete">({String(counts.projeto).padStart(2, '0')})</span>
         </button>
         <button
           type="button"
           data-filter="comercial"
-          class="filter-btn caption link-rule tap text-concrete"
+          class="filter-btn caption link-rule tap"
+          aria-pressed="false"
         >
           Comercial <span class="text-concrete">({String(counts.comercial).padStart(2, '0')})</span>
         </button>
@@ -77,22 +81,28 @@ const counts = {
         <button
           type="button"
           data-view="list"
-          class="view-btn caption link-rule tap active text-ink"
+          class="view-btn caption link-rule tap"
+          aria-pressed="true"
           aria-label="Visualização em Lista"
         >
           Lista
         </button>
-        <span class="text-concrete text-xs">/</span>
+        <span class="text-concrete text-xs" aria-hidden="true">/</span>
         <button
           type="button"
           data-view="grid"
-          class="view-btn caption link-rule tap text-concrete"
+          class="view-btn caption link-rule tap"
+          aria-pressed="false"
           aria-label="Visualização em Grade"
         >
           Grade
         </button>
       </div>
     </div>
+
+    <p class="caption text-concrete mt-4" role="status" data-catalog-status>
+      {String(projects.length)} projetos
+    </p>
 
     {/* List View */}
     <div id="projects-list-view" class="block">
@@ -112,32 +122,27 @@ const counts = {
       const listView = document.getElementById('projects-list-view');
       const gridView = document.getElementById('projects-grid-view');
       const items = document.querySelectorAll<HTMLElement>('.project-item');
+      const status = document.querySelector<HTMLElement>('[data-catalog-status]');
 
       function applyFilter(category: string) {
         filterBtns.forEach((btn) => {
-          const match = btn.dataset.filter === category;
-          btn.classList.toggle('active', match);
-          btn.classList.toggle('text-ink', match);
-          btn.classList.toggle('text-concrete', !match);
+          btn.setAttribute('aria-pressed', String(btn.dataset.filter === category));
         });
 
+        let visible = 0;
         items.forEach((item) => {
           const itemCat = item.dataset.category;
           const show = category === 'all' || itemCat === category;
-          if (show) {
-            item.style.display = '';
-          } else {
-            item.style.display = 'none';
-          }
+          item.style.display = show ? '' : 'none';
+          if (show) visible += 1;
         });
+
+        if (status) status.textContent = `${visible} ${visible === 1 ? 'projeto' : 'projetos'}`;
       }
 
       function applyView(view: string) {
         viewBtns.forEach((btn) => {
-          const match = btn.dataset.view === view;
-          btn.classList.toggle('active', match);
-          btn.classList.toggle('text-ink', match);
-          btn.classList.toggle('text-concrete', !match);
+          btn.setAttribute('aria-pressed', String(btn.dataset.view === view));
         });
 
         if (view === 'grid') {
