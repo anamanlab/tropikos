@@ -1,0 +1,229 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema.astro';
+import FaqSchema from '@/components/FaqSchema.astro';
+import ServiceAreaSchema from '@/components/ServiceAreaSchema.astro';
+import ProjectCard from '@/components/ProjectCard.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { SERVICE_AREAS, SITE, type ServiceArea } from '@/site.config';
+
+export function getStaticPaths() {
+  return SERVICE_AREAS.map((area) => ({
+    params: { area: area.slug },
+    props: { area },
+  }));
+}
+
+interface Props {
+  area: ServiceArea;
+}
+
+const { area } = Astro.props;
+
+const published = (await getCollection('projects')).filter((entry) => !entry.data.draft);
+const byId = new Map(published.map((entry) => [entry.id, entry]));
+const projects = area.projects
+  .map((id) => byId.get(id))
+  .filter((entry): entry is CollectionEntry<'projects'> => Boolean(entry));
+
+const siblings = SERVICE_AREAS.filter((sibling) => sibling.slug !== area.slug);
+const path = `/atuacao/${area.slug}`;
+---
+
+<BaseLayout title={area.metaTitle} description={area.metaDescription}>
+  <BreadcrumbSchema
+    items={[
+      { name: 'Início', url: '/' },
+      { name: 'Atuação', url: '/atuacao' },
+      { name: area.city, url: path },
+    ]}
+  />
+  <ServiceAreaSchema
+    name={`Arquitetura e interiores em ${area.city}`}
+    cities={[area.city]}
+    description={area.metaDescription}
+    path={path}
+  />
+  <FaqSchema items={area.faq} />
+
+  <section class="shell pt-[calc(var(--header-y)+5rem)]">
+    <p class="caption text-concrete">(04) Atuação — {area.region}</p>
+    <div class="mt-6 grid grid-cols-12 gap-5">
+      <div class="col-span-12 lg:col-span-8">
+        <h1
+          class="max-w-[16ch] text-[clamp(2.4rem,8vw,8rem)] leading-[0.88] tracking-[-0.05em] text-balance break-words"
+        >
+          {area.h1}
+        </h1>
+      </div>
+      <div class="col-span-12 lg:col-span-4 lg:pt-16">
+        <p class="body-copy max-w-[34ch] text-concrete">{area.standfirst}</p>
+      </div>
+    </div>
+
+    <dl
+      class="mt-[clamp(2.5rem,5vw,4rem)] grid grid-cols-1 gap-x-6 gap-y-5 border-t border-hairline pt-5 sm:grid-cols-3"
+    >
+      <div>
+        <dt class="caption text-concrete">Sede do estúdio</dt>
+        <dd class="body-copy mt-1">Recife, {SITE.state} — {SITE.address.district}</dd>
+      </div>
+      <div>
+        <dt class="caption text-concrete">Visitas</dt>
+        <dd class="body-copy mt-1">Presenciais, sob agendamento</dd>
+      </div>
+      <div>
+        <dt class="caption text-concrete">Deslocamento</dt>
+        <dd class="body-copy mt-1">Previsto no escopo, combinado antes</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="shell mt-[clamp(3.5rem,7vw,6rem)]">
+    <div class="grid grid-cols-1 gap-x-6 gap-y-5 md:grid-cols-12">
+      <div class="md:col-span-3">
+        <p class="caption text-concrete">O lugar</p>
+      </div>
+      <div class="md:col-span-8 md:col-start-5">
+        <div class="grid gap-5">
+          {
+            area.intro.map((paragraph, index) => (
+              <p
+                class:list={[
+                  'max-w-[60ch] text-concrete',
+                  index === 0
+                    ? 'text-[clamp(1.15rem,1.9vw,1.5rem)] leading-[1.35] tracking-[-0.02em] text-ink'
+                    : 'body-copy',
+                ]}
+              >
+                {paragraph}
+              </p>
+            ))
+          }
+          <a
+            href="/servicos"
+            class="caption link-rule inline-flex w-fit text-concrete tap"
+          >
+            Os serviços do estúdio ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell mt-[clamp(4rem,8vw,7rem)]">
+    <div class="rule-top py-4">
+      <h2 class="caption">O que o lugar pede</h2>
+    </div>
+    <ul class="grid grid-cols-1 gap-x-8 md:grid-cols-2">
+      {
+        area.localLens.map((lens, index) => (
+          <li class="border-b border-hairline py-7">
+            <div class="grid grid-cols-[2.2rem_1fr] gap-x-4">
+              <span class="index text-concrete">{String(index + 1).padStart(2, '0')}</span>
+              <div>
+                <h3 class="text-[clamp(1.2rem,1.9vw,1.5rem)] leading-[1.1] tracking-[-0.03em]">
+                  {lens.place}
+                </h3>
+                <p class="body-copy mt-3 max-w-[42ch] text-concrete">{lens.body}</p>
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="shell mt-[clamp(3rem,6vw,5rem)]">
+    <div class="grid grid-cols-1 gap-x-6 gap-y-5 md:grid-cols-12">
+      <div class="md:col-span-3">
+        <p class="caption text-concrete">Onde o trabalho acontece</p>
+      </div>
+      <div class="md:col-span-8 md:col-start-5">
+        <p class="body-copy max-w-[60ch] text-concrete">{area.whereWeWork}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="inverse mt-[clamp(4rem,8vw,7rem)]">
+    <div class="shell py-[clamp(3.5rem,7vw,6rem)]">
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-12">
+        <div class="md:col-span-3">
+          <p class="caption text-concrete">Atendimento em {area.city}</p>
+        </div>
+        <div class="md:col-span-8 md:col-start-5">
+          <p class="text-[clamp(1.3rem,2.2vw,1.8rem)] leading-[1.25] tracking-[-0.025em]">
+            {area.attendance}
+          </p>
+          <a
+            href="/atuacao"
+            class="caption mt-6 inline-flex items-center gap-2 border-b border-paper/60 pb-1 transition-opacity hover:opacity-60 tap"
+          >
+            Como o estúdio atende fora do Recife <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell py-[clamp(4rem,8vw,7rem)]">
+    <div class="rule-top flex items-baseline justify-between gap-4 py-4">
+      <h2 class="caption">Projetos do estúdio</h2>
+      <a href="/projetos" class="caption link-rule text-concrete">Ver todos ↗</a>
+    </div>
+    <p class="body-copy mb-8 max-w-[58ch] text-concrete">{area.projectsNote}</p>
+    <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+      {projects.map((entry) => <ProjectCard entry={entry} />)}
+    </div>
+  </section>
+
+  <section class="shell mt-[clamp(3rem,6vw,5rem)]">
+    <div class="rule-top py-4">
+      <h2 class="caption">Perguntas diretas</h2>
+    </div>
+    <dl class="grid grid-cols-1 gap-x-8 border-t border-hairline md:grid-cols-2">
+      {
+        area.faq.map((item) => (
+          <div class="border-b border-hairline py-7">
+            <dt class="max-w-[34ch] text-[clamp(1.1rem,1.7vw,1.35rem)] leading-[1.2] tracking-[-0.02em]">
+              {item.question}
+            </dt>
+            <dd class="body-copy mt-3 max-w-[46ch] text-concrete">{item.answer}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section class="shell pb-[clamp(4rem,8vw,8rem)]">
+    <div class="rule-top py-4">
+      <h2 class="caption">Outras áreas</h2>
+    </div>
+    <ul class="flex flex-wrap gap-x-6 gap-y-3">
+      {
+        siblings.map((sibling) => (
+          <li>
+            <a href={`/atuacao/${sibling.slug}`} class="caption link-rule text-concrete tap">
+              {sibling.city} ↗
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <a href="/atuacao" class="caption link-rule text-concrete tap">Todas as áreas ↗</a>
+      </li>
+    </ul>
+
+    <p class="mt-16 max-w-[24ch] text-[clamp(2rem,4.6vw,4.2rem)] leading-[0.95] tracking-[-0.045em]">
+      Tem um imóvel em {area.city}?
+    </p>
+    <a
+      href={SITE.whatsappHref}
+      target="_blank"
+      rel="noopener"
+      class="caption mt-8 inline-flex items-center gap-2 border-b border-hairline pb-1 transition-opacity hover:opacity-50 tap"
+    >
+      Falar no WhatsApp <span aria-hidden="true">↗</span>
+    </a>
+  </section>
+</BaseLayout>

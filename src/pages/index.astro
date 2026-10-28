@@ -5,7 +5,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import HeroFilm from '@/components/HeroFilm.astro';
 import ProjectBand from '@/components/ProjectBand.astro';
 import ProjectRow from '@/components/ProjectRow.astro';
-import { SERVICES, SITE } from '@/site.config';
+import { SERVICES, SERVICE_AREAS, SITE } from '@/site.config';
 import studioDuo from '@/assets/studio/04-socios-tropikos.webp';
 
 const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
@@ -133,6 +133,27 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 4);
               <span class="body-copy col-span-2 mt-2 max-w-[36ch] text-concrete sm:col-span-1 sm:mt-0">
                 {service.body}
               </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+  <section class="shell pb-[clamp(4rem,8vw,8rem)]">
+    <div class="rule-top flex items-baseline justify-between gap-4 py-4">
+      <h2 class="caption">Atuação</h2>
+      <a href="/atuacao" class="caption link-rule text-concrete">Como trabalhamos ↗</a>
+    </div>
+    <p class="body-copy max-w-[48ch] text-concrete">
+      Sede no Parnamirim, Recife. Além da capital, o estúdio atende projetos em outras cidades de
+      Pernambuco, com o deslocamento combinado antes de começar.
+    </p>
+    <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-3">
+      {
+        SERVICE_AREAS.map((area) => (
+          <li>
+            <a href={`/atuacao/${area.slug}`} class="caption link-rule text-concrete tap">
+              {area.city} ↗
             </a>
           </li>
         ))

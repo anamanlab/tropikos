@@ -3,6 +3,16 @@ interface Crumb { name: string; url: string }
 interface Props { items: Crumb[] }
 const { items } = Astro.props;
 const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+
+// Canonical URLs on this site end with a slash (Astro's directory build
+// format). Normalize internal crumbs so the trail matches the canonical and
+// the sitemap instead of pointing at a URL that redirects.
+const absolute = (url: string) => {
+  if (url.startsWith('http')) return url;
+  const normalized = url === '/' ? '/' : `${url.replace(/\/$/, '')}/`;
+  return `${site}${normalized}`;
+};
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -10,7 +20,7 @@ const jsonLd = {
     '@type': 'ListItem',
     position: i + 1,
     name: c.name,
-    item: c.url.startsWith('http') ? c.url : `${site}${c.url}`,
+    item: absolute(c.url),
   })),
 };
 ---
