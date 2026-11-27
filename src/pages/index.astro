@@ -177,6 +177,7 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 4);
 .cinematic-home{--rule:var(--color-hairline);padding-top:clamp(80px,10vw,128px)}
 .scene { position:relative;isolation:isolate;overflow:hidden;min-height:440px;height:calc(100svh - 72px);color:#fff9ed;background:#28251e;display:flex;flex-direction:column;justify-content:flex-end;padding:var(--gutter);padding-bottom:20px }
 .media,.media img,.media video,.scene::after { position:absolute;inset:0;width:100%;height:100%;object-fit:cover }
+.media { z-index:-2;pointer-events:none }
 .media video { opacity:0 }
 .media video.ready { opacity:1 }
 .scene::after { content:"";z-index:-1;background:linear-gradient(0deg,#1b1b15f5 0%,#1b1b15a8 24%,transparent 66%) }
@@ -196,7 +197,7 @@ h2 { font-size:clamp(3.4rem,8vw,8rem) }
 .project-2 { --ratio:1.18 }
 .project-3 { --ratio:.85 }
 .project-4 { --ratio:1.85 }
-.frame img { width:100%;height:100%;display:block;object-fit:cover;transition:transform .65s cubic-bezier(.16,1,.3,1) }
+.frame :global(img) { width:100%;height:100%;display:block;object-fit:cover;transition:transform .65s cubic-bezier(.16,1,.3,1) }
 .project-caption { border-bottom:1px solid var(--rule);display:flex;align-items:end;justify-content:space-between;gap:12px;padding:16px 0 20px }
 .project-caption p { font-size:.76rem;margin-bottom:5px }
 .project-caption h3 { font-size:clamp(1.85rem,4vw,4rem) }
