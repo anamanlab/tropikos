@@ -2,8 +2,8 @@
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import HeroFilm from '@/components/HeroFilm.astro';
-import ProjectBand from '@/components/ProjectBand.astro';
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import ProjectRow from '@/components/ProjectRow.astro';
 import { SERVICES, SERVICE_AREAS, SITE } from '@/site.config';
 import studioDuo from '@/assets/studio/04-socios-tropikos.webp';
@@ -11,56 +11,48 @@ import studioDuo from '@/assets/studio/04-socios-tropikos.webp';
 const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
   (a, b) => a.data.order - b.data.order,
 );
+const filmUrl = (cut: string) => {
+  const path = `/media/hero-tropikos-${cut}.mp4`;
+  const version = createHash('sha256').update(readFileSync(`public${path}`)).digest('hex').slice(0, 10);
+  return `${path}?v=${version}`;
+};
 const featured = projects.filter((entry) => entry.data.featured).slice(0, 4);
 ---
 
 <BaseLayout title={`${SITE.name} — Arquitetura e Interiores no Recife`}>
-  <section class="flex min-h-[100svh] flex-col">
-    <div
-      class="shell grid grid-cols-12 gap-5 pt-[calc(var(--header-y)+4rem)] sm:pt-[calc(var(--header-y)+5.5rem)]"
-    >
-      <div class="col-span-12 md:col-span-5 md:col-start-7">
-        <p class="body-copy max-w-[25rem]">
-          <span class="text-ink">Trópikos Arquitetos</span>{' '}
-          <span class="text-concrete">
-            é um escritório de arquitetura e interiores no Recife. Projetamos e executamos
-            arquitetura autoral — do primeiro estudo à entrega das chaves, com atenção ao lugar, ao
-            clima e ao modo de morar de cada cliente.
-          </span>
-        </p>
-        <p class="caption mt-6 text-concrete">Desde {SITE.founded} — Parnamirim, Recife</p>
-      </div>
-    </div>
-
-    <HeroFilm />
-  </section>
-
-  <section class="shell pt-[clamp(5rem,10vw,10rem)]">
-    <div class="rule-top flex items-baseline justify-between gap-4 py-4">
-      <h2 class="caption">Projetos selecionados</h2>
-      <p class="caption text-concrete">({String(featured.length).padStart(2, '0')})</p>
-    </div>
-  </section>
-
-  <div class="mt-4 sm:mt-8 space-y-3 sm:space-y-6 bg-paper">
-    {
-      featured.map((entry, i) => (
-        <ProjectBand
-          index={`(${String(i + 1).padStart(2, '0')})`}
-          title={entry.data.title}
-          href={`/projetos/${entry.id}`}
-          location={entry.data.location}
-          year={entry.data.year}
-          typology={entry.data.typology}
-          image={entry.data.cover}
-          imageAlt={entry.data.coverAlt}
-          video={entry.data.video}
-          poster={entry.data.poster}
-        />
-      ))
-    }
+  <div class="cinematic-home">
+<section class="hero" aria-labelledby="titulo">
+<div class="scene">
+<div class="media"><picture><source media="(max-width: 700px) and (orientation: portrait)" srcset="/media/hero-tropikos-tall-poster.webp"><img src="/media/hero-tropikos-wide-poster.webp" fetchpriority="high" alt="Luz quente, cobogó terracota e sofá curvo no Apartamento Edf Diva."></picture><video data-tall-src={filmUrl("tall")} data-wide-src={filmUrl("wide")} muted playsinline preload="auto" aria-hidden="true"></video></div>
+<div class="hero-copy"><h1 id="titulo">Arquitetura para<br> viver o lugar.</h1><p>Arquitetura e interiores · Recife, PE</p></div>
+<div class="hero-foot"><a href="/projetos/apartamento-edf-diva">Apartamento Edf Diva <span aria-hidden="true">↗</span></a><a href="#projetos">Explorar projetos <span aria-hidden="true">↓</span></a></div>
+<div class="progress" aria-hidden="true"></div>
+</div>
+</section>
+<section id="projetos" class="work shell">
+  <div class="work-head">
+    <h2>Projetos<br />selecionados</h2>
+    <a href="/projetos" class="caption link-rule">Índice completo ↗</a>
   </div>
-
+  <div class="gallery">
+    {featured.map((entry, i) => (
+      <article class={`project project-${i + 1}`}>
+        <a href={`/projetos/${entry.id}`}>
+          <div class="frame">
+            <picture>
+              {entry.data.cover && <Image src={entry.data.cover} alt={entry.data.coverAlt ?? ''} widths={[800, 1200, 1600]} sizes={i === 0 || i === 3 ? '90vw' : '(max-width: 700px) 94vw, 52vw'} format="webp" />}
+            </picture>
+          </div>
+          <div class="project-caption">
+            <div><p>{entry.data.typology} · {entry.data.location}</p><h3>{entry.data.title}</h3></div>
+            <span aria-hidden="true">↗</span>
+          </div>
+        </a>
+      </article>
+    ))}
+  </div>
+</section>
+  </div>
   <section class="shell pt-[clamp(4rem,8vw,8rem)] pb-[clamp(4rem,8vw,8rem)]">
     <div class="rule-top flex items-baseline justify-between gap-4 py-4">
       <h2 class="caption">Índice de projetos</h2>
@@ -73,7 +65,7 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 4);
 
   <section class="inverse">
     <div class="shell grid grid-cols-1 items-center gap-12 py-[clamp(4rem,8vw,7rem)] md:grid-cols-12 md:gap-10">
-      <figure class="md:col-span-5 md:col-start-2">
+      <figure class="studio-photo md:col-span-5 md:col-start-2">
         <a href="/estudio" class="group block" aria-label="Conhecer o estúdio">
           <div class="relative mx-auto aspect-[4/5] w-full max-w-[23rem] overflow-hidden bg-black">
             <Image
@@ -161,6 +153,7 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 4);
     </ul>
   </section>
   <section class="shell py-[clamp(4rem,8vw,8rem)]">
+    <div class="contact-rule" aria-hidden="true"></div>
     <p class="caption text-concrete">Próximo passo</p>
     <p class="mt-5 max-w-[22ch] text-[clamp(2rem,4.6vw,4.2rem)] leading-[0.95] tracking-[-0.045em]">
       Tem um terreno ou um imóvel para transformar?
@@ -174,4 +167,49 @@ const featured = projects.filter((entry) => entry.data.featured).slice(0, 4);
       Falar no WhatsApp <span aria-hidden="true">↗</span>
     </a>
   </section>
+  <p class="shell caption pb-8">Site por <a class="link-rule" href="https://optvoo.com/br" rel="nofollow">Optvoo</a></p>
+  <script is:inline defer src="/home/gsap.js"></script>
+  <script is:inline defer src="/home/ScrollTrigger.js"></script>
+  <script is:inline defer src="/home/motion.js"></script>
 </BaseLayout>
+
+<style>
+.cinematic-home{--rule:var(--color-hairline);padding-top:clamp(80px,10vw,128px)}
+.scene { position:relative;isolation:isolate;overflow:hidden;min-height:440px;height:calc(100svh - 72px);color:#fff9ed;background:#28251e;display:flex;flex-direction:column;justify-content:flex-end;padding:var(--gutter);padding-bottom:20px }
+.media,.media img,.media video,.scene::after { position:absolute;inset:0;width:100%;height:100%;object-fit:cover }
+.media video { opacity:0 }
+.media video.ready { opacity:1 }
+.scene::after { content:"";z-index:-1;background:linear-gradient(0deg,#1b1b15f5 0%,#1b1b15a8 24%,transparent 66%) }
+.hero-copy p { margin-top:14px }
+.hero-foot { margin-top:28px;border-top:1px solid #fff9ed75;justify-content:space-between;padding-top:6px }
+.progress { position:absolute;bottom:0;left:0;width:100%;height:3px;background:#d6ae86;transform:scaleX(0);transform-origin:left }
+.work { padding-block:clamp(64px,11vw,160px) }
+.work-head { display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:clamp(24px,5vw,64px) }
+h2 { font-size:clamp(3.4rem,8vw,8rem) }
+.gallery { display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(30px,7vw,100px) 1.8vw }
+.project-1,.project-4 { grid-column:1/-1 }
+.project-2 { grid-column:1/8 }
+.project-3 { grid-column:9/-1;margin-top:clamp(25px,12vw,175px) }
+.project-4 { grid-column:3/-1 }
+.project a { display:block;text-decoration:none }
+.frame { aspect-ratio: var(--ratio, 2.1);overflow:hidden;background:#beb4a4 }
+.project-2 { --ratio:1.18 }
+.project-3 { --ratio:.85 }
+.project-4 { --ratio:1.85 }
+.frame img { width:100%;height:100%;display:block;object-fit:cover;transition:transform .65s cubic-bezier(.16,1,.3,1) }
+.project-caption { border-bottom:1px solid var(--rule);display:flex;align-items:end;justify-content:space-between;gap:12px;padding:16px 0 20px }
+.project-caption p { font-size:.76rem;margin-bottom:5px }
+.project-caption h3 { font-size:clamp(1.85rem,4vw,4rem) }
+.frame picture { display:block;width:100%;height:100% }
+.hero-foot {display:flex;align-items:center;gap:12px;font-size:.85rem}
+.hero-foot a {display:inline-flex;align-items:center;min-height:44px}
+h1,h2,h3 {font-family:Georgia,serif;font-weight:400;line-height:.94;letter-spacing:-.035em;margin:0}
+h1 {font-size:clamp(3rem,8.5vw,9rem)}
+.project-caption h3 {font-size:clamp(1.65rem,4vw,3.6rem)}
+.project-caption p {font-size:.8rem;margin:0 0 6px}
+.frame picture {display:block;width:100%;height:100%}
+.scene {height:calc(100svh - clamp(80px,10vw,128px));padding:clamp(18px,5vw,84px);padding-bottom:16px}
+@media(max-width:700px){.gallery{display:flex;flex-direction:column}.project{--ratio:1.3}.project-3{margin:0 0 0 12%}.work-head{align-items:start;flex-direction:column}.hero-foot{font-size:.76rem}}
+@media(max-height:520px){.scene{min-height:0}h1{font-size:clamp(2.5rem,16svh,5rem)}}
+.contact-rule{height:1px;background:currentColor;opacity:.3;transform-origin:left;margin-bottom:1.5rem}
+</style>
